@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7" manifest="default.appcache?v=1"><![endif]-->
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
 <!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
 <!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
-<html class="no-js" manifest="default.appcache?v=1" lang="en">
+<html class="no-js" lang="en">
 <!--<![endif]-->
 
 <head>
 {% include 'meta' %}
-<!-- For less capable mobile browsers
-<link rel="stylesheet" media="handheld" href="handheld.css?v=1">  -->
 
-<!-- For all browsers -->
-<link rel="stylesheet" media="screen" href="{{ 'mangled.css?v=1' | asset_url }}">
+<link rel="stylesheet" media="screen" href="{{ 'mangled.css' | asset_url }}">
 
-<link rel="stylesheet" media="print" href="{{ 'print.css?v=1' | asset_url }}">
+<link rel="stylesheet" media="print" href="{{ 'print.css' | asset_url }}">
 <!-- For progressively larger displays -->
-<link rel="stylesheet" media="only screen and (min-width: 480px)" href="{{ '480.css?v=1' | asset_url }}">
-<link rel="stylesheet" media="only screen and (min-width: 768px)" href="{{ '768.css?v=1'| asset_url }}">
-<link rel="stylesheet" media="only screen and (min-width: 992px)" href="{{ '992.css?v=1'| asset_url }}">
-<link rel="stylesheet" media="only screen and (min-width: 1382px)" href="{{ 1382.css?v=1' | asset_url }}">
-<!-- For Retina displays -->
-<link rel="stylesheet" media="only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)" href="{{ '2x.css?v=1' | asset_url }}">
+<link rel="stylesheet" media="only screen and (min-width: 480px)" href="{{ '480.css' | asset_url }}">
+<link rel="stylesheet" media="only screen and (min-width: 768px)" href="{{ '768.css'| asset_url }}">
+<link rel="stylesheet" media="only screen and (min-width: 992px)" href="{{ '992.css'| asset_url }}">
+<link rel="stylesheet" media="only screen and (min-width: 1382px)" href="{{ 1382.css' | asset_url }}">
 
 <!-- JavaScript at bottom except for Modernizr -->
 <script src="{{ 'modernizr-2.0.min.js' | asset_url }}"></script>
@@ -46,49 +41,60 @@
 </head>
 
 <body class="clearfix">
-  <div id="container" class="clearfix">
-	  <header role="banner" class="clearfix">
-		<h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
-		<nav>
-			<ul class="clearfix">
-				<li><a href="/pages/about">About Us</a></li>
-				<li><a href="/collections/shop">Shop</a></li>
-				<li><a href="http://pixiedusk.tumblr.com/">Blog</a></li>
-				<li><a href="/pages/faq#main" rel="highslide-ajax">Help</a></li>
-			</ul>
-		</nav>
-		<aside>
-			<p>{{ settings.top_right_shout_out }}</p>
-			<ul>
-				<li><a href="/cart">My cart ({{ cart.item_count }})</a></li> 
-			</ul>
-		</aside>
-	   </header>
+  <header role="banner" class="clearfix">
+	<h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
+	<nav>
+		<ul class="clearfix">
+		  {% for link in linklists.main-menu.links %}
+			<li>{{ link.title | link_to: link.url }}</li>
+		  {% endfor %}
+		</ul>
+	</nav>
+	<aside>
+		<ul class="clearfix">
+			<li><small><a href="/pages/shipping">Free Shipping</a></small></li> 
+			<li><small><a href="/cart">My cart ({{ cart.item_count }})</a></small></li> 
+		</ul>
+	</aside>
+  </header>
 
-	<div class="content clearfix">
+  <div class="content clearfix">
 
-	<div role="main" id="main">
+    <div role="main" id="main">
 		{{ content_for_layout }}
 	</div>
 
 	<div role="complementary">
+		<div id="newsletter">
+			<h2>News</h2>
+			{% for article in blog.news.articles | limit: 1 %}
+				<p>{{ article.content | truncatewords: 20 | strip_html }}</p>
+			{% endfor %}
+			<form>
+				Signup
+			</form>
+		</div>
+		<ul>
+		  {% for link in linklists.complementary-nav.links %}
+			<li>{{ link.title | link_to: link.url }}</li>
+		  {% endfor %}
+		</ul>
 	</div>
 
-	</div>
+  </div>
 
 	<footer role="contentinfo" class="clearfix">
 		<ul>
-			<li><a href="/pages/contact-us#main" rel="highslide-ajax">Contact Us</a></li>
-			<li><a href="/pages/terms-of-use#main" rel="highslide-ajax">Terms of Use</a></li>
-			<li><a href="/pages/privacy-policy#main" rel="highslide-ajax">Privacy Policy</a></li>
-			<li><a href="/pages/newsletter-signup#main" rel="highslide-ajax">Sign Up for Newsletter</a></li>
+		  {% for link in linklists.footer.links %}
+			<li>{{ link.title | link_to: link.url }}</li>
+		  {% endfor %}
 		</ul>
-		<ul class="social">
-			<li><a href="http://www.facebook.com/pixiedusk" class="facebook"><span class="ir">facebook</span></a></li>
-			<li><a href="http://twitter.com/pixieduskshop" class="twitter"><span class="ir">twitter</span></a></li>
+		<ul id="social">
+			<li><a href="http://www.facebook.com/#" class="facebook"><span class="ir">facebook</span></a></li>
+			<li><a href="http://twitter.com/#" class="twitter"><span class="ir">twitter</span></a></li>
+			<li><a href="http://tumbler.com/#" class="tumbler"><span class="ir">tumbler</span></a></li>
 		</ul>
 	</footer>
-  </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="{{ 'jquery-1.6.1.min.js' | asset_url }}">\x3C/script>')</script>

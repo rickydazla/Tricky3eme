@@ -1,0 +1,43 @@
+<h2 class="visuallyhidden">Featured Items</h2>
+<ul id="slides">
+	<li>
+	  <a href="#">
+		<figure>
+			<img src="{{ 'slide1.jpg' | asset_url }}">
+			<figcaption>Chris Sporting his Clayton Jacket in Downtown San Francisco</figcaption>
+		</figure>
+	  </a>
+	</li>
+</ul>
+<div class="menu-box">
+	<h2>Mens</h2>
+	<ul>
+		{% for link in linklists.mens-collections.links %}
+		{% capture img %}{{ link.handle }}.jpg{% endcapture %}
+		<li>
+		  <a href="{{ link.url }}">
+			<figure>
+				<img src="{{ img | asset_url }}">
+				<figcaption>{{ link.title }}</figcaption>
+			</figure>
+		  </a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<div>
+	<h2>Mens</h2>
+	<ul>
+		{% for link in linklists.mens-collections.links %}
+		{% capture img %}{{ link.handle }}.jpg{% endcapture %}
+		<li>
+		  <a href="{{ link.url }}">
+			<figure>
+				<img src="{{ img | asset_url }}">
+				<figcaption>{{ link.title }}</figcaption>
+			</figure>
+		  </a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>

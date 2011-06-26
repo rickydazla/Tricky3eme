@@ -17,10 +17,13 @@ $(function() {
   });
 });
 
-// Paul Irish - even box heights https://gist.github.com/917493
+// Even box heights 
 $(window).load(function() {
   $('div.unevenHeights').setAllToMaxHeight();
 });
+
+// Initiate jQuery cycle on index.liquid
+$('#slides').cycle('fade');
 
 // Initiate jQuery tabs on product.liquid
 $(function() {
@@ -38,7 +41,7 @@ $(function(){
 	
 });
 
-// Custom checkboxes on product.liquid (this needs some work)
+// Buy Button disable/enable product.liquid (this needs some work)
 jQuery(document).ready(function($) {
 	$('#buy-button').attr('disabled','disabled').addClass('disabled');
 	$('.check').click(function(){
