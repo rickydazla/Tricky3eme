@@ -11,13 +11,8 @@
 {% include 'meta' %}
 
 <link rel="stylesheet" media="screen" href="{{ 'mangled.css' | asset_url }}">
-
-<link rel="stylesheet" media="print" href="{{ 'print.css' | asset_url }}">
-<!-- For progressively larger displays -->
-<link rel="stylesheet" media="only screen and (min-width: 480px)" href="{{ '480.css' | asset_url }}">
-<link rel="stylesheet" media="only screen and (min-width: 768px)" href="{{ '768.css'| asset_url }}">
-<link rel="stylesheet" media="only screen and (min-width: 992px)" href="{{ '992.css'| asset_url }}">
-<link rel="stylesheet" media="only screen and (min-width: 1382px)" href="{{ 1382.css' | asset_url }}">
+<!-- Respond.js proxy on external server -->
+<link href="http://static.shopify.com/s/files/1/0086/7652/t/1/assets/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
 
 <!-- JavaScript at bottom except for Modernizr -->
 <script src="{{ 'modernizr-2.0.min.js' | asset_url }}"></script>
@@ -30,8 +25,9 @@
 <link rel="apple-touch-icon-precomposed" href="{{ 'apple-touch-icon-precomposed.png' | asset_url }}">
 <!-- For Nokia -->
 <link rel="shortcut icon" href="{{ 'apple-touch-icon.png' | asset_url }}">
-<!-- For everything else -->
 <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+
+
 
 <!-- http://t.co/y1jPVnT -->
 <link rel="canonical" href="/">
