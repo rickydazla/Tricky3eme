@@ -1,18 +1,19 @@
-<h2 class="visuallyhidden">Featured Items</h2>
+<h2 class="visuallyhidden">{{ settings.slider_title }}</h2>
 <ul id="slides">
 	<li>
 	  <a href="#">
 		<figure>
 			<img src="{{ 'slide1.jpg' | asset_url }}">
-			<figcaption>Chris Sporting his Clayton Jacket in Downtown San Francisco</figcaption>
+			<figcaption>{{ settings.slide1_caption }}</figcaption>
 		</figure>
 	  </a>
 	</li>
 </ul>
 <div class="menu-box">
-	<h2>Mens</h2>
+	<h2>{{ settings.featured_collection1_title }}</h2>
+	{% capture handle %}{{ settings.featured_collection1_title | handleize }}{% endcapture %}
 	<ul>
-		{% for link in linklists.mens-collections.links %}
+		{% for link in linklists.[handle].links %}
 		{% capture img %}{{ link.handle }}.jpg{% endcapture %}
 		<li>
 		  <a href="{{ link.url }}">
@@ -26,9 +27,10 @@
 	</ul>
 </div>
 <div>
-	<h2>Mens</h2>
+	<h2>{{ settings.featured_collection2_title }}</h2>
+	{% capture handle %}{{ settings.featured_collection2_title | handleize }}{% endcapture %}
 	<ul>
-		{% for link in linklists.mens-collections.links %}
+		{% for link in linklists.[handle].links %}
 		{% capture img %}{{ link.handle }}.jpg{% endcapture %}
 		<li>
 		  <a href="{{ link.url }}">
