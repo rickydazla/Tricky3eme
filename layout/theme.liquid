@@ -14,25 +14,19 @@
 <!-- Respond.js proxy on external server -->
 <link href="http://static.shopify.com/s/files/1/0086/7652/t/1/assets/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
 
-<!-- JavaScript at bottom except for Modernizr -->
 <script src="{{ 'modernizr-2.0.min.js' | asset_url }}"></script>
 
-<!-- For iPhone 4 -->
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'apple-touch-icon-114x114.png' | asset_url }}">
-<!-- For iPad 1-->
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'apple-touch-icon-72x72.png' | asset_url }}">
-<!-- For iPhone 3G, iPod Touch and Android -->
 <link rel="apple-touch-icon-precomposed" href="{{ 'apple-touch-icon-precomposed.png' | asset_url }}">
-<!-- For Nokia -->
 <link rel="shortcut icon" href="{{ 'apple-touch-icon.png' | asset_url }}">
 <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
 
-
-
-<!-- http://t.co/y1jPVnT -->
 <link rel="canonical" href="/">
 
 {{ content_for_header }}
+
+</head>
 
 </head>
 
@@ -41,9 +35,20 @@
 	<h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
 	<nav>
 		<ul class="clearfix">
-		  {% for link in linklists.main-menu.links %}
-			<li>{{ link.title | link_to: link.url }}</li>
-		  {% endfor %}
+			{% for link in linklists.main-menu.links %}
+			{% capture child_list_handle %}{{ link.title | handle }}{% endcapture %}
+			{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+				<li class="with-dropdown">{{ link.title | link_to: link.url }}<!--&nbsp;&darr;-->
+					<ul>
+					{% for sublink in linklists[child_list_handle].links %}
+						<li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
+					{% endfor %}
+					</ul>
+				</li>
+			{% else %}
+				<li>{{ link.title | link_to: link.url }}</li>
+			{% endif %}
+			{% endfor %}
 		</ul>
 	</nav>
 	<aside>
