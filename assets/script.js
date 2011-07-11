@@ -22,8 +22,16 @@ $(window).load(function() {
   $('div.unevenHeights').setAllToMaxHeight();
 });
 
-// Initiate jQuery cycle on index.liquid
-$('#slides').cycle('fade');
+// Initiate jQuery Carousel on index.liquid
+$(function() {
+	$('.slidewrap').carousel({
+		slider: '.slider',
+		slide: '.slide',
+		nextSlide: '.next',
+		prevSlide: '.prev',
+		speed: 300 // ms.
+	});
+});
 
 // Initiate jQuery tabs on product.liquid
 $(function() {
