@@ -1,8 +1,9 @@
 <meta charset="utf-8">
 <meta http-equiv="cleartype" content="on">
 <link rel="dns-prefetch" href="//static.myshopify.com/">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.url }}/sitemap.xml"
-{% if page_title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
+<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.url }}/sitemap.xml">
+{% capture title %}{{ page_title | downcase }}{% endcapture %}
+{% if title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
 <meta http-equiv="imagetoolbar" content="false" />
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ shop.url }}/blogs/news.atom">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
