@@ -38,6 +38,14 @@ $(function() {
 	$( "#tabs" ).tabs();
 });
 
+// Cloudzoom on product.liquid
+$(document).ready(function () {
+	if (document.documentElement.clientWidth > 768) {
+		$('#zoom1').attr('rel','adjustX: 29')
+	};
+	$('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+});
+
 // Custom checkboxes on product.liquid
 $(function(){
 	$('input').customInput();
