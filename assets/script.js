@@ -40,9 +40,7 @@ $(function() {
 
 // Cloudzoom on product.liquid
 $(document).ready(function () {
-	if (document.documentElement.clientWidth > 768) {
-		$('#zoom1').attr('rel','adjustX: 29')
-	};
+	$('#zoom1').attr('rel','position: inner')
 	$('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 });
 
