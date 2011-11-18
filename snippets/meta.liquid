@@ -9,6 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
 <link rel="shortcut icon" href="{{ 'apple-touch-icon.png' | asset_url }}" type="image/x-icon">
+<meta property="og:site_name" content="{{ shop.name }}">
+{% if template == 'product' %}
+	<meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}">
+{% endif %}
 {% case template %}
 	{% when 'index' %}
     	<title>{{ shop.name }}: {{ settings.seo_tagline }}</title>
