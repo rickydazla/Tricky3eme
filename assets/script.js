@@ -8,6 +8,10 @@ viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.
 }
 }
 
+$(function() {
+ $('input, textarea').placeholder();
+});
+
 // Caroline Schnapp - current nav
 $(function() {
   $('nav a').each(function() {
