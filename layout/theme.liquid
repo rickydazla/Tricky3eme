@@ -11,12 +11,8 @@
 {% include 'meta' %}
 
 <link rel="stylesheet" media="screen" href="{{ 'mangled.css' | asset_url }}">
-<link rel="stylesheet" media="screen" href="{{ 'cloudzoom.css' | asset_url }}">
-<!-- Respond.js proxy on external server -->
-<link href="{{ 'respond-proxy.html' | asset_url }}" id="respond-proxy" rel="respond-proxy">
-<script src="{{ 'respond.proxy.js' | asset_url }}"></script>
 
-<script src="{{ 'modernizr-2.0.min.js' | asset_url }}"></script>
+<script src="{{ 'modernizr.js' | asset_url }}"></script>
 
 {{ content_for_header }}
 
@@ -25,74 +21,21 @@
 </head>
 
 <body class="clearfix">
-  <header role="banner" class="clearfix">
-	<h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
-	<nav>
-		<ul class="clearfix">
-			{% for link in linklists.main-menu.links %}
-			{% capture child_list_handle %}{{ link.title | handle }}{% endcapture %}
-			{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-				<li class="with-dropdown">{{ link.title | link_to: link.url }}<!--&nbsp;&darr;-->
-					<ul>
-					{% for sublink in linklists[child_list_handle].links %}
-						<li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
-					{% endfor %}
-					</ul>
-				</li>
-			{% else %}
-				<li>{{ link.title | link_to: link.url }}</li>
-			{% endif %}
-			{% endfor %}
-		</ul>
-	</nav>
-	<aside>
-		<ul class="clearfix">
-			<li><small><a href="/pages/shipping">Free Shipping</a></small></li> 
-			<li><small><a href="/cart">My cart ({{ cart.item_count }})</a></small></li> 
-		</ul>
-	</aside>
-  </header>
+ <header role="banner" class="clearfix">
+  <h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
+ </header>
+ <div class="content clearfix">
+   {{ content_for_layout }}
+ </div>
+ <footer role="contentinfo" class="clearfix">
+  <ul id="social">
+   <li><a href="http://www.facebook.com/pages/The-Anvil/274309395937676" class="facebook"><span class="ir">facebook</span></a></li>
+   <li><a href="http://www.twitter.com/theanvl" class="twitter"><span class="ir">twitter</span></a></li>
+  </ul>
+ </footer>
 
-  <div class="content clearfix">
-
-    <div role="main" id="main">
-		{{ content_for_layout }}
-	</div>
-
-	<div role="complementary">
-		<div id="newsletter">
-			<h2>News</h2>
-			{% for article in blog.news.articles | limit: 1 %}
-				<p>{{ article.content | truncatewords: 20 | strip_html }}</p>
-			{% endfor %}
-			<form>
-				Signup
-			</form>
-		</div>
-		<ul>
-		  {% for link in linklists.complementary-nav.links %}
-			<li>{{ link.title | link_to: link.url }}</li>
-		  {% endfor %}
-		</ul>
-	</div>
-
-  </div>
-
-	<footer role="contentinfo" class="clearfix">
-		<ul>
-		  {% for link in linklists.footer.links %}
-			<li>{{ link.title | link_to: link.url }}</li>
-		  {% endfor %}
-		</ul>
-		<ul id="social">
-			<li><a href="http://www.facebook.com/#" class="facebook"><span class="ir">facebook</span></a></li>
-			<li><a href="http://twitter.com/#" class="twitter"><span class="ir">twitter</span></a></li>
-			<li><a href="http://tumbler.com/#" class="tumbler"><span class="ir">tumbler</span></a></li>
-		</ul>
-	</footer>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="{{ 'jquery-1.6.1.min.js' | asset_url }}">\x3C/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ 'jquery-1.7.0.min.js' | asset_url }}">\x3C/script>')</script>
 
 <!-- Scripts -->
 <script src="{{ 'plugins.js' | asset_url }}"></script>
@@ -101,12 +44,12 @@
 <!--[if (lt IE 9) & (!IEMobile)]>
 <script src="{{ 'DOMAssistantCompressed-2.8.js' | asset_url }}"></script>
 <script src="{{ 'selectivizr-1.0.2.min.js' | asset_url }}"></script>
-<script src="{{ 'respond.src.js' | asset_url }}"></script>
+<script src="{{ 'respond.proxy.js' | asset_url }}"></script>
 <![endif]-->
 
 <!-- http://t.co/HZe9oJ4 -->
 <script>
-var _gaq=[['_setAccount','UA-XXXX-X'],['_trackPageview']];
+var _gaq=[['_setAccount','{{ settings.seo_google_ua }}'],['_trackPageview']];
 (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 s.parentNode.insertBefore(g,s)}(document,'script'));

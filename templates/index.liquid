@@ -1,88 +1,100 @@
-<h2 class="visuallyhidden">{{ settings.slider_title }}</h2>
-<ul id="slides">
-	{% assign slideshow_length = '' %}
-	{% capture temp %}{{ settings.slideshow_limit }}*{% endcapture %}
-	{% assign slideshow_length = temp %}
-	{% assign slideshow_size = slideshow_length.size %}
-	{% if slideshow_size != 0 %}
-	<li>	
-	  <a href="{{ settings.slide1_link }}">
-		<figure>
-			<img src="{{ 'slide1.jpg' | asset_url }}" width="100%" height="100%">
-			<figcaption><span>{{ settings.slide1_caption }}</span></figcaption>
-		</figure>
-	  </a>
-	</li>
-	{% if slideshow_size > 1 %}
-	<li>	
-	  <a href="{{ settings.slide2_link }}">
-		<figure>
-			<img src="{{ 'slide2.jpg' | asset_url }}" width="100%" height="100%">
-			<figcaption><span>{{ settings.slide2_caption }}</span></figcaption>
-		</figure>
-	  </a>
-	</li>
-	{% if slideshow_size > 2 %}
-	<li>	
-	  <a href="{{ settings.slide3_link }}">
-		<figure>
-			<img src="{{ 'slide3.jpg' | asset_url }}" width="100%" height="100%">
-			<figcaption><span>{{ settings.slide3_caption }}</span></figcaption>
-		</figure>
-	  </a>
-	</li>
-	{% if slideshow_size > 3 %}
-	<li>	
-	  <a href="{{ settings.slide4_link }}">
-		<figure>
-			<img src="{{ 'slide4.jpg' | asset_url }}" width="100%" height="100%">
-			<figcaption><span>{{ settings.slide4_caption }}</span></figcaption>
-		</figure>
-	  </a>
-	</li>
-	{% if slideshow_size > 4 %}
-	<li>	
-	  <a href="{{ settings.slide5_link }}">
-		<figure>
-			<img src="{{ 'slide5.jpg' | asset_url }}" width="100%" height="100%">
-			<figcaption><span>{{ settings.slide5_caption }}</span></figcaption>
-		</figure>
-	  </a>
-	</li>
-	{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
-</ul>
+<div role="main" id="main">
 
-<div class="menu-box">
-	<h2>{{ settings.featured_collection1_title }}</h2>
-	{% capture handle %}{{ settings.featured_collection1_title | handleize }}{% endcapture %}
-	<ul>
-		{% for link in linklists.[handle].links %}
-		{% capture img %}{{ link.handle }}.jpg{% endcapture %}
-		<li>
-		  <a href="{{ link.url }}">
+	<h2 class="visuallyhidden">{{ settings.slider_title }}</h2>
+	<ul id="slides">
+		{% assign slideshow_length = '' %}
+		{% capture temp %}{{ settings.slideshow_limit }}{% endcapture %}
+		{% assign slideshow_length = temp %}
+		{% assign slideshow_size = slideshow_length.size %}
+		{% if slideshow_size != 0 %}
+		<li>	
+		  <a href="{{ settings.slide1_link }}">
 			<figure>
-				<img src="{{ img | asset_url }}">
-				<figcaption>{{ link.title }}</figcaption>
+				<img src="{{ 'slide1.jpg' | asset_url }}" width="100%" height="100%">
+				<figcaption><span>{{ settings.slide1_caption }}</span></figcaption>
 			</figure>
 		  </a>
 		</li>
-		{% endfor %}
-	</ul>
-</div>
-<div>
-	<h2>{{ settings.featured_collection2_title }}</h2>
-	{% capture handle %}{{ settings.featured_collection2_title | handleize }}{% endcapture %}
-	<ul>
-		{% for link in linklists.[handle].links %}
-		{% capture img %}{{ link.handle }}.jpg{% endcapture %}
-		<li>
-		  <a href="{{ link.url }}">
+		{% if slideshow_size > 1 %}
+		<li>	
+		  <a href="{{ settings.slide2_link }}">
 			<figure>
-				<img src="{{ img | asset_url }}">
-				<figcaption>{{ link.title }}</figcaption>
+				<img src="{{ 'slide2.jpg' | asset_url }}" width="100%" height="100%">
+				<figcaption><span>{{ settings.slide2_caption }}</span></figcaption>
 			</figure>
 		  </a>
 		</li>
-		{% endfor %}
+		{% if slideshow_size > 2 %}
+		<li>	
+		  <a href="{{ settings.slide3_link }}">
+			<figure>
+				<img src="{{ 'slide3.jpg' | asset_url }}" width="100%" height="100%">
+				<figcaption><span>{{ settings.slide3_caption }}</span></figcaption>
+			</figure>
+		  </a>
+		</li>
+		{% if slideshow_size > 3 %}
+		<li>	
+		  <a href="{{ settings.slide4_link }}">
+			<figure>
+				<img src="{{ 'slide4.jpg' | asset_url }}" width="100%" height="100%">
+				<figcaption><span>{{ settings.slide4_caption }}</span></figcaption>
+			</figure>
+		  </a>
+		</li>
+		{% if slideshow_size > 4 %}
+		<li>	
+		  <a href="{{ settings.slide5_link }}">
+			<figure>
+				<img src="{{ 'slide5.jpg' | asset_url }}" width="100%" height="100%">
+				<figcaption><span>{{ settings.slide5_caption }}</span></figcaption>
+			</figure>
+		  </a>
+		</li>
+		{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
 	</ul>
+
+	<div class="menu-box">
+		<h2>{{ settings.featured_collection1_title }}</h2>
+		{% capture handle %}{{ settings.featured_collection1_title | handleize }}{% endcapture %}
+		<ul>
+			{% for link in linklists.[handle].links %}
+			{% capture img %}{{ link.handle }}.jpg{% endcapture %}
+			<li>
+			  <a href="{{ link.url }}">
+				<figure>
+					<img src="{{ img | asset_url }}">
+					<figcaption>{{ link.title }}</figcaption>
+				</figure>
+			  </a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div>
+		<h2>{{ settings.featured_collection2_title }}</h2>
+		{% capture handle %}{{ settings.featured_collection2_title | handleize }}{% endcapture %}
+		<ul>
+			{% for link in linklists.[handle].links %}
+			{% capture img %}{{ link.handle }}.jpg{% endcapture %}
+			<li>
+			  <a href="{{ link.url }}">
+				<figure>
+					<img src="{{ img | asset_url }}">
+					<figcaption>{{ link.title }}</figcaption>
+				</figure>
+			  </a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div role="complementary">
+	 <div id="newsletter">
+	  <form>
+		Signup
+	  </form>
+	 </div>
+	</div>
+
 </div>

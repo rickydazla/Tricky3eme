@@ -7,7 +7,7 @@
       </th>
       <td>
         <textarea name="seo_description" cols="60" rows="5" id="seo_description"></textarea>
-        <span class="note"></span>
+        <span class="note">Should be no more than 26 words (per Google)</span>
       </td>
     </tr>
 	<tr>
@@ -25,84 +25,44 @@
       </th>
       <td>		
         <textarea name="seo_keywords" cols="60" rows="2" id="seo_keywords"></textarea>
+        <span class="note">Comma, separated, list</span>
       </td>
-    </tr>	
+    </tr>
+    <tr>
+      <th>
+        <label for="seo_google_ua">Google Analytics Account</label>
+      </th>
+      <td>		
+        <input type="text" id="seo_google_ua" name="seo_google_ua" value="" /><br />
+	    <span class="note">Should be in the form UA-XXXX-X</span>
+      </td>
+    </tr>
   </table>
 </fieldset>
 <fieldset>
-	<legend>Frontpage Slideshow</legend>
-	<table>
-		<tr>
-			<th><label for="slideshow_limit">Number of Slides:</label></th>
-			<td>
-				<select name="slideshow_limit" id="slideshow_limit">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<th><label for="slide1">1st Image</label></th>
-			<td><input type="file" id="slide1" name="slide1.jpg" data-max-width="928px" data-max-height="584px" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide1_caption">Caption:</label></th>
-			<td><input type="text" id="slide1_caption" name="slide1_caption" class="text" value=""/></td>
-		</tr>
-		<tr>
-			<th><label for="slide1_link">Link to:</label></th>
-			<td><input type="text" id="slide1_link" name="slide1_link" class="text" value=""/></td>
-		</tr>                        
-		<tr>                         
-			<th><label for="slide2">2nd image</label></th>        
-			<td><input type="file" id="slide2" name="slide2.jpg" data-max-width="928px" data-max-height="584px" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide2_caption">Caption:</label></th>
-			<td><input type="text" id="slide2_caption" name="slide2_caption" class="text" value=""/></td>	
-		</tr>
-		<tr>
-			<th><label for="slide2_link">Link to:</label></th>
-			<td><input type="text" id="slide2_link" name="slide2_link" class="text" value=""/></td>
-		</tr>                   
-		<tr>                    
-			<th><label for="slide3">3rd image</label></th>      
-			<td><input type="file" id="slide3" name="slide3.jpg" data-max-width="928px" data-max-height="584px" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide3_caption">Caption:</label></th>
-			<td><input type="text" id="slide3_caption" name="slide3_caption" class="text" value=""/></td>
-		</tr>
-		<tr>
-			<th><label for="slide3_link">Link to:</label></th>
-			<td><input type="text" id="slide3_link" name="slide3_link" class="text" value=""/></td>
-		</tr>                      
-		<tr>                       
-			<th><label for="slide4">4th image</label></th>          
-			<td><input type="file"  id="slide4" name="slide4.jpg" data-max-width="928px" data-max-height="584px" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide4_caption">Caption:</label></th>
-			<td><input type="text" id="slide4_caption" name="slide4_caption" class="text" value=""/></td>
-		</tr>
-		<tr>
-			<th><label for="slide4_link">Link to:</label></th>
-			<td><input type="text" id="slide4_link" name="slide4_link" class="text" value=""/></td>
-		</tr> 
-		<tr>                       
-			<th><label for="slide5">5th image</label></th>          
-			<td><input type="file"  id="slide5" name="slide5.jpg" data-max-width="928px" data-max-height="584px" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide5_caption">Caption:</label></th>
-			<td><input type="text" id="slide5_caption" name="slide5_caption" class="text" value=""/></td>
-		</tr>
-		<tr>
-			<th><label for="slide5_link">Link to:</label></th>
-			<td><input type="text" id="slide5_link" name="slide5_link" class="text" value=""/></td>
-		</tr>
-	</table>
+  <legend>Logo</legend>
+  <table>
+    <tr>
+      <td><label for="logo">Logo Img</label></td>
+      <td>
+       <input type="file" id="logo" name="logo.png" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_width">Logo Width</label>
+      </th>
+      <td>
+        <input type="text" id="logo_width" name="logo_width" value="754px" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_height">Logo Height</label>
+      </th>
+      <td>
+        <input type="text" id="logo_height" name="logo_height" value="163px" />
+      </td>
+    </tr>
+  </table>
 </fieldset>
