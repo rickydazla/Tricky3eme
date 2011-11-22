@@ -10,7 +10,7 @@
 <head>
 {% include 'meta' %}
 
-<link rel="stylesheet" media="screen" href="{{ 'mangled.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'mangled.css' | asset_url }}">
 
 <script src="{{ 'modernizr.js' | asset_url }}"></script>
 
@@ -20,11 +20,11 @@
 
 </head>
 
-<body class="clearfix">
+<body id="{{ template }}" class="clearfix">
  <header role="banner" class="clearfix">
   <h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
  </header>
- <div class="content clearfix">
+ <div role="main" class="content clearfix">
    {{ content_for_layout }}
  </div>
  <footer role="contentinfo" class="clearfix">
@@ -38,8 +38,8 @@
 <script>window.jQuery || document.write('<script src="{{ 'jquery-1.7.0.min.js' | asset_url }}">\x3C/script>')</script>
 
 <!-- Scripts -->
-<script src="{{ 'plugins.js' | asset_url }}"></script>
-<script src="{{ 'script.js' | asset_url }}"></script>
+<script defer src="{{ 'plugins.js' | asset_url }}"></script>
+<script defer src="{{ 'script.js' | asset_url }}"></script>
 
 <!--[if (lt IE 9) & (!IEMobile)]>
 <script src="{{ 'DOMAssistantCompressed-2.8.js' | asset_url }}"></script>
