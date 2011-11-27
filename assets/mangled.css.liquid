@@ -33,7 +33,7 @@ html { font-size: 100%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,
 
 body { margin: 0; font-size:{{ settings.font_size }}; line-height:{{ settings.line_height }};}
 
-body, button, input, select, textarea { font-family:{{ settings.font_family }}; color:{{ settings.color }}; }
+body, button, input, select, textarea { font-family:{{ settings.p_font_family }}; color:{{ settings.color }}; }
 
 /* 
  * These selection declarations have to be separate
@@ -198,6 +198,8 @@ table { border-collapse: collapse; border-spacing: 0; }
    Primary styles
    Author: rick@tricky3.co.uk
    ========================================================================== */
+
+h1, h2, h3, h4, h5, h6{ font-family:{{ settings.h_font_family }};}
 
 h1 a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.logo_height }}; background:url('logo.png') no-repeat 0 0;}
 
