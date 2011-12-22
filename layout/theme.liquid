@@ -22,7 +22,7 @@
 {% endif %}
 </head>
 
-<body id="{{ template }}" class="clearfix">
+<body id="{{ template | replace: '/', '-' }}" class="clearfix">
  <header role="banner" class="clearfix">
   <h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
  </header>
@@ -36,18 +36,35 @@
   </ul>
  </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ 'jquery-1.7.0.min.js' | asset_url }}">\x3C/script>')</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{ 'jquery.js' | asset_url }}">\x3C/script>')</script>
 
-<!-- Scripts -->
-<script defer src="{{ 'plugins.js' | asset_url }}"></script>
-<script defer src="{{ 'script.js' | asset_url }}"></script>
+  <!-- Scripts -->
+  <script defer src="{{ 'plugins.js' | asset_url }}"></script>
+  <script defer src="{{ 'script.js' | asset_url }}"></script>
+	{% case template %}
+	{% when 'product' %}{{ 'api.jquery.js' | asset_url | script_tag }}
+	<script>
+	var recommendations = [];
+	  {% if product.metafields.recommendations.productHandles %}
+	  recommendations = jQuery.trim({{ product.metafields.recommendations.productHandles | json }}).split(/[\s,;]+/);
+	  {% endif %}
+	  if (recommendations.length && recommendations[0] !== '') {
+	    var list = jQuery('ul.related-products');
+	    for (var i=0; i<recommendations.length; i++) {
+	      jQuery.getJSON('/products/' + recommendations[i] + '.js', function(product) {
+	        list.append('<li><div class="image"><a href="' + product.url +'"><img src="' + product.images[0].replace(/(\.jpg|\.png|\.jpeg|\.gif)/, '_{{ image_size }}$1') + '" /></a></div><h4><a href="' + product.url + '">' + product.title + '</a></h4><span class="money">' + Shopify.formatMoney(product.price, '{{ shop.money_format }}') + '</span></li>');
+	      });
+	    }
+	  }  
+	</script>
+	{% endcase %}
 
-<!--[if (lt IE 9) & (!IEMobile)]>
-<script src="{{ 'DOMAssistantCompressed-2.8.js' | asset_url }}"></script>
-<script src="{{ 'selectivizr-1.0.2.min.js' | asset_url }}"></script>
-<script src="{{ 'respond.proxy.js' | asset_url }}"></script>
-<![endif]-->
+  <!--[if (lt IE 9) & (!IEMobile)]>
+  <script src="{{ 'DOMAssistantCompressed-2.8.js' | asset_url }}"></script>
+  <script src="{{ 'selectivizr-1.0.2.min.js' | asset_url }}"></script>
+  <script src="{{ 'respond.proxy.js' | asset_url }}"></script>
+  <![endif]-->
 
 <!-- http://t.co/HZe9oJ4 -->
 <script>
