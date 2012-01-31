@@ -24,12 +24,24 @@
 
 <body id="{{ template | replace: '/', '-' }}" class="clearfix">
  <header role="banner" class="clearfix">
-  <h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
+  <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.title }}"></a>
+  <nav>
+   <ul>
+    {% for link in linklists.main-menu.links %}
+     <li><a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
+    {% endfor %}
+   </ul>
+  </nav>
  </header>
  <div role="main" class="content clearfix">
    {{ content_for_layout }}
  </div>
  <footer role="contentinfo" class="clearfix">
+  <ul>
+   {% for link in linklists.footer.links %}
+    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+   {% endfor %}
+  </ul>
   <ul id="social">
    <li><a href="http://www.facebook.com/" class="facebook"><span class="ir">facebook</span></a></li>
    <li><a href="http://www.twitter.com/" class="twitter"><span class="ir">twitter</span></a></li>
