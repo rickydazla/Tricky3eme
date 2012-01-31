@@ -1,0 +1,137 @@
+<fieldset>
+  <legend><abbr title="Search Engine Optimization">SEO</abbr></legend>
+  <table>
+    <tr>
+      <th>
+        <label for="seo_description">&lt;meta description&gt;</label>
+      </th>
+      <td>
+        <textarea name="seo_description" cols="60" rows="5" id="seo_description"></textarea>
+        <span class="note">Should be no more than 26 words (per Google)</span>
+      </td>
+    </tr>
+	<tr>
+	  <th>
+		<label for="seo_tagline">Tagline</label>
+	  </th>
+	  <td>
+		<input type="text" id="seo_tagline" name="seo_tagline" value="" /><br />
+	    <span class="note">Used in &lt;title&gt;. Do <strong>not</strong> include shop name</span>
+	  </td>
+	</tr>
+    <tr>
+      <th>
+        <label for="seo_tagline">&lt;meta keywords&gt;</label>
+      </th>
+      <td>		
+        <textarea name="seo_keywords" cols="60" rows="2" id="seo_keywords"></textarea>
+        <span class="note">Comma, separated, list</span>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="seo_google_ua">Google Analytics Account</label>
+      </th>
+      <td>		
+        <input type="text" id="seo_google_ua" name="seo_google_ua" value="" /><br />
+	    <span class="note">Should be in the form UA-XXXX-X</span>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Logo</legend>
+  <table>
+    <tr>
+      <td><label for="logo">Logo Img</label></td>
+      <td>
+       <input type="file" id="logo" name="logo.png" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_width">Logo Width</label>
+      </th>
+      <td>
+        <input type="text" id="logo_width" name="logo_width" value="754px" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_height">Logo Height</label>
+      </th>
+      <td>
+        <input type="text" id="logo_height" name="logo_height" value="163px" />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Base Styles</legend>
+  <table>
+    <tr>
+      <td><label for="h_font_family">Headings Font Family</label></td>
+      <td><input type="text" id="h_font_family" name="h_font_family" value="serif" /></td>
+    </tr>
+    <tr>
+      <td><label for="p_font_family">Paragraph Font Family</label></td>
+      <td><input type="text" id="p_font_family" name="p_font_family" value="sans-serif" /></td>
+    </tr>
+    <tr>
+      <td><label for="font_size">Font Size</label></td>
+      <td><input type="text" id="font-size" name="font-size" value="13px" /></td>
+    </tr>
+    <tr>
+      <td><label for="line_height">Line Height</label></td>
+      <td><input type="text" id="line_height" name="line_height" value="1.231" /></td>
+    </tr>
+    <tr>
+      <td><label for="color">Font Color</label></td>
+      <td><input type="text" id="color" name="color" class="color" value="#444444" /></td>
+    </tr>
+    <tr>
+      <td><label for="selection_bgcolor">::Selection Background Color</label></td>
+      <td><input type="text" id="selection_bgcolor" name="selection_bgcolor" class="color" value="#fe57a1" /></td>
+    </tr>
+    <tr>
+      <td><label for="link_color">A:Link Color</label></td>
+      <td><input type="text" id="link_color" name="link_color" class="color" value="#00e00e" /></td>
+    </tr>
+    <tr>
+      <td><label for="link_hovercolor">A:Hover Color</label></td>
+      <td><input type="text" id="link_hovercolor" name="link_hovercolor" class="color" value="#551a8b" /></td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend>Relational Product Mangling</legend>
+  <table>
+	<tr>
+	  <td><label for="related_products">Suggest Related Products</label></td>
+	  <td>
+	    <select name="related_products" id="related_products">
+	      <option value="true" selected="selected">Yes</option>
+	      <option value="false">No</option>
+	    </select>
+	  </td>
+	</tr>
+	<tr>
+      <td><label for="related_heading">Related Products Heading</label></td>
+      <td><input type="text" id="related_heading" name="related_heading" value="Related Products" /></td>
+    </tr>
+    <tr>
+	  <td><label for="recently_viewed_products">Show Recently Viewed Products</label></td>
+	  <td>
+	    <select name="recently_viewed_products" id="recently_viewed_products">
+	      <option value="true" selected="selected">Yes</option>
+	      <option value="false">No</option>
+	    </select>
+	  </td>
+	</tr>
+	<tr>
+      <td><label for="recently_viewed_heading">Recently Viewed Products Heading</label></td>
+      <td><input type="text" id="recently_viewed_heading" name="recently_viewed_heading" value="Recently Viewed Products" /></td>
+    </tr>
+  </table>
+</fieldset>

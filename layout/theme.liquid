@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}">
+<!--<![endif]-->
+
+<head>
+{% include 'meta' %}
+
+<link rel="stylesheet" href="{{ 'mangled.css' | asset_url }}">
+
+<script src="{{ 'modernizr.js' | asset_url }}"></script>
+
+{{ content_for_header }}
+{% if template contains 'customers' %}
+  {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+  {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {{ 'customer.css' | asset_url | stylesheet_tag }}
+{% endif %}
+</head>
+
+<body id="{{ template | replace: '/', '-' }}" class="clearfix">
+ <header role="banner" class="clearfix">
+  <h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
+ </header>
+ <div role="main" class="content clearfix">
+   {{ content_for_layout }}
+ </div>
+ <footer role="contentinfo" class="clearfix">
+  <ul id="social">
+   <li><a href="http://www.facebook.com/" class="facebook"><span class="ir">facebook</span></a></li>
+   <li><a href="http://www.twitter.com/" class="twitter"><span class="ir">twitter</span></a></li>
+  </ul>
+ </footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{ 'jquery.js' | asset_url }}">\x3C/script>')</script>
+
+  <!-- Scripts -->
+  <script defer src="{{ 'plugins.js' | asset_url }}"></script>
+  <script defer src="{{ 'script.js' | asset_url }}"></script>
+	{% case template %}
+	{% when 'product' %}{{ 'api.jquery.js' | asset_url | script_tag }}
+	<script>
+	var recommendations = [];
+	  {% if product.metafields.recommendations.productHandles %}
+	  recommendations = jQuery.trim({{ product.metafields.recommendations.productHandles | json }}).split(/[\s,;]+/);
+	  {% endif %}
+	  if (recommendations.length && recommendations[0] !== '') {
+	    var list = jQuery('ul.related-products');
+	    for (var i=0; i<recommendations.length; i++) {
+	      jQuery.getJSON('/products/' + recommendations[i] + '.js', function(product) {
+	        list.append('<li><div class="image"><a href="' + product.url +'"><img src="' + product.images[0].replace(/(\.jpg|\.png|\.jpeg|\.gif)/, '_{{ image_size }}$1') + '" /></a></div><h4><a href="' + product.url + '">' + product.title + '</a></h4><span class="money">' + Shopify.formatMoney(product.price, '{{ shop.money_format }}') + '</span></li>');
+	      });
+	    }
+	  }  
+	</script>
+	{% endcase %}
+
+  <!--[if (lt IE 9) & (!IEMobile)]>
+  <script src="{{ 'DOMAssistantCompressed-2.8.js' | asset_url }}"></script>
+  <script src="{{ 'selectivizr-1.0.2.min.js' | asset_url }}"></script>
+  <script src="{{ 'respond.proxy.js' | asset_url }}"></script>
+  <![endif]-->
+
+<!-- http://t.co/HZe9oJ4 -->
+<script>
+var _gaq=[['_setAccount','{{ settings.seo_google_ua }}'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+<noscript>Your browser does not support JavaScript!</noscript>
+</body>
+</html>
