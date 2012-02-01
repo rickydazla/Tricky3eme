@@ -50,12 +50,11 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{{ 'jquery.js' | asset_url }}">\x3C/script>')</script>
-
+  <script src="{{ 'api.jquery.js' | asset_url }}"></script>
   <!-- Scripts -->
   <script defer src="{{ 'plugins.js' | asset_url }}"></script>
   <script defer src="{{ 'script.js' | asset_url }}"></script>
 	{% case template %}
-	{% when 'product' %}{{ 'api.jquery.js' | asset_url | script_tag }}
 	<script>
 	var recommendations = [];
 	  {% if product.metafields.recommendations.productHandles %}
