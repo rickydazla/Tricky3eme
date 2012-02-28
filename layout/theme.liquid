@@ -26,7 +26,7 @@
  <header role="banner" class="clearfix">
   <h1><a href="/"><span class="ir">{{ shop.title }}</span></a></h1>
  </header>
- <div role="main" class="content clearfix">
+ <div id="{{ page_title | handle }}" role="main" class="content clearfix">
    {{ content_for_layout }}
  </div>
  <footer role="contentinfo" class="clearfix">
