@@ -25,6 +25,13 @@
 <body id="{{ template | replace: '/', '-' }}" class="clearfix">
  <header role="banner" class="clearfix">
   <a href="/"><img src="{{ logo.png }}" alt="{{ shop.title }}"></a>
+  <nav>
+   <ul>
+   {% for link in linklists.main-menu.links %}
+    <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+   {% endfor %}
+   </ul>
+  </nav>
  </header>
  <div id="{{ page_title | handle }}" role="main" class="content clearfix">
    {{ content_for_layout }}
