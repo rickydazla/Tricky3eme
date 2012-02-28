@@ -25,7 +25,6 @@
 		<meta itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
 		<meta itemprop="image" content="{{ collection.products[0].featured_image | product_img_url: 'compact' }}">
 	{% when 'product' %}
-		{% if collection %}<link rel="canonical" href="{{ shop.url }}{{ product.url }}">{% endif %}
 		<title>{{ product.title }} by {{ product.vendor }} | {{ shop.name }}</title>
 		<meta name="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
 		<meta name="keywords" content="{% for tag in product.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}">
