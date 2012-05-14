@@ -6,48 +6,52 @@
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
 {% if title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
 <meta http-equiv="imagetoolbar" content="false" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ shop.url }}/blogs/news.atom">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ shop.url }}/blogs/blog.atom">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
 <link rel="shortcut icon" href="{{ 'apple-touch-icon.png' | asset_url }}" type="image/x-icon">
 <meta property="og:site_name" content="{{ shop.name }}">
+<link rel="canonical" href="{{ canonical_url }}">
+{% assign maxmeta = 155 %}
 {% case template %}
 	{% when 'index' %}
 		<title>{{ shop.name }}: {{ settings.seo_tagline }}</title>
 		<meta name="description" content="{{ settings.seo_description }}">
+		<meta name="keywords" content="{{ settings.seo_keywords }}">
 		<meta itemprop="name" content="{{ shop.name }}: {{ settings.seo_tagline }}">
 		<meta itemprop="description" content="{{ settings.seo_description }}">
 		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
 	{% when 'collection' %}
 		<title>{{ collection.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta name="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
+		<meta name="keywords" content="{% for tag in collection.all_tags %}{{ tag }}, {% endfor %}">
 		<meta itemprop="name" content="{{ collection.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
-		<meta itemprop="image" content="{{ collection.products[0].featured_image | product_img_url: 'compact' }}">
+		<meta itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
+		<meta itemprop="image" content="{{ collection.image.src | product_img_url: 'compact' }}">
 	{% when 'product' %}
 		<title>{{ product.title }} by {{ product.vendor }} | {{ shop.name }}</title>
-		<meta name="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
-		<meta name="keywords" content="{% for tag in product.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}">
+		<meta name="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
+		<meta name="keywords" content="{% for tag in product.tags %}{{ tag }}, {% endfor %}">
 		<meta itemprop="name" content="{{ product.title }} by {{ product.vendor }} | {{ shop.name }}">
-		<meta itemprop="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta itemprop="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
 		<meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}">
 	{% when 'page' %}
 		<title>{{ page.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta name="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="name" content="{{ page.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta itemprop="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
 	{% when 'blog' %}
 		<title>{{ blog.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ blog.articles.first.content | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta name="description" content="{{ blog.articles.first.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="name" content="{{ blog.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ blog.articles.first.content | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta itemprop="description" content="{{ blog.articles.first.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
 	{% when 'article' %}
     	<title>{{ article.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ article.content | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta name="description" content="{{ article.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="name" content="{{ article.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ article.content | strip_html | strip_newlines | truncatewords: 23 }} (Read more)">
+		<meta itemprop="description" content="{{ article.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
 		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
 	{% else %}
     	<title>{{ page_title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
