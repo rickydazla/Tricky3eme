@@ -11,49 +11,115 @@
 <link rel="shortcut icon" href="{{ 'apple-touch-icon.png' | asset_url }}" type="image/x-icon">
 <meta property="og:site_name" content="{{ shop.name }}">
 <link rel="canonical" href="{{ canonical_url }}">
-{% assign maxmeta = 155 %}
-{% case template %}
-	{% when 'index' %}
-		<title>{{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ settings.seo_description }}">
-		<meta name="keywords" content="{{ settings.seo_keywords }}">
-		<meta itemprop="name" content="{{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ settings.seo_description }}">
-		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
-	{% when 'collection' %}
-		<title>{{ collection.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta name="keywords" content="{% for tag in collection.all_tags %}{{ tag }}, {% endfor %}">
-		<meta itemprop="name" content="{{ collection.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="image" content="{{ collection.image.src | product_img_url: 'compact' }}">
-	{% when 'product' %}
-		<title>{{ product.title }} by {{ product.vendor }} | {{ shop.name }}</title>
-		<meta name="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta name="keywords" content="{% for tag in product.tags %}{{ tag }}, {% endfor %}">
-		<meta itemprop="name" content="{{ product.title }} by {{ product.vendor }} | {{ shop.name }}">
-		<meta itemprop="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
-		<meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}">
-	{% when 'page' %}
-		<title>{{ page.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="name" content="{{ page.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
-	{% when 'blog' %}
-		<title>{{ blog.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ blog.articles.first.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="name" content="{{ blog.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ blog.articles.first.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
-	{% when 'article' %}
-    	<title>{{ article.title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-		<meta name="description" content="{{ article.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="name" content="{{ article.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-		<meta itemprop="description" content="{{ article.content | strip_html | strip_newlines | truncatewords: 23 | escape }} (Read more)">
-		<meta itemprop="image" content="{{ 'logo.png' | asset_url }}">
-	{% else %}
-    	<title>{{ page_title }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-{% endcase %}
+{% assign maxmeta = 23 %}
+{% if template contains 'product' %}
+  {% assign mf = product.metafields.meta_data %}
+  {% unless mf == empty %}
+    {% for mf in product.metafields.meta_data %}
+      {% capture key %}{{ mf | first }}{% endcapture %}
+      {% if key == 'title' %}
+        <title>{{mf | last}}</title>
+        <meta name="title" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'meta_description' %}
+        <meta name="description" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'keywords' %}
+        <meta name="keywords" content="{{mf | last}}">
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <title>{% if page_title != '' %}{{ page_title | escape }}{% else %}{{ product.title }} | {{ shop.name }}: {{ settings.seo_tagline }}{% endif %}</title>
+    <meta name="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+    <meta name="keywords" content="{% for tag in product.tags %}{{ tag }}, {% endfor %}">
+  {% endunless %}
+	<meta itemprop="name" content="{{ product.title }} by {{ product.vendor }} | {{ shop.name }}">
+	<meta itemprop="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+	<meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
+	<meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}">
+{% elsif template contains 'page' %}
+  {% assign mf = page.metafields.meta_data %}
+  {% unless mf == empty %}
+    {% for mf in page.metafields.meta_data %}
+      {% capture key%}{{ mf | first }}{%endcapture%}
+      {% if key == 'title' %}
+        <title>{{mf | last}}</title>
+        <meta name="title" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'meta_description' %}
+        <meta name="description" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'keywords' %}
+        <meta name="keywords" content="{{mf | last}}">
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <title>{% if page_title != '' %}{{ page_title | escape }}{% else %}{{ page.title }} | {{ shop.name }}: {{ settings.seo_tagline }}{% endif %}</title>
+    <meta name="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+  {% endunless %}
+	<meta itemprop="name" content="{{ page.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
+	<meta itemprop="description" content="{{ page.content | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+{% elsif template contains 'collection' %}
+  {% assign mf = collection.metafields.meta_data %}
+  {% unless mf == empty or mf == nil %}
+    {% for mf in collection.metafields.meta_data %}
+      {% capture key%}{{ mf | first }}{%endcapture%}
+      {% if key == 'title' %}
+        <title>{{mf | last}}</title>
+        <meta name="title" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'meta_description' %}
+        <meta name="description" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'keywords' %}
+        <meta name="keywords" content="{{mf | last}}">
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <title>{% if page_title != '' %}{{ page_title | escape }} | {{ shop.name }}{% else %}{{ collection.title }} | {{ shop.name }}: {{ settings.seo_tagline }}{% endif %}</title>
+    <meta name="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+    <meta name="keywords" content="{% for tag in collection.all_tags %}{{ tag }}, {% endfor %}">
+  {% endunless %}
+	<meta itemprop="name" content="{{ collection.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
+	<meta itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+	<meta itemprop="image" content="{{ collection.image.src | product_img_url: 'compact' }}">
+{% elsif template contains 'index' %}
+  <title>{{ shop.name }}: {{ settings.seo_tagline }}</title>
+  {% if shop.description != '' %}
+     <meta name="description" content="{{ shop.description | escape }}">
+  {% endif %}
+	<meta name="keywords" content="{{ settings.seo_keywords }}">
+	<meta itemprop="name" content="{{ shop.name }}: {{ settings.seo_tagline }}">
+	<meta itemprop="description" content="{{ settings.seo_description }}">
+{% elsif template contains 'blog' %}
+  {% assign mf = blog.metafields.meta_data %}
+  {% unless mf == empty %}
+    {% for mf in blog.metafields.meta_data %}
+      {% capture key %}{{ mf | first }}{% endcapture %}
+      {% if key == 'title' %}
+        <title>{{mf | last}}</title>
+        <meta name="title" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'meta_description' %}
+        <meta name="description" content="{{mf | last}}">
+      {% endif %}
+      {% if key == 'keywords' %}
+        <meta name="keywords" content="{{mf | last}}">
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <title>{% if page_title != '' %}{{ page_title | escape }}{% else %}{{ blog.title }} | {{ shop.name }}: {{ settings.seo_tagline }}{% endif %}</title>
+    <meta name="description" content="{{ shop.name }} Blog"> 
+  {% endunless %}
+	<meta itemprop="name" content="{{ blog.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
+	<meta itemprop="description" content="{{ shop.name }} Blog">
+{% elsif template contains 'article' %}
+  <title>{% if page_title != '' %}{{ page_title | escape }}{% else %}{{ article.title }} | {{ shop.name }}: {{ settings.seo_tagline }}{% endif %}</title>
+  <meta name="description" content=" {{ article.excerpt_or_content | strip_html | strip_newlines | truncatewords: maxmeta | escape }}">
+	<meta itemprop="name" content="{{ article.title }} | {{ shop.name }}: {{ settings.seo_tagline }}">
+	<meta itemprop="description" content="{{ article.excerpt_or_content | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+{% else %}  
+  <title>{{ shop.name }} - Welcome {% if template == "404" %}Page Not Found | {{ shop.name }}: {{ settings.seo_tagline }}{% endif %}</title>
+  <meta name="description" content="{{ settings.seo_description | escape }}">
+{% endif %}
 <link rel="author" href="{{ 'humans.txt'| asset_url }}">
