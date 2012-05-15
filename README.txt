@@ -1,4 +1,4 @@
-This is trying very hard to be a Shopify Theme, implementing HTM5 Boilerplate awesomeness, with love from 320&Up, repsond.js & others.
+An HTML5 Shopify starting point.
 
 RICK DAVIES
 Head Mangler
