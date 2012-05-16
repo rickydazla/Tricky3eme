@@ -20,7 +20,7 @@
 
 <body id="{{ template | replace: '/', '-' }}" class="clearfix">
  <header role="banner" class="clearfix">
-  <a href="/"><img src="{{ logo.png }}" alt="{{ shop.title }}"></a>
+  <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}"></a>
   <nav>
    <ul>
    {% for link in linklists.main-menu.links %}
