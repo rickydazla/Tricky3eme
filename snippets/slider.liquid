@@ -1,0 +1,12 @@
+{% capture slides %}{{ settings.slide_number }}{% endcapture %}
+<ul class="slides">
+	{% for i in (1..slides) %}
+	{% capture slide %}slide{{ i }}.jpg{% endcapture %}
+	{% capture link %}slide{{ i }}_link{% endcapture %}
+	{% capture alt %}slide{{ i }}_alt{% endcapture %}
+	<li>
+		{% if settings[link] == '' %}<img src="{{ slide | asset_url }}" alt="{{ settings[alt] }}">
+		{% else %}<a href="{{ settings[link] }}"><img src="{{ slide | asset_url }}" alt="{{ settings[alt] }}"></a>{% endif %}
+	</li>
+	{% endfor %}
+</ul>
