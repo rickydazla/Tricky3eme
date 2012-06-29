@@ -1,0 +1,33 @@
+<section class="breadcrumb clearfix">
+{% case template %}
+  {% when 'product' %}
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+      {% if collection %}
+        <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title | replace:"'","&lsquo;" }}</a>
+      {% else %}
+        <a href="/collections/all" title="All Products">{{ collections.all.title }}</a>
+      {% endif %}
+    </span>
+    &raquo;
+    {{ product.title }}
+  {% when 'collection' %}
+  <div class="breadcrumb clearfix">
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ collection.title }}</span></a></span>
+    {% if current_tags %}
+      {% for tag in current_tags %}
+        &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="url"><span itemprop="title">{{ tag }}</span></a></span>       
+      {% endfor %}
+    {% endif %}
+    {% if paginate.pages > 1 %}
+      <span class="pages">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+    {% endif %}
+  </div>
+  {% when 'page' %}
+  <div class="breadcrumb clearfix">
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ page.title }}</span></a></span>
+  </div>
+{% endcase %}
+</section>

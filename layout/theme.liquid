@@ -26,12 +26,12 @@
    {% for link in linklists.main-menu.links %}
     <li{% if link.active %} class="active"{% endif %}>
       <a href="{{ link.url }}">{{ link.title }}</a>
-      {% if linklists[link.handle] %}
-          <ul>
-          {% for sublink in linklists[link.handle].links %}
-            <li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
-          {% endfor %}
-          </ul>
+      {% if linklists[link.handle].size > 0 %} %}
+       <ul>
+        {% for sublink in linklists[link.handle].links %}
+         <li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
+        {% endfor %}
+       </ul>
       {% endif %}
     </li>
    {% endfor %}

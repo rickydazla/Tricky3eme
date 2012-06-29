@@ -1,21 +1,19 @@
-<article>
-	<h1 itemprop="name">{{ product.title }}</h1>
-	<b itemprop="brand">{{ product.vendor }}</b>
-	<section id="images">
-		<ul>
-			<li class="featured"><img src="{{ product.images[0] | product_img_url: 'grande' }}" alt="{{ product.title | escape }}: Featured Product Image" itemprop="image"></li>
-			{% for img in product.images %}
-				<li><img src="{{ img | product_img_url: 'thumb' }}" alt="{{ product.title | escape }}: Alternate View #{{ forloop.index }}"></li>
-			{% endfor %}
-		</ul>
-	</section>
-	<section id="description">
-		<div class="textile" itemprop="description">{{ product.description }}</div>
-		<i>Price <b class="price" itemprop="price">{{ product.price | money_with_currency }}</b></i>
-	</section>
-	<section id="variants">
-		<form>
-			<input type="submit">
-		</form>
-	</section>
+<article id="product-{{ product.id }}">
+ {% include 'breadcrumb' %}
+ <section id="images" class="main-panel">
+  <a id="featured" href="{{ product.images[0] | product_img_url: 'original' }}"><img src="{{ product.images[0] | product_img_url: 'grande' }}" alt="{{ product.title | escape }}: Featured Product Image" itemprop="image"></a>
+  <ul>
+   {% for img in product.images %}
+    <li><a href="{{ img | product_img_url: 'original' }}" rel="zoom:featured" rev="{{ img | product_img_url: 'grande' }}"><img src="{{ img | product_img_url: 'compact' }}" alt="{{ product.title | escape }}: Alternate View #{{ forloop.index }}"></a></li>
+   {% endfor %}
+  </ul>
+ </section>
+ <section id="description" class="main-panel">
+  <h1 itemprop="name">{{ product.title }}</h1>
+  <div class="textile" itemprop="description">{{ product.description }}</div>
+  <i>Price <b class="price" itemprop="price">{{ product.price | money_with_currency }}</b></i>
+  <form>
+   <input type="submit">
+  </form>
+ </section>
 </article>

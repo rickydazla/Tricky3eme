@@ -1,4 +1,3 @@
-<meta name="google-site-verification" content="_sIJuyda2a5CRMZaDf6O4Vxc1ayfpkt2M-hDHPS-gbM" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="dns-prefetch" href="//cdn.myshopify.com/">
@@ -35,8 +34,12 @@
     <meta name="description" itemprop="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
     <meta name="keywords" content="{% for tag in product.tags %}{{ tag }}, {% endfor %}">
   {% endunless %}
-	<meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
-	<meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}">
+    <meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
+    <meta property="og:title" content="{{ product.title | escape }}">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
+    <meta property="og:image" content="{{ product.featured_image | product_img_url: 'grande' }}">
+    <meta property="og:site_name" content="{{ shop.name }}">
 {% elsif template contains 'page' %}
   {% assign mf = page.metafields.meta_data %}
   {% unless mf == empty %}
