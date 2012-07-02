@@ -1,16 +1,39 @@
-<div id="full-width">
-
-<div id="dialog">
-  <h1><span>404 </span>Page Not Found</h1>
-  
-  <div class="block">
-    <p>The page you were looking for does not exist.</p>
-  </div>
-  
-  <div class="block actions">
-    <p>Back to <a href="{{ shop.url }}">{{ shop.name }}</a></p>
-  </div>
-  
-</div>
-
-</div>
+{% include 'breadcrumb' %}
+<article class="clearfix">
+ {% if cart.item_count > 0 %}
+  <form action="/cart" method="post" name="cartform">
+    <table cellpadding="0" cellspacing="0">
+      <tr>
+        <th class="pic"><span class="ir">Item Image</span></th>
+        <th class="name"><span class="ir">Item Name</span></th>
+        <th class="size">Size</th>
+        <th class="qty">Quantity</th>
+        <th class="sub"><span>Price</span></th>
+      </tr>
+      {% for item in cart.items %}
+      <tr class="{% cycle "odd", "even" %}">
+        <td class="pic">
+          <a href="{{ item.product.url | within: collections.all }}"><img src="{{ item.product.images[0] | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}" /></a>
+        </td>
+        <td class="name">
+          <h3><a href="{{ item.product.url | within: collections.all }}">{{ item.product.title | escape }}</a></h3>
+        </td>
+        <td class="size"><span>{{ item.variant.option1 }}</span></td>
+        <td class="qty">
+          <input type="number" class="field" name="updates[{{ item.id }}]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+          <input type="submit" alt="Update" name="update" class="update awesome white" value="update">
+        </td>
+        <td class="sub"><span>{{ item.line_price | money }}</span></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <div id="complete" class="clearfix">
+    <p class="prod_price">Subtotal <span>{{ cart.total_price | money }}</span></p>
+    <input type="submit" class="awesome" alt="Checkout" name="checkout" value="PROCEED TO CHECKOUT">
+    <a href="{{ cart.items.last.product.collections.first.url }}">Continue Shopping</a>
+    </div>
+  </form>
+ {% else %}
+  <p id="empty">Your shopping cart is empty. <a href="/">Continue shopping&hellip;</a></p>
+ {% endif %}
+</article>
