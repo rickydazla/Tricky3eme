@@ -1,0 +1,34 @@
+{% unless settings.front_box_total == '0' %}
+<div id="front-boxes" class="clearfix">
+	{% case settings.front_box_total %}
+		{% when '1' %}{% assign width = 'one-up' %}
+		{% when '2' %}{% assign width = 'two-up' %}
+		{% when '3' %}{% assign width = 'three-up' %}
+		{% when '4' %}{% assign width = 'four-up' %}
+	{% endcase %}
+	<div id="one" class="{{ width }}">
+		<a href="{{ settings.box1_link }}">
+			<img src="{{ 'index_box1.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
+		</a>
+	</div>
+	{% unless width == 'one-up' %}
+	<div id="two" class="{{ width }}">
+		<a href="{{ settings.box2_link }}">
+			<img src="{{ 'index_box2.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
+		</a>
+	</div>
+	{% unless width == 'two-up' %}
+	<div id="three" class="{{ width }}">
+		<a href="{{ settings.box3_link }}">
+			<img src="{{ 'index_box3.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
+		</a>
+	</div>
+	{% unless width == 'three-up' %}
+	<div id="four" class="{{ width }}">
+		<a href="{{ settings.box4_link }}">
+			<img src="{{ 'index_box4.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
+		</a>
+	</div>
+	{% endunless %}{% endunless %}{% endunless %}
+</div>
+{% endunless %}

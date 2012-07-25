@@ -80,7 +80,11 @@
   {% else %}
     <title>{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
     <meta name="title" itemprop="name" content="{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-    <meta name="description" itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+    {% if collection.description != '' %}
+      <meta name="description" itemprop="description" content="{{ collection.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
+    {% elsif shop.description != '' %}
+       <meta name="description" itemprop="description" content="{{ shop.description | escape }}">
+    {% endif %}
     <meta name="keywords" content="{% for tag in collection.all_tags %}{{ tag }}, {% endfor %}">
   {% endunless %}
 	<meta itemprop="image" content="{{ collection.image.src | product_img_url: 'compact' }}">
@@ -90,7 +94,7 @@
   {% if shop.description != '' %}
      <meta name="description" itemprop="description" content="{{ shop.description | escape }}">
   {% endif %}
-	<meta name="keywords" content="{{ settings.seo_keywords }}">
+  <meta name="keywords" content="{{ settings.seo_keywords }}">
 {% elsif template contains 'blog' %}
   {% assign mf = blog.metafields.meta_data %}
   {% unless mf == empty %}
@@ -119,6 +123,6 @@
 {% else %}
   <title>{% if template == "404" %}Page Not Found | {% endif %}{{ shop.name }}: {{ settings.seo_tagline }}</title>
   <meta name="title" itemprop="name" content="{% if template == "404" %}Page Not Found | {% endif %}{{ shop.name }}: {{ settings.seo_tagline }}">
-  <meta name="description" itemprop="description" content="{{ settings.seo_description | escape }}">
+  <meta name="description" itemprop="description" content="{{ shop.description | escape }}">
 {% endif %}
 <link rel="author" href="{{ 'humans.txt'| asset_url }}">

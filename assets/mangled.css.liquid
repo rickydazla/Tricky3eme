@@ -61,7 +61,7 @@ dd, dt { margin:0; padding:0;}
    Embedded content
    ========================================================================== */
 
-img { border: 0; -ms-interpolation-mode: bicubic; }
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align:bottom;}
 svg:not(:root) { overflow: hidden; }
 
 /* =============================================================================
@@ -103,6 +103,13 @@ h1, h2, h3, h4, h5, h6{ font-family:{{ settings.h_font_family }};}
 
 header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.logo_height }};}
 
+#front-boxes a{ display:block;}
+#front-boxes img{ width:100%;}
+#front-boxes .one-up{ width:100%;}
+#front-boxes .two-up{ width:50%;}
+#front-boxes .three-up{ width:33.3%;}
+#front-boxes .four-up{ width:25%;}
+#front-boxes #one.one-up, #front-boxes #two.two-up, #front-boxes #three.three-up, #front-boxes #four.four-up{ margin-right:0;}
 
 
 

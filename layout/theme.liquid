@@ -18,7 +18,7 @@
 {% endif %}
 </head>
 
-<body id="{{ template | replace: '/', '-' }}" class="clearfix">
+<body id="{{ template | handle | replace: '/', '-' }}" class="clearfix">
  <header role="banner" class="clearfix">
   <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}"></a>
   <nav role="navigation">
@@ -26,7 +26,7 @@
    {% for link in linklists.main-menu.links %}
     <li{% if link.active %} class="active"{% endif %}>
       <a href="{{ link.url }}">{{ link.title }}</a>
-      {% if linklists[link.handle] != null %}
+      {% if linklists[link.handle] != empty %}
        <ul>
         {% for sublink in linklists[link.handle].links %}
          <li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
@@ -42,9 +42,11 @@
    {{ content_for_layout }}
  </div>
  <footer role="contentinfo" class="clearfix">
+   <ul>
    {% for link in linklists.footer.links %}
     <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
    {% endfor %}
+   </ul>
  </footer>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
