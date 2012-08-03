@@ -1,23 +1,22 @@
 <h1>{{ page.title }}</h1>
 {{ page.content }}
+{% include 'vcard' %}
 {% if page.handle == 'contact-us' %}
   {% form 'contact' %}
     {% if form.posted_successfully? %}
-      Thanks for contacting us! We'll get back to you as soon as possible.
+      <p>Thanks for contacting us! We&rsquo;ll get back to you as soon as possible.</p>
     {% endif %}
-    
     {% if form.errors %}
       {% for field in form.errors %}
-        {{ field }} - {{ form.errors.messages[field] }}
+        <p>{{ field }} &mdash; {{ form.errors.messages[field] }}</p>
       {% endfor %}
     {% endif %}
-      <fieldset>
-        <label for="contact_email">Email</label>
-        <input type="text" id="contact_email" name="contact[email]">
-        <label for="contact_question">Question</label>
-        <textarea id="contact_question" name="contact[question]"></textarea>
-        <input type='submit' class="submit" class="awesome">
-      </fieldset>
-    </table>
+    <fieldset>
+      <label for="contact_email">Email</label>
+      <input type="text" id="contact_email" name="contact[email]">
+      <label for="contact_question">Question</label>
+      <textarea id="contact_question" name="contact[question]"></textarea>
+      <input type='submit' class="submit" class="awesome">
+    </fieldset>
   {% endform %}
 {% endif %}

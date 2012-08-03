@@ -2,11 +2,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="dns-prefetch" href="//cdn.myshopify.com/">
 <meta http-equiv="cleartype" content="on">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.url }}/sitemap.xml">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.domain }}/sitemap.xml">
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
 {% if title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
 <meta http-equiv="imagetoolbar" content="false" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ shop.url }}/blogs/news.atom">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ shop.domain }}/blogs/news.atom">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
 <link rel="shortcut icon" href="{{ 'apple-touch-icon.png' | asset_url }}" type="image/x-icon">
 <meta property="og:site_name" content="{{ shop.name }}">
@@ -37,7 +37,7 @@
     <meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
     <meta property="og:title" content="{{ product.title | escape }}">
     <meta property="og:type" content="product">
-    <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
+    <meta property="og:url" content="{{ shop.domain }}{{ product.url }}">
     <meta property="og:image" content="{{ product.featured_image | product_img_url: 'grande' }}">
     <meta property="og:site_name" content="{{ shop.name }}">
 {% elsif template contains 'page' %}
