@@ -25,7 +25,7 @@
   <legend>Logo</legend>
   <table>
     <tr>
-      <td><label for="logo">Logo Img</label></td>
+      <th><label for="logo">Logo Img</label></th>
       <td>
        <input type="file" id="logo" name="logo.png" />
       </td>
@@ -52,35 +52,35 @@
   <legend>Base Styles</legend>
   <table>
     <tr>
-      <td><label for="h_font_family">Headings Font Family</label></td>
+      <th><label for="h_font_family">Headings Font Family</label></th>
       <td><input type="text" id="h_font_family" name="h_font_family" value="serif" /></td>
     </tr>
     <tr>
-      <td><label for="p_font_family">Paragraph Font Family</label></td>
+      <th><label for="p_font_family">Paragraph Font Family</label></th>
       <td><input type="text" id="p_font_family" name="p_font_family" value="sans-serif" /></td>
     </tr>
     <tr>
-      <td><label for="font_size">Font Size</label></td>
+      <th><label for="font_size">Font Size</label></th>
       <td><input type="text" id="font_size" name="font_size" value="13px" /></td>
     </tr>
     <tr>
-      <td><label for="line_height">Line Height</label></td>
+      <th><label for="line_height">Line Height</label></th>
       <td><input type="text" id="line_height" name="line_height" value="1.231" /></td>
     </tr>
     <tr>
-      <td><label for="color">Font Color</label></td>
+      <th><label for="color">Font Color</label></th>
       <td><input type="text" id="color" name="color" class="color" value="#444444" /></td>
     </tr>
     <tr>
-      <td><label for="selection_bgcolor">::Selection Background Color</label></td>
+      <th><label for="selection_bgcolor">::Selection Background Color</label></th>
       <td><input type="text" id="selection_bgcolor" name="selection_bgcolor" class="color" value="#fe57a1" /></td>
     </tr>
     <tr>
-      <td><label for="link_color">A:Link Color</label></td>
+      <th><label for="link_color">A:Link Color</label></th>
       <td><input type="text" id="link_color" name="link_color" class="color" value="#00e00e" /></td>
     </tr>
     <tr>
-      <td><label for="link_hovercolor">A:Hover Color</label></td>
+      <th><label for="link_hovercolor">A:Hover Color</label></th>
       <td><input type="text" id="link_hovercolor" name="link_hovercolor" class="color" value="#551a8b" /></td>
     </tr>
   </table>
@@ -90,7 +90,7 @@
 	<span class="note">All images 960px wide, any height (although ideally all the same height)</span>
 	<table>
 		<tr>
-		  <td><label for="slide_number">Slides to Show</label></td>
+		  <th><label for="slide_number">Slides to Show</label></th>
 		  <td>
 		    <select name="slide_number" id="slide_number">
 		      <option value="1">1</option>
@@ -111,12 +111,20 @@
 			<td><input type="file" id="slide1" name="slide1.jpg" /></td>
 		</tr>
 		<tr>
+			<th><label for="slide1_alt">Alt text:</label></th>
+			<td><input type="text" id="slide1_alt" name="slide1_alt" class="text" value=""/></td>
+		</tr>                        
+		<tr>
 			<th><label for="slide1_link">Link to:</label></th>
 			<td><input type="text" id="slide1_link" name="slide1_link" class="text" value=""/></td>
 		</tr>                        
 		<tr>                         
 			<th><label for="slide2">2nd image</label></th>        
 			<td><input type="file" id="slide2" name="slide2.jpg" /></td>
+		</tr>
+		<tr>
+			<th><label for="slide2_alt">Alt text:</label></th>
+			<td><input type="text" id="slide2_alt" name="slide2_alt" class="text" value=""/></td>
 		</tr>
 		<tr>
 			<th><label for="slide2_link">Link to:</label></th>
@@ -127,6 +135,10 @@
 			<td><input type="file" id="slide3" name="slide3.jpg" /></td>
 		</tr>
 		<tr>
+			<th><label for="slide3_alt">Alt text:</label></th>
+			<td><input type="text" id="slide3_alt" name="slide3_alt" class="text" value=""/></td>
+		</tr>                        
+		<tr>
 			<th><label for="slide3_link">Link to:</label></th>
 			<td><input type="text" id="slide3_link" name="slide3_link" class="text" value=""/></td>
 		</tr>                      
@@ -134,6 +146,10 @@
 			<th><label for="slide4">4th image</label></th>          
 			<td><input type="file"  id="slide4" name="slide4.jpg" /></td>
 		</tr>
+		<tr>
+			<th><label for="slide4_alt">Alt text:</label></th>
+			<td><input type="text" id="slide4_alt" name="slide4_alt" class="text" value=""/></td>
+		</tr>                        
 		<tr>
 			<th><label for="slide4_link">Link to:</label></th>
 			<td><input type="text" id="slide4_link" name="slide4_link" class="text" value=""/></td>
@@ -143,6 +159,10 @@
 			<td><input type="file"  id="slide5" name="slide5.jpg" /></td>
 		</tr>
 		<tr>
+			<th><label for="slide5_alt">Alt text:</label></th>
+			<td><input type="text" id="slide5_alt" name="slide5_alt" class="text" value=""/></td>
+		</tr>                        
+		<tr>
 			<th><label for="slide5_link">Link to:</label></th>
 			<td><input type="text" id="slide5_link" name="slide5_link" class="text" value=""/></td>
 		</tr>
@@ -150,6 +170,10 @@
 			<th><label for="slide6">6th image</label></th>          
 			<td><input type="file"  id="slide6" name="slide6.jpg" /></td>
 		</tr>
+		<tr>
+			<th><label for="slide6_alt">Alt text:</label></th>
+			<td><input type="text" id="slide6_alt" name="slide6_alt" class="text" value=""/></td>
+		</tr>                        
 		<tr>
 			<th><label for="slide6_link">Link to:</label></th>
 			<td><input type="text" id="slide6_link" name="slide6_link" class="text" value=""/></td>
@@ -159,6 +183,10 @@
 			<td><input type="file"  id="slide7" name="slide7.jpg" /></td>
 		</tr>
 		<tr>
+			<th><label for="slide7_alt">Alt text:</label></th>
+			<td><input type="text" id="slide7_alt" name="slide7_alt" class="text" value=""/></td>
+		</tr>                        
+		<tr>
 			<th><label for="slide7_link">Link to:</label></th>
 			<td><input type="text" id="slide7_link" name="slide7_link" class="text" value=""/></td>
 		</tr>
@@ -166,6 +194,10 @@
 			<th><label for="slide8">8th image</label></th>          
 			<td><input type="file"  id="slide8" name="slide8.jpg" /></td>
 		</tr>
+		<tr>
+			<th><label for="slide8_alt">Alt text:</label></th>
+			<td><input type="text" id="slide8_alt" name="slide8_alt" class="text" value=""/></td>
+		</tr>                        
 		<tr>
 			<th><label for="slide8_link">Link to:</label></th>
 			<td><input type="text" id="slide8_link" name="slide8_link" class="text" value=""/></td>
@@ -175,6 +207,10 @@
 			<td><input type="file"  id="slide9" name="slide9.jpg" /></td>
 		</tr>
 		<tr>
+			<th><label for="slide9_alt">Alt text:</label></th>
+			<td><input type="text" id="slide9_alt" name="slide9_alt" class="text" value=""/></td>
+		</tr>                        
+		<tr>
 			<th><label for="slide9_link">Link to:</label></th>
 			<td><input type="text" id="slide9_link" name="slide9_link" class="text" value=""/></td>
 		</tr>
@@ -182,6 +218,10 @@
 			<th><label for="slide10">10th image</label></th>          
 			<td><input type="file"  id="slide10" name="slide10.jpg" /></td>
 		</tr>
+		<tr>
+			<th><label for="slide10_alt">Alt text:</label></th>
+			<td><input type="text" id="slide10_alt" name="slide10_alt" class="text" value=""/></td>
+		</tr>                        
 		<tr>
 			<th><label for="slide10_link">Link to:</label></th>
 			<td><input type="text" id="slide10_link" name="slide10_link" class="text" value=""/></td>
