@@ -1,0 +1,24 @@
+<section id="sidebar">
+  <h3>Latest</h3>
+  <ul>
+    {% for article in blog.articles | limit:5 %}
+      <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% if blog.all_tags.size != 0 %}
+    <h3>Tags</h3>
+    <ul>
+      {% for tag in blog.all_tags %}
+        {% assign count = 0 %}
+        {% for article in blogs[blog.handle].articles %}
+          {% if article.tags contains tag %}
+            {% capture count %}{{ count | plus: 1 }}{% endcapture %}
+          {% endif %}
+        {% endfor %}    
+        <li>
+          <a href="/blogs/{{ blog.handle }}/tagged/{{ tag | handle }}" title="{{ blog.title }} tagged {{ tag | escape }}">{{ tag }}</a> <span class="label count">({{ count }})</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>

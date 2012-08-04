@@ -1,16 +1,11 @@
-<div id="full-width">
-
-<div id="dialog">
-  <h1><span>404 </span>Page Not Found</h1>
-  
-  <div class="block">
-    <p>The page you were looking for does not exist.</p>
-  </div>
-  
-  <div class="block actions">
-    <p>Back to <a href="{{ shop.url }}">{{ shop.name }}</a></p>
-  </div>
-  
-</div>
-
-</div>
+<section id="articles">
+  {% for article in blog.articles %}
+  <article>
+    <h2>{{ article.title }}</h2>
+    <p class="published">{{ article.published_at | date:'%X' }}</p>
+    {{ article.content }}
+    {% if blog.all_tags.size != 0 %}<p class="tags">Tags: {% for tag in article.tags %}{% if current_tags contains tag %}{{ tag | link_to_remove_tag: tag }}{% else %}{{ tag | link_to_add_tag: tag }}{% endif %}{% if forloop.last %}.{% else %},&nbsp;{% endif %}{% endfor %}</p>{% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% include 'blog-sidebar' %}
