@@ -7,27 +7,35 @@
 		{% when '4' %}{% assign width = 'four-up' %}
 	{% endcase %}
 	<div id="one" class="{{ width }}">
-		<a href="{{ settings.box1_link }}">
-			<img src="{{ 'index_box1.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
-		</a>
+	  {% if settings.box1_link == empty %}
+	    <img src="{{ 'index_box1.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
+	  {% else %}
+		  <a href="{{ settings.box1_link }}"><img src="{{ 'index_box1.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" /></a>
+    {% endif %}
 	</div>
 	{% unless width == 'one-up' %}
 	<div id="two" class="{{ width }}">
-		<a href="{{ settings.box2_link }}">
-			<img src="{{ 'index_box2.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
-		</a>
+	  {% if settings.box2_link == empty %}
+	    <img src="{{ 'index_box2.jpg' | asset_url }}" alt="{{ settings.box2_alt }}" />
+	  {% else %}
+		  <a href="{{ settings.box2_link }}"><img src="{{ 'index_box2.jpg' | asset_url }}" alt="{{ settings.box2_alt }}" /></a>
+    {% endif %}
 	</div>
 	{% unless width == 'two-up' %}
 	<div id="three" class="{{ width }}">
-		<a href="{{ settings.box3_link }}">
-			<img src="{{ 'index_box3.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
-		</a>
+	  {% if settings.box3_link == empty %}
+	    <img src="{{ 'index_box3.jpg' | asset_url }}" alt="{{ settings.box3_alt }}" />
+	  {% else %}
+		  <a href="{{ settings.box3_link }}"><img src="{{ 'index_box3.jpg' | asset_url }}" alt="{{ settings.box3_alt }}" /></a>
+    {% endif %}
 	</div>
 	{% unless width == 'three-up' %}
 	<div id="four" class="{{ width }}">
-		<a href="{{ settings.box4_link }}">
-			<img src="{{ 'index_box4.jpg' | asset_url }}" alt="{{ settings.box1_alt }}" />
-		</a>
+	  {% if settings.box4_link == empty %}
+	    <img src="{{ 'index_box4.jpg' | asset_url }}" alt="{{ settings.box4_alt }}" />
+	  {% else %}
+		  <a href="{{ settings.box4_link }}"><img src="{{ 'index_box4.jpg' | asset_url }}" alt="{{ settings.box4_alt }}" /></a>
+    {% endif %}
 	</div>
 	{% endunless %}{% endunless %}{% endunless %}
 </div>
