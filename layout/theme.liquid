@@ -47,6 +47,7 @@
     <li{% if link.active %} class="active"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
    {% endfor %}
    </ul>
+   <p>&copy; {{ "now" | date: "%Y" }}</p>
  </footer>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

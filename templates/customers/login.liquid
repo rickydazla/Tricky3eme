@@ -1,17 +1,14 @@
 {% layout settings.customer_layout %}
-
-<div id="template">
-  <div id="customer">
-    <div class="template_header">
-      <h2 class="title">Customer Login</h2>
-    </div>
-
+<article id="template" class="container clearfix">
+  {% include 'breadcrumb' %}
+  <section id="customer" class="first uneven">
+    <h2>Returning Customers</h2>
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
 
       <div id="login_email" class="clearfix large_form">
-        <label for="customer_email" class="login">Email Address</label>
-        <input type="email" value="" name="customer[email]" id="customer_email" class="large" size="30" />
+        <label for="customer_email" class="hidden">Email Address</label>
+        <input type="email" value="" placeholder="Email Address" name="customer[email]" id="customer_email" class="large" />
       </div>
 
       {% if form.password_needed %}
@@ -21,29 +18,28 @@
         {% endcomment %}
 
         <div id="login_password" class="clearfix large_form">
-          <label for="customer_password" class="login">Password</label>
-          <input type="password" value="" name="customer[password]" id="customer_password" class="large password" size="16" />
+          <label for="customer_password" class="hidden">Password</label>
+          <input type="password" placeholder="Password" value="" name="customer[password]" id="customer_password" class="large password" size="16" />
           <div id="forgot_password">
-            <a href="#" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
+            <a href="#" class="awesome" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
           </div>
         </div>
 
       {% endif %}
 
       <div class="action_bottom">
-        <input class="btn" type="submit" value="Sign In" />
-        <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
+        <input class="wowsome" type="submit" value="Sign In" />
       </div>
     {% endform %}
-  </div>
+  </section>
 
   {% comment %}
     Recover Password Form
   {% endcomment %}
 
-  <div id="recover-password" style='display:none'>
+  <section id="recover-password" class="first uneven" style='display:none'>
     <div class="template_header">
-      <h2 class="title">Reset Password</h2>
+      <h2>Reset Password</h2>
       <p class="note">We will send you an email to reset your password.</p>
     </div>
 
@@ -51,15 +47,15 @@
       {{ form.errors | default_errors }}
 
       <div id="recover_email" class="clearfix large_form">
-        <label for="email" class="large">Email</label>
-        <input type="email" value="" size="30" name="email" id="recover-email" class="large" />
+        <label for="email" class="hidden">Email</label>
+        <input type="email" value="" placeholder="Email" name="email" id="recover-email" class="large" />
       </div>
       <div class="action_bottom">
-        <input class="btn" type="submit" value="Submit" />
+        <input class="wowsome" type="submit" value="Submit" />
         <span class="note">or <a href="#" onclick="hideRecoverPasswordForm();return false;">Cancel</a></span>
       </div>
     {% endform %}
-  </div>
+  </section>
 
 
   {% comment %}
@@ -68,14 +64,15 @@
   {% endcomment %}
 
   {% if shop.checkout.guest_login %}
-  <div id="guest">
+  <section id="guest" class="last uneven">
     <div class="template_header">
-      <h3 class="title">Guest Login</h3>
+      <h2>New Customers</h2>
     </div>
     {% form 'guest_login' %}
-      <input class="btn" type="submit" value="Continue as Guest" />
+      <input class="wowsome" type="submit" value="Continue with Purchase" />
+      <p><small>You will be able to create an account later if you want.</small></p>
     {% endform %}
-  </div>
+  </section>
   {% endif %}
 </div>
 

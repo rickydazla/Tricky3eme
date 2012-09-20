@@ -1,38 +1,70 @@
 <section class="breadcrumb clearfix">
-{% case template %}
-  {% when 'product' %}
-    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
-    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-      {% if collection %}
-        <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title | replace:"'","&lsquo;" }}</a>
-      {% else %}
-        <a href="/collections/all" title="All Products">{{ collections.all.title }}</a>
+{% unless template contains 'customers' %}
+  {% case template %}
+    {% when 'product' %}
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+      &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        {% if collection %}
+          <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title | replace:"'","&lsquo;" }}</a>
+        {% else %}
+          <a href="/collections/all" title="All Products">{{ collections.all.title }}</a>
+        {% endif %}
+      </span>
+      &raquo;
+      {{ product.title }}
+    {% when 'collection' %}
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+      &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ collection.title }}</span></a></span>
+      {% if current_tags %}
+        {% for tag in current_tags %}
+          &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="url"><span itemprop="title">{{ tag }}</span></a></span>       
+        {% endfor %}
       {% endif %}
-    </span>
-    &raquo;
-    {{ product.title }}
-  {% when 'collection' %}
-  <div class="breadcrumb clearfix">
-    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
-    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ collection.title }}</span></a></span>
-    {% if current_tags %}
-      {% for tag in current_tags %}
-        &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}" title="{{ tag | escape }}" itemprop="url"><span itemprop="title">{{ tag }}</span></a></span>       
-      {% endfor %}
-    {% endif %}
-    {% if paginate.pages > 1 %}
-      <span class="pages">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
-    {% endif %}
-  </div>
-  {% when 'page' %}
-  <div class="breadcrumb clearfix">
-    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
-    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ page.title }}</span></a></span>
-  </div>
-  {% when 'cart' %}
-  <div class="breadcrumb clearfix">
-    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
-    &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">Your Shopping Bag</span></a></span>
-  </div>
-{% endcase %}
+      {% if paginate.pages > 1 %}
+        <span class="pages">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+      {% endif %}
+    {% when 'page' %}
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span>
+      &nbsp;&nbsp;&raquo;&nbsp;&nbsp;<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ page.title }}</span></a></span>
+    {% when 'cart' %}
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span>
+      &nbsp;&nbsp;&raquo;&nbsp;&nbsp;<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">Your Shopping Bag</span></a></span>
+    {% when 'blog' %}
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span>
+      &nbsp;&nbsp;&raquo;&nbsp;&nbsp;<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ blog.url }}" title="{{ blog.title | escape }}" itemprop="url"><span itemprop="title">{{ blog.title }}</span></a></span>
+      {% if current_tags %}
+      &nbsp;&nbsp;&raquo;&nbsp;&nbsp;<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        {% for tag in current_tags %}
+          <span itemprop="title">{{ tag }}</span>{% unless forloop.last %},&nbsp;{% endunless %}
+        {% endfor %}
+      </span>
+      {% endif %}
+    {% when 'article' %}
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span>
+      &nbsp;&nbsp;&raquo;&nbsp;&nbsp;<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ blog.url }}" title="{{ blog.title | escape }}" itemprop="url"><span itemprop="title">{{ blog.title }}</span></a></span>
+      &nbsp;&nbsp;&raquo;&nbsp;&nbsp;<span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span itemprop="title">{{ article.title }}</span>
+  {% endcase %}
+{% else %}
+   <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span> 
+   &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+   <a href="/account" title="Your Account">Your Account</a>
+   </span>
+   &raquo;
+   {% if template contains 'login' %}Login
+   {% elsif template contains 'reset' %}Account Password
+   {% elsif template contains 'account' %}Details
+   {% elsif template contains 'order' %}Order {{ order.name }}
+   {% elsif template contains 'addresses' %}Manage Account Address{% if customer.addresses.size > 1 %}es{% endif %}{% endif %}
+   <div>
+     {% if template contains 'account' %}
+       <a class="logout" href="/account/logout">SIGN OUT</a>
+     {% elsif template contains 'order' %}
+       {% if order.cancelled %}
+         <span>Order Cancelled <span class="note">on {{ order.cancelled_at | date: "%x" }} @ {{ order.cancelled_at | date: " %I:%M%p" }} &mdash; {{ order.cancel_reason }}</span>
+       {% else %}
+         <span>Placed on {{ order.created_at | date: "%x" }} @ {{ order.created_at | date: " %I:%M%p" }}</span>
+       {% endif %}
+     {% elsif template contains 'addresses' %}{{ customer.addresses.size }} Account Address{% if customer.addresses.size > 1 %}es{% endif %}{% endif %}
+   </div>
+{% endunless %}
 </section>

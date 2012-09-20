@@ -2,11 +2,13 @@
  {% include 'breadcrumb' %}
  <section id="images" class="main-panel">
   <a id="featured" href="{{ product.images[0] | product_img_url: 'original' }}"><img src="{{ product.images[0] | product_img_url: 'grande' }}" alt="{{ product.title | escape }}: Featured Product Image" itemprop="image"></a>
-  <ul>
-   {% for img in product.images %}
-    <li><a href="{{ img | product_img_url: 'original' }}" rel="zoom:featured" rev="{{ img | product_img_url: 'grande' }}"><img src="{{ img | product_img_url: 'compact' }}" alt="{{ product.title | escape }}: Alternate View #{{ forloop.index }}"></a></li>
-   {% endfor %}
-  </ul>
+  {% if product.images.size > 1 %}
+    <ul>
+     {% for img in product.images %}
+      <li><a href="{{ img | product_img_url: 'original' }}" rel="zoom-id:featured" rev="{{ img | product_img_url: 'large' }}"><img src="{{ img | product_img_url: 'compact' }}" alt="{{ product.title | escape }}: Alternate View #{{ forloop.index }}"></a></li>
+     {% endfor %}
+    </ul>
+  {% endif %}
  </section>
  <section id="description" class="main-panel">
   <h1 itemprop="name">{{ product.title }}</h1>
