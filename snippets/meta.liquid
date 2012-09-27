@@ -18,21 +18,21 @@
     {% for mf in product.metafields.meta_data %}
       {% capture key %}{{ mf | first }}{% endcapture %}
       {% if key == 'title' %}
-        <title>{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-        <meta name="title" itemprop="name" content="{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}">
+        <title>{{ mf | last }}</title>
+        <meta name="title" itemprop="name" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'meta_description' %}
-        <meta name="description" itemprop="description" content="{{mf | last}}">
+        <meta name="description" itemprop="description" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'keywords' %}
-        <meta name="keywords" content="{{mf | last}}">
+        <meta name="keywords" content="{{ mf | last }}">
       {% endif %}
     {% endfor %}
   {% else %}
     <title>{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
     <meta name="title" itemprop="name" content="{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}">
     <meta name="description" itemprop="description" content="{{ product.description | strip_html | strip_newlines | truncatewords: maxmeta | escape }} (Read more)">
-    <meta name="keywords" content="{% for tag in product.tags %}{{ tag }}, {% endfor %}">
+    <meta name="keywords" content="{% for tag in product.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}">
   {% endunless %}
     <meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
     <meta property="og:title" content="{{ product.title | escape }}">
@@ -46,14 +46,14 @@
     {% for mf in page.metafields.meta_data %}
       {% capture key%}{{ mf | first }}{%endcapture%}
       {% if key == 'title' %}
-        <title>{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-        <meta name="title" itemprop="name" content="{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}">
+        <title>{{ mf | last }}/title>
+        <meta name="title" itemprop="name" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'meta_description' %}
-        <meta name="description" itemprop="description" content="{{mf | last}}">
+        <meta name="description" itemprop="description" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'keywords' %}
-        <meta name="keywords" content="{{mf | last}}">
+        <meta name="keywords" content="{{ mf | last }}">
       {% endif %}
     {% endfor %}
   {% else %}
@@ -67,14 +67,14 @@
     {% for mf in collection.metafields.meta_data %}
       {% capture key%}{{ mf | first }}{%endcapture%}
       {% if key == 'title' %}
-        <title>{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-        <meta name="title" itemprop="name" content="{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}">
+        <title>{{ mf | last }}</title>
+        <meta name="title" itemprop="name" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'meta_description' %}
-        <meta name="description" content="{{mf | last}}">
+        <meta name="description" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'keywords' %}
-        <meta name="keywords" content="{{mf | last}}">
+        <meta name="keywords" content="{{ mf | last }}">
       {% endif %}
     {% endfor %}
   {% else %}
@@ -85,41 +85,43 @@
     {% elsif shop.description != '' %}
        <meta name="description" itemprop="description" content="{{ shop.description | escape }}">
     {% endif %}
-    <meta name="keywords" content="{% for tag in collection.all_tags %}{{ tag }}, {% endfor %}">
+    <meta name="keywords" content="{% for tag in collection.all_tags %}{% unless forloop.last %}, {% endunless %}{% endfor %}">
   {% endunless %}
-	<meta itemprop="image" content="{{ collection.image.src | product_img_url: 'compact' }}">
+	<meta itemprop="image" content="{{ collection.image.src | product_img_url: 'original' }}">
 {% elsif template contains 'index' %}
   <title>{{ shop.name }}: {{ settings.seo_tagline }}</title>
   <meta name="title" itemprop="name" content="{{ shop.name }}: {{ settings.seo_tagline }}">
   {% if shop.description != '' %}
      <meta name="description" itemprop="description" content="{{ shop.description | escape }}">
   {% endif %}
-  <meta name="keywords" content="{{ settings.seo_keywords }}">
+  <meta name="keywords" content="{% for tag in collections.all.all_tags %}{% unless forloop.last %}, {% endunless %}{% endfor %}">
 {% elsif template contains 'blog' %}
   {% assign mf = blog.metafields.meta_data %}
   {% unless mf == empty %}
     {% for mf in blog.metafields.meta_data %}
       {% capture key %}{{ mf | first }}{% endcapture %}
       {% if key == 'title' %}
-        <title>{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
-        <meta name="title" itemprop="name" content="{{mf | last}} | {{ shop.name }}: {{ settings.seo_tagline }}">
+        <title>{{ mf | last }}</title>
+        <meta name="title" itemprop="name" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'meta_description' %}
-        <meta name="description" itemprop="description" content="{{mf | last}}">
+        <meta name="description" itemprop="description" content="{{ mf | last }}">
       {% endif %}
       {% if key == 'keywords' %}
-        <meta name="keywords" content="{{mf | last}}">
+        <meta name="keywords" content="{{ mf | last }}">
       {% endif %}
     {% endfor %}
   {% else %}
     <title>{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
     <meta name="title" itemprop="name" content="{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}">
-    <meta name="description" itemprop="description" content="{{ shop.name }} Blog"> 
+    <meta name="description" itemprop="description" content="{{ shop.name }} Blog">
+    <meta name="keywords" content="{% for tag in blog.all_tags %}{% unless forloop.last %}, {% endunless %}{% endfor %}">
   {% endunless %}
 {% elsif template contains 'article' %}
   <title>{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}</title>
   <meta name="title" itemprop="name" content="{{ page_title | escape }} | {{ shop.name }}: {{ settings.seo_tagline }}">
   <meta name="description" itemprop="description" content=" {{ article.excerpt_or_content | strip_html | strip_newlines | truncatewords: maxmeta | escape }}">
+  <meta name="keywords" content="{% for tag in blog.all_tags %}{% unless forloop.last %}, {% endunless %}{% endfor %}">
 {% else %}
   <title>{% if template == "404" %}Page Not Found | {% endif %}{{ shop.name }}: {{ settings.seo_tagline }}</title>
   <meta name="title" itemprop="name" content="{% if template == "404" %}Page Not Found | {% endif %}{{ shop.name }}: {{ settings.seo_tagline }}">
