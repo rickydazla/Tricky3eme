@@ -52,6 +52,15 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{{ 'jquery.js' | asset_url }}">\x3C/script>')</script>
+  {% if template == 'cart' %}
+    <script type="text/javascript">
+      function remove_item(id) {
+          document.getElementById('updates_'+id).value = 0;
+          document.getElementById('cartform').submit();
+      }
+    </script>
+  {% endif %}
+  
 
   <!--[if (lt IE 9) & (!IEMobile)]>
   <script src="{{ 'DOMAssistant.js' | asset_url }}"></script>
