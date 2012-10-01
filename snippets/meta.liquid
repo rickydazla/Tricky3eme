@@ -40,6 +40,9 @@
     <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
     <meta property="og:image" content="{{ product.featured_image | product_img_url: 'grande' }}">
     <meta property="og:site_name" content="{{ shop.name }}">
+    <meta itemprop="currency" content="{{ shop.currency }}">
+    <meta itemprop="seller" content="{{ shop.name | escape }}">
+    <meta itemprop="availability" content="{% if product.available %}in_stock{% else %}out_of_stock{% endif %}">
 {% elsif template contains 'page' %}
   {% assign mf = page.metafields.meta_data %}
   {% unless mf == empty %}
