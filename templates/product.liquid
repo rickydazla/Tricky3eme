@@ -13,7 +13,7 @@
  <section id="description" class="main-panel">
   <h1 itemprop="name">{{ product.title }}</h1>
   <div class="textile" itemprop="description">{{ product.description }}</div>
-  <i>Price <b class="price" itemprop="price">{{ product.price | money_with_currency }}</b></i>
+  <i itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">Price <b class="price" itemprop="price">{{ product.price | money_with_currency }}</b></i>
   <form>
    <input type="submit">
   </form>
