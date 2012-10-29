@@ -18,7 +18,7 @@
 {% endif %}
 </head>
 
-<body id="{{ template | handle | replace: '/', '-' }}" class="clearfix">
+<body id="{% if template %}{% if template contains 'customers' %}customer{% else %}{{ template | handle | replace: '404', 'four04' }}{% endif %}{% else %}app{% endif %}" class="clearfix">
  <header role="banner" class="clearfix">
   <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}"></a>
   <nav role="navigation">

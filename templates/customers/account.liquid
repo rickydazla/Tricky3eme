@@ -1,52 +1,51 @@
 {% layout settings.customer_layout %}
 <article id="template" class="container clearfix">
   {% include 'breadcrumb' %}
-  <article id="template" class="container clearfix">
-    <section class="first uneven">
-      <h2>Order History</h2>
-      {% if customer.orders.size != 0 %}
-      <table id="orders">
-        <thead>
-          <tr>
-            <th class="order_number">Order</th>
-            <th class="date">Date</th>
-            <th class="payment_status">Payment Status</th>
-            <th class="fulfillment_status">Fulfillment Status</th>
-            <th class="total">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for order in customer.orders %}
-          <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
-            <td class="order_number">{{ order.name | link_to: order.customer_url }}</td>
-            <td class="date">{{ order.created_at | date: "%b. %d, &lsquo;%y" }}</td>
-            <td class="payment_status"><span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></td>
-            <td class="fulfillment_status"><span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></td>
-            <td class="total"><span class="total money">{{ order.total_price | money }}</span></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-        <p>You haven't placed any orders yet.</p>
-      {% endif %}
-    </section>
+  <section class="first uneven">
+    <h2>Order History</h2>
+    {% if customer.orders.size != 0 %}
+    <table id="orders">
+      <thead>
+        <tr>
+          <th class="order_number">Order</th>
+          <th class="date">Date</th>
+          <th class="payment_status">Payment Status</th>
+          <th class="fulfillment_status">Fulfillment Status</th>
+          <th class="total">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in customer.orders %}
+        <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
+          <td class="order_number">{{ order.name | link_to: order.customer_url }}</td>
+          <td class="date">{{ order.created_at | date: "%b. %d, &lsquo;%y" }}</td>
+          <td class="payment_status"><span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></td>
+          <td class="fulfillment_status"><span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></td>
+          <td class="total"><span class="total money">{{ order.total_price | money }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>You haven't placed any orders yet.</p>
+    {% endif %}
+  </section>
 
-    <section class="sidebar uneven">
-      <h2>Primary Address</h2>
-      <div id="customer_detail" class="group">
-        <h3 class="name">{{ customer.name }}</h3>
-        {% if customer.default_address != '' %}
-          <p>
-          {% if customer.default_address.company != '' %}{{ customer.default_address.company }}<br>{% endif %}
-          {{ customer.default_address.address1 }}<br>
-          {% if customer.default_address.address2 != '' %}{{ customer.default_address.address2 }}<br>{% endif %}
-          {{ customer.default_address.city}}, {% if address.province_code %}{{customer.default_address.province_code}}{% endif %} {{ customer.default_address.zip}}<br>
-          {{customer.default_address.country}}<br>
-          {{ customer.default_address.phone }}<br>
-          {{ customer.email }}</p>
-        {% endif %}
-        <p><a id="view_address" href="/account/addresses">View All Addresses ({{ customer.addresses_count }})</a></p>
-      </div>
-    </section>
-  </article>
+  <section class="sidebar uneven">
+    <h2>Primary Address</h2>
+    <div id="customer_detail" class="group">
+      <h3 class="name">{{ customer.name }}</h3>
+      {% if customer.default_address != '' %}
+        <p>
+        {% if customer.default_address.company != '' %}{{ customer.default_address.company }}<br>{% endif %}
+        {{ customer.default_address.address1 }}<br>
+        {% if customer.default_address.address2 != '' %}{{ customer.default_address.address2 }}<br>{% endif %}
+        {{ customer.default_address.city}}, {% if address.province_code %}{{customer.default_address.province_code}}{% endif %} {{ customer.default_address.zip}}<br>
+        {{customer.default_address.country}}<br>
+        {{ customer.default_address.phone }}<br>
+        {{ customer.email }}</p>
+      {% endif %}
+      <p><a id="view_address" href="/account/addresses">View All Addresses ({{ customer.addresses_count }})</a></p>
+    </div>
+  </section>
+</article>
