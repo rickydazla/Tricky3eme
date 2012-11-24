@@ -231,9 +231,20 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
    ========================================================================== */
 
 /* For image replacement */
-.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
-.ir br { display: none; }
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
 
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+}
 /* Hide for both screenreaders and browsers:
    css-discuss.incutio.com/wiki/Screenreader_Visibility */
 .hidden { display: none; visibility: hidden; }
