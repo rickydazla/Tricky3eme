@@ -14,8 +14,27 @@
   <h1 itemprop="name">{{ product.title }}</h1>
   <div class="textile" itemprop="description">{{ product.description }}</div>
   <i itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">Price <b class="price" itemprop="price">{{ product.price | money_with_currency }}</b></i>
-  <form>
-   <input type="submit">
+  {% if product.available %}
+  <form action="/cart/add" method="post">
+    <div id="product-variants" class="clearfix">
+      {% if product.variants.size > 1 %}
+        <select id="product-select" name='id'>
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+          {% endfor %}
+        </select>
+      {% else %}
+        <input type="hidden" name="id" value="{{ product.variants[0].id }}">
+      {% endif %}
+    </div>
+    <div id="bagit" class="clearfix">
+      <span itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer"><span id="price-field" itemprop="price">{{ product.price | money }}</span></span>
+      <label for="quantity">Qty: </label><input pattern="[0-9]*" type="text" id="quantity" name="quantity" value="1">
+      <div><input type="submit" class="awesome" name="add" id="purchase" value="ADD TO CART"></div>
+    </div>
   </form>
+  {% else %}
+    <p>Sold Out!</p>
+  {% endif %}
  </section>
 </article>
