@@ -1,1 +1,13 @@
 {% include 'slider' %}
+{% assign page = pages.frontpage %}
+<div class="rte">
+  {{ page.content }}
+</div>
+{% assign collection = collections.frontpage %}
+<ul class="grid clearfix">
+{% for product in collection.products %}
+  {% include 'product-grid-item' with 'three-per-row' %}
+{% else %}
+<p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>
+{% endfor %}
+</ul>

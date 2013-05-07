@@ -1,40 +1,81 @@
-<article id="product-{{ product.id }}">
- {% include 'breadcrumb' %}
- <section id="images" class="main-panel">
-  <a id="featured" href="{{ product.images[0] | product_img_url: 'original' }}"><img src="{{ product.images[0] | product_img_url: 'grande' }}" alt="{{ product.title | escape }}: Featured Product Image" itemprop="image"></a>
-  {% if product.images.size > 1 %}
-    <ul>
-     {% for img in product.images %}
-      <li><a href="{{ img | product_img_url: 'original' }}" rel="zoom-id:featured" rev="{{ img | product_img_url: 'large' }}"><img src="{{ img | product_img_url: 'compact' }}" alt="{{ product.title | escape }}: Alternate View #{{ forloop.index }}"></a></li>
-     {% endfor %}
-    </ul>
-  {% endif %}
- </section>
- <section id="description" class="main-panel">
-  <h1 itemprop="name">{{ product.title }}</h1>
-  <div class="textile" itemprop="description">{{ product.description }}</div>
-  <i itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">Price <b class="price" itemprop="price">{{ product.price | money_with_currency }}</b></i>
-  {% if product.available %}
-  <form action="/cart/add" method="post">
-    <div id="product-variants" class="clearfix">
-      {% if product.variants.size > 1 %}
-        <select id="product-select" name='id'>
-          {% for variant in product.variants %}
-            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-          {% endfor %}
-        </select>
+<div itemscope itemtype="http://schema.org/Product">
+  <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <div id="product-details">
+      <h1 itemprop="name">{{ product.title }}</h1>
+      {% assign product_vendor_handle = product.vendor | handle %}
+      {% if collections[product_vendor_handle].handle == product_vendor_handle %}
+        {% assign vendor_url = collections[product_vendor_handle].url %}
       {% else %}
-        <input type="hidden" name="id" value="{{ product.variants[0].id }}">
+        {% assign vendor_url = product.vendor | url_for_vendor %}
       {% endif %}
-    </div>
-    <div id="bagit" class="clearfix">
-      <span itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer"><span id="price-field" itemprop="price">{{ product.price | money }}</span></span>
-      <label for="quantity">Qty: </label><input pattern="[0-9]*" type="text" id="quantity" name="quantity" value="1">
-      <div><input type="submit" class="awesome" name="add" id="purchase" value="ADD TO CART"></div>
-    </div>
+      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
+      <div id="product-description" class="rte" itemprop="description">
+        {{ product.description }}
+      </div>
+      <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <p>
+          {% if product.compare_at_price > product.price %}
+          <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
+          {% else %}
+          <span class="product-price" itemprop="price">{{ product.price | money }}</span>
+          {% endif %}
+        </p>
+      </div>
+      {% assign hide_default_title = false %}
+      {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+        {% assign hide_default_title = true %}
+      {% endif %}       
+      <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
+       <select id="product-select" name="id" class="hidden">
+       {% for variant in product.variants %}
+         <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+       {% endfor %}
+       </select>
+      </div>
+      <div id="backorder" class="hidden">
+        <p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
+      </div>
+      <div id="product-add">
+        <input type="submit" name="add" id="add" value="Add to cart">
+      </div>
+      {% if collection %}
+        {% if collection.previous_product or collection.next_product %}
+        <div>     
+        {% if collection.previous_product %}
+          {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+          <span class="left">{{ '&larr; Previous Product' | link_to: prev_url }}</span>
+        {% endif %}
+        {% if collection.next_product %}
+          {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+          <span class="right">{{ 'Next Product &rarr;' | link_to: next_url }}</span>
+        {% endif %}
+        </div>
+        {% endif %}
+      {% endif %}
+    </div><!-- #product-details -->
   </form>
+  <div id="product-photos">
+  {% if product.images.size == 0 %}
+    <div id="product-photo-container">
+      <img src="{{ '' | product_img_url: 'grande' }}" alt="" />
+    </div>
   {% else %}
-    <p>Sold Out!</p>
+    <div id="product-photo-container">
+      <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
+        <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+      </a>
+    </div>
+    {% if product.images.size > 1 %}
+    <ul id="product-photo-thumbs" class="clearfix grid">
+      {% for image in product.images offset:1 %}
+      <li class="product-photo-thumb">
+        <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
+          <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   {% endif %}
- </section>
-</article>
+  </div><!-- #product-photos -->
+</div>

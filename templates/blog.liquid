@@ -1,11 +1,49 @@
-<section id="articles">
-  {% for article in blog.articles %}
-  <article>
-    <h2>{{ article.title }}</h2>
-    <p class="published">{{ article.published_at | date:'%X' }}</p>
-    {{ article.content }}
-    {% if blog.all_tags.size != 0 %}<p class="tags">Tags: {% for tag in article.tags %}{% if current_tags contains tag %}{{ tag | link_to_remove_tag: tag }}{% else %}{{ tag | link_to_add_tag: tag }}{% endif %}{% if forloop.last %}.{% else %},&nbsp;{% endif %}{% endfor %}</p>{% endif %}
-  </article>
-  {% endfor %}
-</section>
-{% include 'blog-sidebar' %}
+{% paginate blog.articles by 5 %}
+  {% include 'breadcrumb' %}
+  {% if current_tags %}
+  <h1>{{ blog.title | link_to: blog.url }} &raquo; {{ current_tags.first }}</h1>
+  {% else %}
+  <h1>{{ blog.title }}</h1>
+  {% endif %}
+  <section>
+    {% for article in blog.articles %}
+    <article class="blog-article{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
+      <h2 class="blog-article-title">
+        <a href="{{ article.url }}">{{ article.title }}</a>
+      </h2>
+      <h3 class="blog-article-date">
+        <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+      </h3>
+      <div class="rte">
+        {% if article.excerpt.size > 0 %}
+          {{ article.excerpt }}
+        {% else %}
+          <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+        {% endif %}
+      </div>
+      <a class="blog-read-more" href="{{ article.url }}">Read more →</a>
+      <ul class="blog-article-meta">
+        {% if blog.comments_enabled? %}
+        <li class="blog-article-meta-comments">
+          <a href="{{ article.url }}#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}</a>
+        </li>
+        {% endif %}
+        {% if article.tags.size > 0 %}
+        <li class="blog-article-meta-tags">
+          <span>Filed under</span>
+          {% for tag in article.tags %} 
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </li>
+        {% endif %}
+      </ul>
+    </article>
+    {% endfor %}
+    {% if paginate.pages > 1 %}
+      <div id="pagination">
+        {{ paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' }}
+      </div>
+    {% endif %}
+  </section>
+  {% include 'blog-sidebar' %}
+{% endpaginate %}

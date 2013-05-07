@@ -1,5 +1,5 @@
 {% include 'breadcrumb' %}
-<article class="clearfix">
+ <h1>Shopping Cart</h1>
  {% if cart.item_count > 0 %}
   <form action="/cart" method="post" name="cartform">
     <table cellpadding="0" cellspacing="0">
@@ -11,16 +11,45 @@
         <th class="sub"><span>Price</span></th>
       </tr>
       {% for item in cart.items %}
-      <tr class="{% cycle "odd", "even" %}">
+      {% if forloop.first %}
+        {% assign collection_url = item.product.collections.first.url %}
+        {% if collection_url == '/collections/frontpage' or collection_url == '' %}{% assign collection_url = '/collections/all' %}{% endif %}
+      {% endif %}
+      <tr class="{% cycle 'odd', 'even' %}">
         <td class="pic">
           <a href="{{ item.product.url | within: collections.all }}"><img src="{{ item.product.images[0] | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}" /></a>
         </td>
         <td class="name">
-          <h3><a href="{{ item.product.url | within: collections.all }}">{{ item.product.title | escape }}</a></h3>
+          <h2>
+            <a href="{{ item.product.url | within: collections.all }}">
+            {{ item.title }}
+            {% if item.product.variants.size == 1 %}
+              {% unless item.variant.title contains 'Default' %}
+               - {{ item.variant.title }}
+              {% endunless %}
+            {% endif %}
+            </a>
+          </h2>
+          {% if item.properties.size > 0 %}
+          <p>
+            {% for p in item.properties %}
+              {% unless p.last == blank %}
+                {{ p.first }}:
+                {% if p.last contains '/uploads/' %}
+                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                {% else %}
+                  {{ p.last }}
+                {% endif %}
+                <br />
+              {% endunless %}
+            {% endfor %}
+          </p>
+          {% endif %}
+          <h3>{{ item.vendor }}</h3>
         </td>
         <td class="size"><span>{{ item.variant.option1 }}</span></td>
         <td class="qty">
-          <input type="number" class="field" name="updates[{{ item.id }}]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+          <input type="number" class="field" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
           <input type="submit" alt="Update" name="update" class="update awesome white" value="update">
         </td>
         <td class="sub"><span>{{ item.line_price | money }}</span></td>
@@ -28,12 +57,16 @@
       {% endfor %}
     </table>
     <div id="complete" class="clearfix">
-    <p class="prod_price">Subtotal <span>{{ cart.total_price | money }}</span></p>
-    <input type="submit" class="awesome" alt="Checkout" name="checkout" value="PROCEED TO CHECKOUT">
-    <a href="{{ cart.items.last.product.collections.first.url }}">Continue Shopping</a>
+      <p class="prod_price">Subtotal <span>{{ cart.total_price | money }}</span></p>
+      <input type="submit" class="awesome" alt="Checkout" name="checkout" value="PROCEED TO CHECKOUT">
+      <a href="{{ cart.items.last.product.collections.first.url }}">Continue Shopping</a>
+      {% if additional_checkout_buttons %}<p class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</p>{% endif %}
+    </div>
+    <div class="cart-note">
+      <p>Special instructions for seller</p>
+      <textarea name="note">{{ cart.note }}</textarea>
     </div>
   </form>
  {% else %}
   <p id="empty">Your shopping cart is empty. <a href="/">Continue shopping&hellip;</a></p>
  {% endif %}
-</article>

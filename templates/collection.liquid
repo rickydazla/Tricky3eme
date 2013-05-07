@@ -1,16 +1,44 @@
-<div id="full-width">
-
-<div id="dialog">
-  <h1><span>404 </span>Page Not Found</h1>
-  
-  <div class="block">
-    <p>The page you were looking for does not exist.</p>
+{% paginate collection.products by 50 %}
+<h1>{{ collection.title }}</h1>
+{% if collection.all_tags.size > 0 %}
+<ul class="collection-sub-categories clearfix">
+  <li{% unless current_tags %} class="active"{% endunless %}>
+    {% if collection.handle %}
+      <a href="/collections/{{ collection.handle }}">All</a>
+    {% elsif collection.products.first.type == collection.title %}
+      <a href="{{ collection.title | url_for_type }}">All</a>
+    {% elsif collection.products.first.vendor == collection.title %}
+      <a href="{{ collection.title | url_for_vendor }}">All</a>
+    {% endif %}
+  </li> 
+  {% for tag in collection.all_tags %}
+    {% if current_tags contains tag %}
+      <li class="active">
+        {{ tag | link_to_remove_tag: tag }}
+      </li>
+    {% else %}
+      <li>
+        {{ tag | link_to_tag: tag }}
+      </li>
+    {% endif %}
+  {% endfor %}  
+</ul>
+{% endif %}
+{% if collection.description.size > 0 %}
+  <div class="rte">
+    {{ collection.description }}
   </div>
-  
-  <div class="block actions">
-    <p>Back to <a href="{{ shop.url }}">{{ shop.name }}</a></p>
-  </div>
-  
+{% endif %}
+<ul class="grid clearfix">
+{% for product in collection.products %}
+  {% include 'product-grid-item' with 'three-per-row' %}
+{% else %}
+<p>There are no products in this view.</p>
+{% endfor %}
+</ul>
+{% if paginate.pages > 1 %}
+<div id="pagination">
+  {{ paginate | default_pagination }}
 </div>
-
-</div>
+{% endif %}
+{% endpaginate %}

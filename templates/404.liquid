@@ -1,16 +1,3 @@
-<div id="full-width">
-
-<div id="dialog">
-  <h1><span>404 </span>Page Not Found</h1>
-  
-  <div class="block">
-    <p>The page you were looking for does not exist.</p>
-  </div>
-  
-  <div class="block actions">
-    <p>Back to <a href="{{ shop.url }}">{{ shop.name }}</a></p>
-  </div>
-  
-</div>
-
-</div>
+{% include 'breadcrumb' %}
+<h1>404 Page Not Found</h1>
+<h2>The page you requested does not exist. Click <a href="/collections/all">here</a> to continue shopping.</h2>
