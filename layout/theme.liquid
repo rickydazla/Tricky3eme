@@ -11,7 +11,7 @@
   {{ 'mangled.css' | asset_url | stylesheet_tag }}
   {% if template contains 'customers' %}
     {{ 'customer.css' | asset_url | stylesheet_tag }}
-    {% endif %}
+  {% endif %}
   {{ 'modernizr.js' | asset_url | script_tag }}
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if template %}{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% else %}app{% endif %}">
