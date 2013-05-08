@@ -6,18 +6,13 @@
 <html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}">
 <!--<![endif]-->
 <head>
-{% include 'meta' %}
-<link rel="stylesheet" href="{{ 'mangled.css' | asset_url }}">
-<script src="{{ 'modernizr.js' | asset_url }}"></script>
-{{ content_for_header }}
-{% if template contains 'customers' %}
-  {{ "shopify_common.js" | shopify_asset_url | script_tag }}
-  {{ "customer_area.js"  | shopify_asset_url | script_tag }}
-  {{ 'customer.css' | asset_url | stylesheet_tag }}
-{% endif %}
-<!--[if lt IE 8]>
-  {{ 'json2.js' | asset_url | script_tag }}
-<![endif]-->
+  {% include 'meta' %}
+  {{ 'font-squirrel.css' | asset_url | stylesheet_tag }}
+  {{ 'mangled.css' | asset_url | stylesheet_tag }}
+  {% if template contains 'customers' %}
+    {{ 'customer.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+  {{ 'modernizr.js' | asset_url | script_tag }}
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if template %}{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% else %}app{% endif %}">
  <div class="container">
@@ -60,13 +55,16 @@
          {% endfor %}
        </ul>
      {% endif %}
-     <p>&copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}. <a href="http://tricky3.co.uk/">Mangled by Tricky3</a></p>
+     <p>&copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}. <a href="http://36creative.com/">Design by 36Creative</a>. <a href="http://tricky3.co.uk/">Mangled by Tricky3</a></p>
    </footer>
  </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{{ 'jquery.js' | asset_url }}">\x3C/script>')</script>
-  {% if template == 'cart' %}
+  {% if template contains 'customers' %}
+    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {% elsif template == 'cart' %}
     <script type="text/javascript">
       function remove_item(id) {
           document.getElementById('updates_'+id).value = 0;
@@ -74,12 +72,17 @@
       }
     </script>
   {% endif %}
-  
+
+  <!--[if lt IE 8]>
+    {{ 'json2.js' | asset_url | script_tag }}
+  <![endif]-->
 
   <!--[if (lt IE 9) & (!IEMobile)]>
-  <script src="{{ 'DOMAssistant.js' | asset_url }}"></script>
-  <script src="{{ 'selectivizr.js' | asset_url }}"></script>
+    {{ 'DOMAssistant.js' | asset_url | script_tag }}
+    {{ 'selectivizr.js' | asset_url | script_tag }}
   <![endif]-->
+
+  {{ content_for_header }}
 
 </body>
 </html>
