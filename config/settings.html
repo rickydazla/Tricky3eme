@@ -5,72 +5,8 @@
 <br />
 <div class="container"></div>
 <fieldset>
-  <legend>Logo</legend>
-  <table>
-    <tr>
-      <th><label for="logo">Logo Img</label></th>
-      <td>
-       <input type="file" id="logo" name="logo.png" />
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <label for="logo_width">Logo Width</label>
-      </th>
-      <td>
-        <input type="text" id="logo_width" name="logo_width" value="754px" />
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <label for="logo_height">Logo Height</label>
-      </th>
-      <td>
-        <input type="text" id="logo_height" name="logo_height" value="163px" />
-      </td>
-    </tr>
-  </table>
-</fieldset>
-<fieldset>
-  <legend>Base Styles</legend>
-  <table>
-    <tr>
-      <th><label for="h_font_family">Headings Font Family</label></th>
-      <td><input type="text" id="h_font_family" name="h_font_family" value="serif" /></td>
-    </tr>
-    <tr>
-      <th><label for="p_font_family">Paragraph Font Family</label></th>
-      <td><input type="text" id="p_font_family" name="p_font_family" value="sans-serif" /></td>
-    </tr>
-    <tr>
-      <th><label for="font_size">Font Size</label></th>
-      <td><input type="text" id="font_size" name="font_size" value="13px" /></td>
-    </tr>
-    <tr>
-      <th><label for="line_height">Line Height</label></th>
-      <td><input type="text" id="line_height" name="line_height" value="1.231" /></td>
-    </tr>
-    <tr>
-      <th><label for="color">Font Color</label></th>
-      <td><input type="text" id="color" name="color" class="color" value="#444444" /></td>
-    </tr>
-    <tr>
-      <th><label for="selection_bgcolor">::Selection Background Color</label></th>
-      <td><input type="text" id="selection_bgcolor" name="selection_bgcolor" class="color" value="#fe57a1" /></td>
-    </tr>
-    <tr>
-      <th><label for="link_color">A:Link Color</label></th>
-      <td><input type="text" id="link_color" name="link_color" class="color" value="#00e00e" /></td>
-    </tr>
-    <tr>
-      <th><label for="link_hovercolor">A:Hover Color</label></th>
-      <td><input type="text" id="link_hovercolor" name="link_hovercolor" class="color" value="#551a8b" /></td>
-    </tr>
-  </table>
-</fieldset>
-<fieldset>
 	<legend>Frontpage Slideshow</legend>
-	<span class="note">All images 960px wide, any height (although ideally all the same height)</span>
+	<span class="note">All images 2048px wide (any height, although ideally all the same height) @72dpi - "save for web", "progressive" ~25%</span>
 	<table>
 		<tr>
 		  <th><label for="slide_number">Slides to Show</label></th>
@@ -89,6 +25,15 @@
 		    </select>
 		  </td>
 		</tr>
+		<tr>
+      <th><label for="slide_effect">Slide Effect</label></th>
+      <td>
+        <select name="slide_effect" id="slide_effect">
+          <option value="slide" selected="selected">slide</option>
+          <option value="fade">fade</option>
+        </select>
+      </td>
+    </tr>
 		<tr>
 			<th><label for="slide1">1st Image</label></th>
 			<td><input type="file" id="slide1" name="slide1.jpg" /></td>
@@ -212,78 +157,86 @@
 	</table>
 </fieldset>
 <fieldset>
-  <legend>Featured Box Links</legend>
+  <legend>Main Site Banner / Logo</legend>
   <table>
     <tr>
+      <th>
+        <label for="header_font_size">Header Font Size</label>
+      </th>
       <td>
-        <p class="note">One, two, three, or four - entirely up to you!</p>
-        <ul>
-          <li>1 @ 100% = XXXpx wide</li>
-          <li>2 @ 50% = XXXpx wide</li>
-          <li>3 @ 33.3% = XXXpx wide</li>
-          <li>4 @ 35% = XXXpx wide</li>
-        </ul>
+        <input type="text" id="header_font_size" name="header_font_size" value="38px" />
       </td>
     </tr>
     <tr>
-      <th><label for="front_box_total">How Many Boxes?</label></th>
+      <th><label for="use_logo">Use Logo Image?</label></th>
+      <td><input type="checkbox" id="use_logo" name="use_logo" value="0" /></td>
+    </tr>
+    <tr>
+      <th><label for="logo">Logo Image Graphic (.png)</label></th>
       <td>
-        <select name="front_box_total" id="front_box_total">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3" selected="selected">3</option>
-          <option value="4">4</option>
+       <input type="file" id="logo" name="logo.png" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_width">Logo Image Width</label>
+      </th>
+      <td>
+        <input type="text" id="logo_width" name="logo_width" value="" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_height">Logo Image Height</label>
+      </th>
+      <td>
+        <input type="text" id="logo_height" name="logo_height" value="" />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Base Styles</legend>
+  <table>
+    <tr>
+      <th><label for="h_font_family">Headings Font Family</label></th>
+      <td>
+        <select name="h_font_family" id="h_font_family">
+          <option value="BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif" selected="selected">Bebas Neue</option>
         </select>
       </td>
     </tr>
     <tr>
-    	<th><label for="box1">1st Image</label></th>
-    	<td><input type="file" id="box1" name="index_box1.jpg" /></td>
+      <th><label for="p_font_family">Paragraph Font Family</label></th>
+      <td>
+        <select name="p_font_family" id="p_font_family">
+          <option value="'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;" selected="selected">Open Sans Condensed</option>
+        </select>
+      </td>
     </tr>
     <tr>
-    	<th><label for="box1_alt">Alt text</label></th>
-    	<td><input type="text" id="box1_alt" name="box1_alt" class="text" value=""/></td>
+      <th><label for="font_size">Font Size</label></th>
+      <td><input type="text" id="font_size" name="font_size" value="13px" /></td>
     </tr>
     <tr>
-    	<th><label for="box1_link">Link to:</label></th>
-    	<td><input type="text" id="box1_link" name="box1_link" class="text" value=""/><br /><hr /></td>
+      <th><label for="line_height">Line Height</label></th>
+      <td><input type="text" id="line_height" name="line_height" value="1.231" /></td>
     </tr>
     <tr>
-    	<th><label for="box2">2nd image</label></th>
-    	<td><input type="file" id="box2" name="index_box2.jpg" /></td>
+      <th><label for="color">Font Color</label></th>
+      <td><input type="text" id="color" name="color" class="color" value="#444444" /></td>
     </tr>
     <tr>
-    	<th><label for="box2_alt">Alt text</label></th>
-    	<td><input type="text" id="box2_alt" name="box2_alt" class="text" value=""/></td>
+      <th><label for="selection_bgcolor">::Selection Background Color</label></th>
+      <td><input type="text" id="selection_bgcolor" name="selection_bgcolor" class="color" value="#fe57a1" /></td>
     </tr>
     <tr>
-    	<th><label for="box2_link">Link to:</label></th>
-    	<td><input type="text" id="box2_link" name="box2_link" class="text" value=""/><br /><hr /></td>
+      <th><label for="link_color">A:Link Color</label></th>
+      <td><input type="text" id="link_color" name="link_color" class="color" value="#00e00e" /></td>
     </tr>
     <tr>
-    	<th><label for="box3">3rd image</label></th> 
-    	<td><input type="file" id="box3" name="index_box3.jpg" /></td>
-    </tr>
-    <tr>
-    	<th><label for="box3_alt">Alt text</label></th>
-    	<td><input type="text" id="box3_alt" name="box3_alt" class="text" value=""/></td>
-    </tr>
-    <tr>
-    	<th><label for="box3_link">Link to:</label></th>
-    	<td><input type="text" id="box3_link" name="box3_link" class="text" value=""/><br /><hr /></td>
-    </tr>
-    <tr>
-    	<th><label for="box4">4th image</label></th> 
-    	<td><input type="file" id="box4" name="index_box4.jpg" /></td>
-    </tr>
-    <tr>
-    	<th><label for="box4_alt">Alt text</label></th>
-    	<td><input type="text" id="box4_alt" name="box4_alt" class="text" value=""/></td>
-    </tr>
-    <tr>
-    	<th><label for="box4_link">Link to:</label></th>
-    	<td><input type="text" id="box4_link" name="box4_link" class="text" value=""/></td>
+      <th><label for="link_hovercolor">A:Hover Color</label></th>
+      <td><input type="text" id="link_hovercolor" name="link_hovercolor" class="color" value="#551a8b" /></td>
     </tr>
   </table>
 </fieldset>

@@ -101,28 +101,53 @@ table { border-collapse: collapse; border-spacing: 0; }
    Author: rick@tricky3.co.uk
    ========================================================================== */
 
-h1, h2, h3, h4, h5, h6{ font-family:{{ settings.h_font_family }};}
+/* box-sizing:border-box == ftw */
 
-header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.logo_height }};}
+* { 
+ -moz-box-sizing:border-box; 
+ -webkit-box-sizing:border-box; 
+ box-sizing:border-box;
+ background-repeat:no-repeat;
+ text-decoration:none;
+}
+html, body{ width:100%; height:100%;}
+body{ 
+ min-width:320px;
+ background:url("{{ 'slide1.jpg' | asset_url }}") no-repeat center top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body{ overflow:hidden;}
+/* body.template-index{ overflow:hidden;} */
+  .viewport{
+  	min-height: 100%;
+  	height: auto !important;
+  	height: 100%;
+  	margin: 0 auto -42px;
+  }
+  header .inner, footer{ padding:0 8px; background:#fff;}
+  header{ border-top:10px solid #000;}
+  .main{ width:100%;}
+  footer{ position:absolute; bottom:0; left:0; z-index:2; height:42px; width:100%; background:#fff; text-align:right; font-size:12px; border-top:1px solid #000;}
 
-#front-boxes a{ display:block;}
-#front-boxes img{ width:100%;}
-#front-boxes .one-up{ width:100%;}
-#front-boxes .two-up{ width:50%;}
-#front-boxes .three-up{ width:33.3%;}
-#front-boxes .four-up{ width:25%;}
-#front-boxes #one.one-up, #front-boxes #two.two-up, #front-boxes #three.three-up, #front-boxes #four.four-up{ margin-right:0;}
 
+h1, h2, h3, h4, h5, h6, nav{ font-family:{{ settings.h_font_family }}; font-weight:normal;}
+header h1, nav{ margin:0; font-size:{{ settings.header_font_size }}; vertical-align:bottom; text-align:center;}
+header h1 a{ display:block; width:100%;}
+header h1 a:hover{ color:{{ settings.link_color }};}
+header h1 img{ max-width:{{ settings.logo_height }};}
 
+nav{ width:100%; font-size:27px;}
+nav ul{ width:100%; background:#000; background:rgba(0,0,0,0.75);}
+nav li{ display:inline-block; *display:inline; zoom:1;}
+nav a{ color:#999; display:block; padding:{{ settings.line_height | times: 0.5 }}em 2em;}
+nav a:hover{ color:#fff;}
 
+footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
 
-
-
-
-
-
-
-
+#slider{ display:none; width:100%;}
 
 
 /* =============================================================================
@@ -274,14 +299,36 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
 
 /*480px _____________________________________________________________________ */
 @media only screen and (min-width: 480px) {
+  
+  .viewport{ margin:0 auto -27px;}
+  footer{ height:27px;}
+  nav{ position:absolute; bottom:0; left:0; z-index:1;}
+  nav ul{ padding-bottom:27px;}
+  nav a{ padding:{{ settings.line_height | times: 0.375 }}em 1.25em;}
+  
 }/*/mediaquery*/
 
 /*768px _____________________________________________________________________ */
 @media only screen and (min-width: 768px) {
+  
+  nav a{ padding:{{ settings.line_height | times: 0.375 }}em 1em;}
+  
 }/*/mediaquery*/
 
 /*992px _____________________________________________________________________ */
 @media only screen and (min-width: 992px) {
+  
+  {% unless settings.slide_number == '1' %}
+    body{ background:#fff;}
+    #slider{ display:block;}
+  {% endunless %}
+  
+  header h1{ width:70%;}
+  header h1, nav{ text-align:left;}
+  nav ul{ text-align:left; padding-left:8px;}
+  nav a{ padding:{{ settings.line_height | times: 0.125 }}em 1em;}
+  
+  
 }/*/mediaquery*/
 
 /*1382px ____________________________________________________________________ */
