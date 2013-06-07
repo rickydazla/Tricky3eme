@@ -4,7 +4,7 @@
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
 {% if title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
 <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/blogs/news.atom">
-<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/collections/all.atom" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/collections/all.atom">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
 <meta property="og:site_name" content="{{ shop.name }}">
 {% if template == 'index' %}

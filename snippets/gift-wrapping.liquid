@@ -1,0 +1,31 @@
+<style>
+  #complete fieldset{ text-align:right;}
+  #complete fieldset > *{ display:block; float:right; clear:right;}
+  #complete textarea{ border:1px dotted #CCCCCC;}
+  #complete .note{ display:none;}
+</style>
+
+<fieldset>
+  <p>
+    <input type="hidden" name="attributes[gift]" value="" />
+    <input id="wrapping" type="checkbox" name="attributes[gift]" value="yes" {% if cart.attributes.gift %} checked="checked"{% endif %}>
+    <label for="wrapping">Is this a gift?</label>
+  </p>
+  <label class="note" for="note">Gift note:</label>
+  <textarea class="note" name="note" id="note" rows="2" cols="80" placeholder="(Optional)">{{ cart.note }}</textarea>
+  <small class="note">(255 Characters Max&mdash;<span id="remaining"></span> remaining)</small>
+</fieldset>
+
+<script>
+  $(function() {
+    $('#wrapping').change(function () {
+      if ($(this).attr('checked')){
+        $('.note').fadeIn();
+        return;
+      }
+      $('.note').fadeOut();
+    });
+    $('textarea').placeholder();
+    $('#note').limit('255','#remaining');
+  });
+</script>
