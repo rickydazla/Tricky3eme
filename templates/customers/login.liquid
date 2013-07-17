@@ -1,7 +1,7 @@
 {% layout settings.customer_layout %}
 <article id="template" class="container clearfix">
   {% include 'breadcrumb' %}
-  <section id="customer" class="first uneven">
+  <section id="customer" class="first uneven{% unless shop.checkout.guest_login %} solo{% endunless %}">
     <h2>Returning Customers</h2>
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
