@@ -1,14 +1,14 @@
-<div itemscope itemtype="http://schema.org/Product">
+<article itemscope itemtype="http://schema.org/Product">
   <form action="/cart/add" method="post" enctype="multipart/form-data">
     <div id="product-details">
       <h1 itemprop="name">{{ product.title }}</h1>
+      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
       {% assign product_vendor_handle = product.vendor | handle %}
       {% if collections[product_vendor_handle].handle == product_vendor_handle %}
         {% assign vendor_url = collections[product_vendor_handle].url %}
       {% else %}
         {% assign vendor_url = product.vendor | url_for_vendor %}
       {% endif %}
-      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
       <div id="product-description" class="rte" itemprop="description">
         {{ product.description }}
       </div>
@@ -54,7 +54,7 @@
       {% endif %}
     </div><!-- #product-details -->
   </form>
-  <div id="product-photos">
+  <section id="product-photos">
   {% if product.images.size == 0 %}
     <div id="product-photo-container">
       <img src="{{ '' | product_img_url: 'grande' }}" alt="" />
@@ -77,5 +77,6 @@
     </ul>
     {% endif %}
   {% endif %}
-  </div><!-- #product-photos -->
-</div>
+  </section><!-- #product-photos -->
+  {% include 'related-products' %}
+</article>

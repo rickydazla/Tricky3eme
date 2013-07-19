@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="no-js ie6" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
-<!--[if IE 7 ]><html class="no-js ie7" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
-<!--[if IE 8 ]><html class="no-js ie8" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
-<!--[if [gte IE 8]><!-->
-<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}">
+<!--[if lt IE 9 ]><html class="no-js ie" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" xmlns:fb="http://ogp.me/ns/fb#"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" xmlns:fb="http://ogp.me/ns/fb#">
 <!--<![endif]-->
 <head>
   {% include 'meta' %}

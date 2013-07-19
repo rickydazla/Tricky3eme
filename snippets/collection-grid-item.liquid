@@ -1,20 +1,24 @@
-{% if collection-grid-item == '' %}{% assign collection-grid-item = 'three-per-row' %}{% endif %}
-<li class="{{ collection-grid-item }}{% if collection-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif collection-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% endif %}">
-  <div class="coll-image-wrap">  
-    <a href="{{ collection.url }}">
-      {% if collection.image %}
-      <img src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt | escape }}" />
-      {% else %}
-      <img src="{{ collection.products.first.featured_image.src | product_img_url: 'medium' }}" alt="{{ collection.title | escape }}" />
-      {% endif %}
+{% if product-grid-item == '' %}{% assign product-grid-item = 'three-per-row' %}{% endif %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+<li class="{{ product-grid-item }}{% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}{% if product-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif product-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% endif %}">
+  <figure class="prod-image-wrap">  
+    <a href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
     </a>
-  </div><!-- .coll-image-wrap -->
-  <div class="coll-caption">
-      <a class="coll-title" href="{{ collection.url }}">
-        {{ collection.title }}
-      </a>
-      <span class="coll-item-count">
-        {{ collection.all_products_count }} {{ collection.all_products_count | pluralize:'item','items' }}
-      </span>
-  </div><!-- .coll-caption -->
+    <figcaption class="prod-caption">
+        <a href="{{ product.url | within: collection }}">
+          {{ product.title }}
+        </a>
+        <span class="prod-price">
+          {% if product.price_varies %}From{% endif %}
+          {{ product.price | money }}
+          {% if on_sale %}
+          <s class="compare-at-price">{{ product.compare_at_price | money }}</s>
+          {% endif %}
+        </span>
+    </figcaption><!-- .prod-caption -->  
+  </figure><!-- .prod-image-wrap -->
 </li>
