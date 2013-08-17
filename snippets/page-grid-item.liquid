@@ -1,0 +1,19 @@
+{% if page-grid-item == '' %}{% assign page-grid-item = 'three-per-row' %}{% endif %}
+<li class="{{ page-grid-item }}{% if page-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif page-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% elsif page-grid-item == 'two-per-row' %}{% cycle 'last': '', ' last-in-row' %}{% endif %}">
+  <figure class="coll-image-wrap">  
+    <a href="{{ page.url }}">
+      {% if page.content contains "<img" %}
+        {% assign src = page.content | split: 'src="' %}
+        {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:'  %}
+        {% if src %}
+          <img src="{{ src }}" alt="{{ page.title }}">
+        {% endif %}
+      {% endif %}
+    </a>
+    <figcaption class="coll-caption">
+        <a class="coll-title" href="{{ page.url }}">
+          {{ page.title }}
+        </a>
+    </figcaption><!-- .coll-caption -->
+  </figure><!-- .coll-image-wrap -->
+</li>
