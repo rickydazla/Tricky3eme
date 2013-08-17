@@ -1,0 +1,11 @@
+{% unless collection %}{% assign collection = collections.all %}{% endunless %}
+<section class="related-products hidden">
+  <h2>Other items you may enjoy</h2>
+  <div class="">
+    <ul class="grid clearfix slides">
+      {% for product in collection.products limit: 5 %}
+        {% include 'product-grid-item' with 'five-per-row' %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
