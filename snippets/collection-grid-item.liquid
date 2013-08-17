@@ -1,5 +1,5 @@
 {% if collection-grid-item == '' %}{% assign collection-grid-item = 'three-per-row' %}{% endif %}
-<li class="{{ collection-grid-item }}{% if collection-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif collection-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% endif %}">
+<li class="{{ collection-grid-item }}{% if collection-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif collection-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% elsif collection-grid-item == 'two-per-row' %}{% cycle 'last': '', ' last-in-row' %}{% endif %}">
   <figure class="coll-image-wrap">  
     <a href="{{ collection.url }}">
       {% if collection.image %}
