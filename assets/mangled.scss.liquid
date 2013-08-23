@@ -8,8 +8,19 @@
    $pheight:{{ settings.line_height }};
    $pcolor:{{ settings.color }};
    $selectionbg:{{ settings.selection_bgcolor }};
+
    $acolor:{{ settings.link_color }};
    $ahover:{{ settings.link_hovercolor }};
+
+   $btncolor:{{ settings.button_color }};
+   $btntxtcolor:{{ settings.button_font_color }};
+   $btnhover:{{ settings.button_hovercolor }};
+   $btntxthover:{{ settings.button_font_hovercolor }};
+
+   $btn2color:{{ settings.button2_color }};
+   $btn2txtcolor:{{ settings.button2_font_color }};
+   $btn2hover:{{ settings.button2_hovercolor }};
+   $btn2txthover:{{ settings.button2_font_hovercolor }};
 
 // =============================================================================
 //   HTML5 element display
@@ -144,12 +155,12 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
 //   Awesome Buttons http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
 // =============================================================================
 
-.awesome { background-color: #111 !important; color: #fff !important; }
-
+.awesome { background-color:$btncolor !important; color:$btntxtcolor !important; }
+.awesome.secondary { background-color:$btn2color !important; color:$btn2txtcolor !important; }
 .awesome { padding: 5px 10px 6px !important; font-size: 13px !important; }
 .awesome:active { padding: 6px 10px 5px !important; }
 
-// Touch the rest at your onw risk.
+// Touch the rest at your own risk.
 .awesome {
   border: 0 !important;
   cursor: pointer !important;
@@ -211,21 +222,18 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
   border: none; /* remove dotted lines for buttons */
 }
 .awesome:focus,
-.awesome:hover {
+.awesome:hover,
+.awesome:active {
+  background-color:$btnhover !important; color:$btntxthover !important;
   background-image: -moz-linear-gradient(top, rgba(255,255,255,.4), rgba(150,150,150,.3), rgba(0,0,0,.0)) !important;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,.4)), color-stop(0.5, rgba(150,150,150,.3)), to(rgba(0,0,0,.0))) !important;
   #filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#50ffffff,endColorstr=#20000000) progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=2);
 }
-.awesome:active {
-  background-image: -moz-linear-gradient(top, rgba(0,0,0,.2), rgba(150,150,150,.2), rgba(255,255,255,.2)) !important;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,.2)), color-stop(0.5, rgba(150,150,150,.2)), to(rgba(255,255,255,.2))) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#50ffffff) progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=315,strength=1);
-
-          box-shadow: inset 0 1px 2px rgba(0,0,0,0.7) !important;
-     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7) !important;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7) !important;
+.awesome.secondary:focus,
+.awesome.secondary:hover,
+.awesome.secondary:active {
+  background-color:$btn2hover !important; color:$btn2txthover !important;
 }
-
 // Safari doesn't support inset box shadow, so we better remove it 
 @media screen and (-webkit-min-device-pixel-ratio:0){
   .awesome:active {
