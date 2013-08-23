@@ -6,7 +6,7 @@
 <head>
   {% include 'meta' %}
   {{ 'font-squirrel.css' | asset_url | stylesheet_tag }}
-  {{ 'mangled.css' | asset_url | stylesheet_tag }}
+  {{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
   {% if template contains 'customers' %}
     {{ 'customer.css' | asset_url | stylesheet_tag }}
   {% endif %}
