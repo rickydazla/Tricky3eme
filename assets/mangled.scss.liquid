@@ -22,6 +22,8 @@
    $btn2hover:{{ settings.button2_hovercolor }};
    $btn2txthover:{{ settings.button2_font_hovercolor }};
 
+   $border:{{ settings.border_color }};
+
 // =============================================================================
 //   HTML5 element display
 // =============================================================================
@@ -126,6 +128,11 @@ table { border-collapse: collapse; border-spacing: 0; }
 //   Primary styles
 //   Author: rick@tricky3.co.uk
 // ============================================================================
+
+// apply a natural box layout model to all elements http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
 
 h1, h2, h3, h4, h5, h6{ font-family:$hfont;}
 

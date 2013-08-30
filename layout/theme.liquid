@@ -39,11 +39,16 @@
     {% include 'main-nav' %}
    </header>
    <div role="main" class="main clearfix">
-     {% if template == 'list-collections' %}
-      {% include 'collection-listing' %}
-     {% else %}
+     {% if template %}
+       {% if template == 'list-collections' %}
+        {% include 'collection-listing' %}
+       {% else %}
+        {{ content_for_layout }}
+       {% endif %}
+     {% else %}{% comment %}app{% endcomment %}
       {{ content_for_layout }}
      {% endif %}
+     
    </div>
    <footer role="contentinfo" class="clearfix">
      {% if linklists.footer.links.size > 0 %}
