@@ -11,3 +11,10 @@
 <p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>
 {% endfor %}
 </ul>
+{% assign blog = blogs.news %}
+{% for article in blog.articles limit: 1 %}
+<div class="rte">
+  <h2>{{ article.title }}</h2>
+  {{ article.content }}
+</div>
+{% endfor %}

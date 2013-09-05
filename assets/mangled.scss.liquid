@@ -36,7 +36,17 @@ audio[controls], canvas, video { display: inline-block; *display: inline; *zoom:
 //   Base
 // =============================================================================
 
-html { font-size: 100%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+// base 10px rem mixin : http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
+html { font-size:62.5%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+body { 
+  @include font-size($psize); 
+  line-height:$pheight; 
+  margin:0;
+}
 body { margin: 0; font-size:$psize; line-height:$pheight;}
 body, button, input, select, textarea { font-family:$pfont; color:$pcolor; }
 
