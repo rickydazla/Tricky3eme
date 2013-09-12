@@ -74,6 +74,28 @@
           document.getElementById('updates_'+id).value = 0;
           document.getElementById('cartform').submit();
       }
+      $(function(){
+        $('.quantity-field').change(function(){
+          var field = $(this);
+          var maxQuantity = field.attr('data-product-inventory');
+          var quantity = field.val();
+          if(quantity > maxQuantity){
+            field.val(maxQuantity);
+            var quantityNotification = $('.quantity-notification', field.parent());
+            if(quantityNotification.length == 0){
+              quantityNotification = $('<i class="quantity-notification"/>');
+              field.parent().append(quantityNotification);
+            }
+            var positionOfField = field.position();
+            quantityNotification.css({'left':positionOfField.left+'px','top':positionOfField.top+25+'px'});
+            quantityNotification.text('Only '+maxQuantity+' in stock');
+            quantityNotification.fadeIn('fast');
+            setTimeout(function(){
+              quantityNotification.fadeOut('slow');
+            },3000);
+          }
+        });
+      });
     </script>
   {% endif %}
   

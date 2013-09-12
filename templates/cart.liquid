@@ -49,7 +49,7 @@
         </td>
         <td class="size"><span>{{ item.variant.option1 }}</span></td>
         <td class="qty">
-          <input type="number" class="field" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+          <input type="number" class="field quantity-notification" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" max="{{ item.variant.inventory_quantity }}" data-product-inventory="{{ item.variant.inventory_quantity }}"/>
           <input type="submit" alt="Update" name="update" class="update awesome white" value="update">
         </td>
         <td class="sub"><span>{{ item.line_price | money }}</span></td>
