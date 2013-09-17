@@ -84,9 +84,9 @@
         <input type="text" id="address_zip_new" class="address_form" name="address[zip]" value="{{form.zip}}" placeholder="Zip">
         <label for="address_phone_new" class="hidden">Phone</label>
         <input type="text" id="address_phone_new" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="Phone">
-        {{ form.set_as_default_checkbox }} Set as Default Address?</td>
+        {{ form.set_as_default_checkbox }} Set as Default Address?
         <div class="action_bottom en">
-          <input class="awesome" type="submit" value="Add Address" />
+          <input class="awesome" type="submit" value="Add Address">
           <span class="note"> or <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a></span>
         </div>
       {% endform %}

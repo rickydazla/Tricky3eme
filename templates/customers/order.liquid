@@ -5,7 +5,7 @@
     <h2>Order Address{% if order.shipping_address %}es{% endif %}</h2>
     <div id="order_payment">
       <h3>Billing Address</h3>
-      <p><span class="note">Payment Status:</span> <span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></p>
+      <p><span class="note">Payment Status:</span> <i class="status_{{ order.financial_status }}">{{ order.financial_status }}</i></p>
       <div class="address note">
         <p>{{ order.billing_address.name }}<br>
         {{ order.billing_address.company }}<br>
@@ -18,7 +18,7 @@
     {% if order.shipping_address %}
       <div id="order_shipping">
         <h3>Shipping Address</h3>
-        <p><span class="note">Fulfillment Status:</span> <span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></p>
+        <p><span class="note">Fulfillment Status:</span> <i class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</i></p>
         <div class="address note">
           <p>{{ order.shipping_address.name }}<br>
           {{ order.shipping_address.company }}<br>
@@ -36,7 +36,7 @@
     <table>
       <thead>
         <tr>
-          <th>Product</th>
+          <th class="item">Product</th>
           <th class="sku">SKU</th>
           <th class="sub">Price</th>
           <th class="quantity">Quantity</th>
