@@ -28,30 +28,47 @@
     <div id="edit_address_{{address.id}}" class="edit_address" style="display:none;">
       {% form 'customer_address', address %}
         <h2 id="add_address_title" class="en">Edit address</h2>
-        <label for="address_first_name_{{form.id}}" class="hidden">First Name</label>
-        <input type="text" id="address_first_name_{{form.id}}" class="address_form" name="address[first_name]" value="{{form.first_name}}">
-        <label for="address_last_name_{{form.id}}" class="hidden">Last Name</label>
-        <input type="text" id="address_last_name_{{form.id}}" class="address_form" name="address[last_name]" value="{{form.last_name}}">
-        <label for="address_company_{{form.id}}" class="hidden">Company</label>
-        <input type="text" id="address_company_{{form.id}}" class="address_form" name="address[company]" value="{{form.company}}">
-        <label for="address_address1_{{form.id}}" class="hidden">Address1</label>
-        <input type="text" id="address_address1_{{form.id}}" class="address_form" name="address[address1]" value="{{form.address1}}">
-        <label for="address_address2_{{form.id}}" class="hidden">Address2</label>
-        <input type="text" id="address_address2_{{form.id}}" class="address_form" name="address[address2]" value="{{form.address2}}">
-        <label for="address_city_{{form.id}}" class="hidden">City</label>
-        <input type="text" id="address_city_{{form.id}}" class="address_form" name="address[city]" value="{{form.city}}">
-        <label for="address_country_{{form.id}}" class="hidden">Country</label>
-        <select id="address_country_{{form.id}}" class="address_country" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+        <div>
+          <label for="address_first_name_{{form.id}}" class="hidden">First Name</label>
+          <input type="text" id="address_first_name_{{form.id}}" class="address_form" name="address[first_name]" value="{{form.first_name}}">
+        </div>
+        <div>
+          <label for="address_last_name_{{form.id}}" class="hidden">Last Name</label>
+          <input type="text" id="address_last_name_{{form.id}}" class="address_form" name="address[last_name]" value="{{form.last_name}}">
+        </div>
+        <div>
+          <label for="address_company_{{form.id}}" class="hidden">Company</label>
+          <input type="text" id="address_company_{{form.id}}" class="address_form" name="address[company]" value="{{form.company}}">
+        </div>
+        <div>
+          <label for="address_address1_{{form.id}}" class="hidden">Address1</label>
+          <input type="text" id="address_address1_{{form.id}}" class="address_form" name="address[address1]" value="{{form.address1}}">
+        </div>
+        <div>
+          <label for="address_address2_{{form.id}}" class="hidden">Address2</label>
+          <input type="text" id="address_address2_{{form.id}}" class="address_form" name="address[address2]" value="{{form.address2}}">
+        </div>
+        <div>
+          <label for="address_city_{{form.id}}" class="hidden">City</label>
+          <input type="text" id="address_city_{{form.id}}" class="address_form" name="address[city]" value="{{form.city}}">
+        </div>
+        <div>
+          <label for="address_country_{{form.id}}" class="hidden">Country</label>
+          <select id="address_country_{{form.id}}" class="address_country" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+        </div>
         <div id="address_province_container_{{form.id}}" class="address_province_container" style="display:none">
           <label for="address_province_{{form.id}}" class="hidden">Province</label>
           <select id="address_province_{{form.id}}" class="address_form" name="address[province]" data-default="{{form.province}}"></select>
         </div>
-        <label for="address_zip_{{form.id}}" class="hidden">Zip</label>
-        <input type="text" id="address_zip_{{form.id}}" class="address_form" name="address[zip]" value="{{form.zip}}">
-        <label for="address_phone_{{form.id}}" class="hidden">Phone</label>
-        <input type="text" id="address_phone_{{form.id}}" class="address_form" name="address[phone]" value="{{form.phone}}">
-        {{ form.set_as_default_checkbox }} Set as Default Address?
-
+        <div>
+          <label for="address_zip_{{form.id}}" class="hidden">Zip</label>
+          <input type="text" id="address_zip_{{form.id}}" class="address_form" name="address[zip]" value="{{form.zip}}">
+        </div>
+        <div>
+          <label for="address_phone_{{form.id}}" class="hidden">Phone</label>
+          <input type="text" id="address_phone_{{form.id}}" class="address_form" name="address[phone]" value="{{form.phone}}">
+        </div>
+        <div>{{ form.set_as_default_checkbox }} Set as Default Address?</div>
         <div class="action_bottom en">
           <input class="awesome" type="submit" value="Update Address" />
           <span class="note"> or <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">Cancel</a></span>
@@ -62,29 +79,29 @@
     <div id="add_address" class="edit_address" style="display:none;">
       {% form 'customer_address', customer.new_address %}
         <h2 id="add_address_title" class="en">New address</h2>
-        <label for="address_first_name_new" class="hidden">First Name</label>
-        <input type="text" id="address_first_name_new" class="address_form" name="address[first_name]" value="{{form.first_name}}" placeholder="First Name">
-        <label for="address_last_name_new" class="hidden">Last Name</label>
-        <input type="text" id="address_last_name_new" class="address_form" name="address[last_name]" value="{{form.last_name}}" placeholder="Last Name">
-        <label for="address_company_new" class="hidden">Company</label>
-        <input type="text" for="address_company_new" class="address_form" name="address[company]" value="{{form.company}}" placeholder="Company">
-        <label for="address_address1_new" class="hidden">Address1</label>
-        <input type="text" id="address_address1_new" class="address_form" name="address[address1]" value="{{form.address1}}" placeholder="Address1">
-        <label for="address_address2_new" class="hidden">Address2</label>
-        <input type="text" id="address_address2_new" class="address_form" name="address[address2]" value="{{form.address2}}" placeholder="Address2">
-        <label for="address_city_new" class="hidden">City</label>
-        <input type="text" id="address_city_new" class="address_form" name="address[city]" value="{{form.city}}" placeholder="City">
-        <label for="address_country_new" class="hidden">Country</label>
-        <select id="address_country_new" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+        <div><label for="address_first_name_new" class="hidden">First Name</label>
+        <input type="text" id="address_first_name_new" class="address_form" name="address[first_name]" value="{{form.first_name}}" placeholder="First Name"></div>
+        <div><label for="address_last_name_new" class="hidden">Last Name</label>
+        <input type="text" id="address_last_name_new" class="address_form" name="address[last_name]" value="{{form.last_name}}" placeholder="Last Name"></div>
+        <div><label for="address_company_new" class="hidden">Company</label>
+        <input type="text" for="address_company_new" class="address_form" name="address[company]" value="{{form.company}}" placeholder="Company"></div>
+        <div><label for="address_address1_new" class="hidden">Address1</label>
+        <input type="text" id="address_address1_new" class="address_form" name="address[address1]" value="{{form.address1}}" placeholder="Address1"></div>
+        <div><label for="address_address2_new" class="hidden">Address2</label>
+        <input type="text" id="address_address2_new" class="address_form" name="address[address2]" value="{{form.address2}}" placeholder="Address2"></div>
+        <div><label for="address_city_new" class="hidden">City</label>
+        <input type="text" id="address_city_new" class="address_form" name="address[city]" value="{{form.city}}" placeholder="City"></div>
+        <div><label for="address_country_new" class="hidden">Country</label>
+        <select id="address_country_new" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select></div>
         <div id="address_province_container_new" style="display:none">
           <label for="address_province_new" class="hidden">Province</label>
           <select id="address_province_new" class="address_form" name="address[province]" data-default="{{form.province}}"></select>
         </div>
-        <label for="address_zip_new" class="hidden">Zip</label>
-        <input type="text" id="address_zip_new" class="address_form" name="address[zip]" value="{{form.zip}}" placeholder="Zip">
-        <label for="address_phone_new" class="hidden">Phone</label>
-        <input type="text" id="address_phone_new" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="Phone">
-        {{ form.set_as_default_checkbox }} Set as Default Address?
+        <div><label for="address_zip_new" class="hidden">Zip</label>
+        <input type="text" id="address_zip_new" class="address_form" name="address[zip]" value="{{form.zip}}" placeholder="Zip"></div>
+        <div><label for="address_phone_new" class="hidden">Phone</label>
+        <input type="text" id="address_phone_new" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="Phone"></div>
+        <div>{{ form.set_as_default_checkbox }} Set as Default Address?</div>
         <div class="action_bottom en">
           <input class="awesome" type="submit" value="Add Address">
           <span class="note"> or <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a></span>

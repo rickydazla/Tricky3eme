@@ -12,27 +12,27 @@
 	      {{ form.errors | default_errors }}
 
 	      <div id="first_name" class="clearfix large_form">
-	        <label for="first_name" class="login">First Name</label>
-	        <input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" />
+	        <label for="first_name" class="login hidden">First Name</label>
+	        <input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" placeholder="First Name">
 	      </div>
 
 	      <div id="last_name" class="clearfix large_form">
-	        <label for="last_name" class="login">Last Name</label>
-	        <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" />
+	        <label for="last_name" class="login hidden">Last Name</label>
+	        <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" placeholder="Last Name">
 	      </div>
 
 	      <div id="email" class="clearfix large_form">
-	        <label for="email" class="login">Email Address</label>
-	        <input type="email" value="" name="customer[email]" id="email" class="large" size="30" />
+	        <label for="email" class="login hidden">Email Address</label>
+	        <input type="email" value="" name="customer[email]" id="email" class="large" size="30" placeholder="Email Address">
 	      </div>
 
 	      <div id="password" class="clearfix large_form">
-	        <label for="password" class="login">Password</label>
-	        <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" />
+	        <label for="password" class="login hidden">Password</label>
+	        <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" placeholder="Password">
 	      </div>
 
 	      <div class="action_bottom">
-	        <input class="btn" type="submit" value="Create" />
+	        <input class="awesome" type="submit" value="Create" />
 	        <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
 	      </div>
 	    {% endform %}
