@@ -128,10 +128,10 @@
     {% endfor %}
     <p class="clearfix"> 
       {% if next_article %}
-      <span class="left">{{ next_article.title | link_to: next_article }}</span>
+      <span class="left">{{ next_article.title | link_to: next_article.url }}</span>
       {% endif %}    
       {% if previous_article %}
-      <span class="right">{{ previous_article.title | link_to: previous_article }}</span>
+      <span class="right">{{ previous_article.title | link_to: previous_article.url }}</span>
       {% endif %}
     </p>
   {% endif %}
