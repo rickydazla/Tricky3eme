@@ -21,14 +21,14 @@
           <label for="customer_password" class="hidden">Password</label>
           <input type="password" placeholder="Password" value="" name="customer[password]" id="customer_password" class="large password" size="16" />
           <div id="forgot_password">
-            <a href="#" class="awesome" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
+            <a href="#" class="awesome secondary" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
           </div>
         </div>
 
       {% endif %}
 
       <div class="action_bottom">
-        <input class="wowsome" type="submit" value="Sign In" />
+        <input class="awesome" type="submit" value="Sign In" />
       </div>
     {% endform %}
   </section>
@@ -51,7 +51,7 @@
         <input type="email" value="" placeholder="Email" name="email" id="recover-email" class="large" />
       </div>
       <div class="action_bottom">
-        <input class="wowsome" type="submit" value="Submit" />
+        <input class="awesome" type="submit" value="Submit" />
         <span class="note">or <a href="#" onclick="hideRecoverPasswordForm();return false;">Cancel</a></span>
       </div>
     {% endform %}
@@ -69,7 +69,7 @@
       <h2>New Customers</h2>
     </div>
     {% form 'guest_login' %}
-      <input class="wowsome" type="submit" value="Continue with Purchase" />
+      <input class="awesome" type="submit" value="Continue with Purchase" />
       <p><small>You will be able to create an account later if you want.</small></p>
     {% endform %}
   </section>
