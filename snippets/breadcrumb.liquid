@@ -55,7 +55,7 @@
      {% elsif template contains 'reset' %}Account Password
      {% elsif template contains 'account' %}Details
      {% elsif template contains 'order' %}Order {{ order.name }}
-     {% elsif template contains 'addresses' %}Manage Account Address{% if customer.addresses.size > 1 %}es{% endif %}{% endif %}
+     {% elsif template contains 'addresses' %}Manage Account Addresses{% endif %}
      <div>
        {% if template contains 'account' %}
          <a class="logout" href="/account/logout">SIGN OUT</a>
