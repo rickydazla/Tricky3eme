@@ -72,25 +72,37 @@
       <script type="text/javascript">
         function showRecoverPasswordForm() {
           document.getElementById('recover-password').style.display = 'block';
-          document.getElementById('customer').style.display='none';
+          document.getElementById('customers').style.display='none';
         }
         function hideRecoverPasswordForm() {
           document.getElementById('recover-password').style.display = 'none';
-          document.getElementById('customer').style.display = 'block';
+          document.getElementById('customers').style.display = 'block';
         }
         if (window.location.hash == '#recover') { showRecoverPasswordForm() }
-        function toggleLoginRegister() {
-          if(document.getElementById('islogin').checked) {
-            document.getElementById('customer-login').style.display='none';
-            document.getElementById('create-customer').style.display='block';
+        function toggleInput(option) {
+            if(option == 'login') {
+              if(document.getElementById('guest')){
+                document.getElementById('guest').style.display='none';
+              }
+              if(document.getElementById('new-customer')){
+                document.getElementById('new-customer').style.display='none';
+              }
+              document.getElementById('customers').style.display='block';
+            }
+            else {
+              if(document.getElementById('guest')){
+                document.getElementById('guest').style.display='block';
+              }
+              if(document.getElementById('new-customer')){
+                document.getElementById('new-customer').style.display='block';
+              }
+              document.getElementById('customers').style.display='none';
+            }
           }
-          else {
-            document.getElementById('customer-login').style.display='block';
-            document.getElementById('create-customer').style.display='none';
-          }
-        }
       </script>
-    {% endif %}  {% elsif template == 'product' %}
+    {% endif %}
+
+  {% elsif template == 'product' %}
     {{ 'jquery.styledradios.js' | asset_url | script_tag }}
     <script type="text/javascript">
       var _Product = { product :{{ product | json }}};

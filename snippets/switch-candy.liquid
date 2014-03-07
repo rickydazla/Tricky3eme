@@ -1,8 +1,7 @@
-<label class="switch-light switch-candy" onclick="toggleLoginRegister();">
-  <input type="checkbox" id="islogin">
-  <span>
-    <span>Existing Customer</span>
-    <span>New Customer</span>
-  </span>
+<div class="switch-toggle switch-candy">
+  <input id="existing_input" name="toggle" type="radio" checked>
+  <label for="existing_input" onclick="toggleInput('login');">Returning Customer</label>
+  <input id="new_input" name="toggle" type="radio">
+  <label for="new_input" onclick="toggleInput('register');">New Customer</label>
   <a></a>
-</label>
+</div>
