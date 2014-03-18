@@ -1,7 +1,11 @@
 <div class="switch-toggle switch-candy">
-  <input id="existing_input" name="toggle" type="radio" checked>
-  <label for="existing_input" onclick="toggleInput('login');">Returning Customer</label>
-  <input id="new_input" name="toggle" type="radio">
-  <label for="new_input" onclick="toggleInput('register');">New Customer</label>
-  <a></a>
+  <input id="new_input" name="toggle" type="radio" checked>
+  {% if shop.checkout.guest_login %}
+    <label id="guest-switch" for="new_input" class="main-switch section-switcher" data-section-to-show="guest" onclick="">New Customer</label>
+  {% else %}
+    <label  id="new-customer-switch" for="new_input" class="main-switch section-switcher" data-section-to-show="new-customer" onclick="">New Customer</label>
+  {% endif %}
+  <input id="existing_input" name="toggle" type="radio">
+  <label id="existing-customer-switch" for="existing_input" class="main-switch section-switcher" data-section-to-show="customer" onclick="">Returning Customer</label>
+  <a href="#"></a>
 </div>

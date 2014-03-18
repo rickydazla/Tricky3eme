@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if lt IE 9 ]><html class="no-js ie" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" xmlns:fb="http://ogp.me/ns/fb#"><![endif]-->
 <!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
-<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" xmlns:fb="http://ogp.me/ns/fb#">
+<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" prefix="og:http://ogp.me/ns#">
 <!--<![endif]-->
 <head>
   {% include 'meta' %}
@@ -70,35 +70,42 @@
     {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
     {% if template contains 'login' or template contains 'register' %}
       <script type="text/javascript">
-        function showRecoverPasswordForm() {
-          document.getElementById('recover-password').style.display = 'block';
-          document.getElementById('customers').style.display='none';
-        }
-        function hideRecoverPasswordForm() {
-          document.getElementById('recover-password').style.display = 'none';
-          document.getElementById('customers').style.display = 'block';
-        }
-        if (window.location.hash == '#recover') { showRecoverPasswordForm() }
-        function toggleInput(option) {
-            if(option == 'login') {
-              if(document.getElementById('guest')){
-                document.getElementById('guest').style.display='none';
-              }
-              if(document.getElementById('new-customer')){
-                document.getElementById('new-customer').style.display='none';
-              }
-              document.getElementById('customers').style.display='block';
-            }
-            else {
-              if(document.getElementById('guest')){
-                document.getElementById('guest').style.display='block';
-              }
-              if(document.getElementById('new-customer')){
-                document.getElementById('new-customer').style.display='block';
-              }
-              document.getElementById('customers').style.display='none';
-            }
+      $(function(){
+        SwitchCandy.Initialize();
+      });
+      var SwitchCandy = {
+        Initialize:function(){
+          var switches = $('.section-switcher');
+          switches.bind("click", SwitchCandy.SwitchSection);
+          switches.bind("touchstart", SwitchCandy.SwitchSection);
+          SwitchCandy.LoadHashes();
+        },
+        LoadHashes:function(){
+          switch(window.location.hash){
+            case '#recover':
+              $('.switch-toggle #existing-customer-switch').trigger('click');
+              $('.section-switcher.recover-link').trigger('click');
+            break;
+            case '#new-customer':
+              $('.switch-toggle #new-customer-switch').trigger('click');
+            break;
+            case '#guest':
+              $('.switch-toggle #guest-switch').trigger('click');
+            break;
+            case '#customer':
+              $('.switch-toggle #existing-customer-switch').trigger('click');
+            break;
           }
+        },
+        SwitchSection:function(){
+          $(".switchable-section").css('display','none');
+          $('#'+$(this).attr('data-section-to-show')).css('display','block');
+          if($(this).attr('href')){
+            return false;
+          }
+          $(window).trigger('resize');//hack for android browser.
+        }
+      };
       </script>
     {% endif %}
   {% elsif template == 'product' %}
