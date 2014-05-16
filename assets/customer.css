@@ -1,4 +1,4 @@
-#customer, #recover-password{ display:none;}
+#new-customer, #guest, #recover-password{ display:none;}
 
 /*
  * CSS TOGGLE SWITCHES
