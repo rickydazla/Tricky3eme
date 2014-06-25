@@ -1,10 +1,12 @@
 <meta charset="utf-8">
 <link rel="dns-prefetch" href="//cdn.myshopify.com/">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.url }}/sitemap.xml">
+{% unless shop.url contains 'dev-url' %}
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.url }}/sitemap.xml">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/blogs/news.atom">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/collections/all.atom">
+{% endunless %}
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
 {% if title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
-<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/blogs/news.atom">
-<link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/collections/all.atom">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
 <meta property="og:site_name" content="{{ shop.name }}">
 {% if template == 'index' %}
