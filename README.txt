@@ -1,3 +1,9 @@
+# Shopify Store
+
+* LIVE: [theshop.myshopify.com](http://theshop.com/)
+* DEV: [devshop.myshopify.com/](https://devshop.myshopify.com/admin)
+
+
 An HTML5 Shopify starting point.
 
 RICK DAVIES
