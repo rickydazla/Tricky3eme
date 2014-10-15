@@ -7,7 +7,7 @@
 {% endunless %}
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
 {% if title contains 'contact' %}<meta name="robots" content="noindex">{% endif %}
-<link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
+{% include 'favicons' %}
 <meta property="og:site_name" content="{{ shop.name }}">
 {% if template == 'index' %}
  <title>{{ shop.name }} | {{ page_title }}</title>
