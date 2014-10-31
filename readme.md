@@ -6,12 +6,13 @@
 
 An HTML5 Shopify starting point.
 
+```
+
 RICK DAVIES
 Head Mangler
 rick@tricky3.co.uk
 http://tricky3.co.uk/
 
-```txt
                                                             
                            :/s.:                           
                           `/dMMh                           
