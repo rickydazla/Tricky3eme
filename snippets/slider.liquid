@@ -2,7 +2,7 @@
 <div id="slider">
 {% assign x = 1 %}
 {% for i in (1..slides) %}
- {% capture slide %}slide{{ i }}.jpg{% endcapture %}
+ {% capture slide %}slide_{{ i }}.jpg{% endcapture %}
  {% capture link %}slide{{ i }}_link{% endcapture %}
  {% capture alt %}slide{{ i }}_alt{% endcapture %}
  {% if settings[link] == '' %}<img{% if x == 1 %} class="first"{% endif %} src="{{ slide | asset_url }}" alt="{{ settings[alt] }}">{% assign x = 2 %}
