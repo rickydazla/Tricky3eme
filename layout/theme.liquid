@@ -4,7 +4,6 @@
 <html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" prefix="og:http://ogp.me/ns#">
 <!--<![endif]-->
 <head>
-  {% if shop.url contains 'dev-url' %}<meta name="robots" content="noindex">{% endif %}
   {% include 'meta' %}
   {{ 'font-squirrel.css' | asset_url | stylesheet_tag }}
   {{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
@@ -49,7 +48,7 @@
      {% else %}{% comment %}app{% endcomment %}
       {{ content_for_layout }}
      {% endif %}
-     
+
    </div>
    <footer role="contentinfo" class="clearfix">
      {% if linklists.footer.links.size > 0 %}
@@ -215,11 +214,11 @@
       });
     </script>
   {% endif %}
-  
+
   <!--[if lt IE 8]>
     {{ 'json2.js' | asset_url | script_tag }}
   <![endif]-->
-  
+
   <!--[if (lt IE 9) & (!IEMobile)]>
     {{ 'DOMAssistant.js' | asset_url | script_tag }}
     {{ 'selectivizr.js' | asset_url | script_tag }}
