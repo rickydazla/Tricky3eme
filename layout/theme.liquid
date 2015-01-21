@@ -107,81 +107,13 @@
       </script>
     {% endif %}
   {% elsif template == 'product' %}
-    {{ 'jquery.styledradios.js' | asset_url | script_tag }}
-    <script type="text/javascript">
-      var _Product = { product :{{ product | json }}};
-      var _Cart =  null;
-      $(function(){
-        $('#product-select').StyledRadios({
-          Product:_Product,
-          VariantSelectedCallBack: RadioCallBack,
-          SelectFirstAvailableVariant: false//play with this one.
-        });
 
-      });
+    {% comment %}
 
-      var RadioCallBack = function(variant,util){
-        //console.log(variant);
-        if(_Cart == null){
-          $.getJSON('/cart.js', function(cart){
-            _Cart = cart;
-            RadioCallBack(variant, util);
-          });
-        }
+      https://github.com/Tricky3/styled-option-select
 
-        var purchaseButton = $('#add');
-        if (variant && variant.available == true && !IsVariant422Error(variant)) {
-          //$('#product-price').html(util.FormatMoney(variant.price, '{{ shop.money_without_currency_format }}'));
-          purchaseButton.removeAttr('disabled');
-          purchaseButton.val('Add to Cart');
-        }else {
-          purchaseButton.attr('disabled', 'disabled');
-          var message = variant ? "Sold Out" : "Not Available";
-          var isAnythingSelected = false;
-          $('.styled-radio-wrapper').each(function(){
-            var optionName = $(this).attr('data-option');
-            var isAnyRadioSelectedForThisOption = $('input[type="radio"].checked', $(this)).length;
-            if(!isAnyRadioSelectedForThisOption){
-              message = 'Please select the '+optionName;
-              return false;
-            }else{
-            	isAnythingSelected = true;
-            }
-          });
-          purchaseButton.val(isAnythingSelected ? message : 'Please select an option');
-        }
+    {% endcomment %}
 
-      };
-
-      var IsVariant422Error = function(variant){
-          var cannotAddThisQuantity = false;
-          var selectedVariantId = variant.id;
-          var quantityToAdd = parseInt($('input[name="quantity"]').val(), 10) || 1;
-          var quantityInCart = 0;
-          var inventoryLimited = false;
-          var inventory = 0;
-          var cart = _Cart;
-
-          if(variant.inventory_management && variant.inventory_policy == 'deny') {
-            inventoryLimited = true;
-            inventory = variant.inventory_quantity;
-          }
-
-          if(inventoryLimited){
-              if(cart.item_count > 0){
-                  for(var i=0;i<cart.items.length;i++){
-                      quantityInCart = cart.items[i].id == selectedVariantId ? cart.items[i].quantity : quantityInCart;
-                  }
-              }
-
-              if ((inventory - quantityInCart) < quantityToAdd) {
-                  cannotAddThisQuantity = true;
-              }
-          }
-
-          return cannotAddThisQuantity;
-      };
-    </script>
   {% elsif template == 'cart' %}
     <script type="text/javascript">
       function remove_item(id) {
@@ -212,11 +144,7 @@
       });
     </script>
   {% endif %}
-  
-  <!--[if lt IE 8]>
-    {{ 'json2.js' | asset_url | script_tag }}
-  <![endif]-->
-  
+
   <!--[if (lt IE 9) & (!IEMobile)]>
     {{ 'DOMAssistant.js' | asset_url | script_tag }}
     {{ 'selectivizr.js' | asset_url | script_tag }}
