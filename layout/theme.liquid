@@ -5,11 +5,10 @@
 <!--<![endif]-->
 <head>
   {% include 'meta' %}
-  {{ 'font-squirrel.css' | asset_url | stylesheet_tag }}
-  {{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
   {% if template contains 'customers' %}
     {{ 'customer.css' | asset_url | stylesheet_tag }}
   {% endif %}
+  {{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
   {{ 'modernizr.js' | asset_url | script_tag }}
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if template %}{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% else %}app{% endif %}">
@@ -48,7 +47,6 @@
      {% else %}{% comment %}app{% endcomment %}
       {{ content_for_layout }}
      {% endif %}
-     
    </div>
    <footer role="contentinfo" class="clearfix">
      {% if linklists.footer.links.size > 0 %}
@@ -223,7 +221,6 @@
     {{ 'DOMAssistant.js' | asset_url | script_tag }}
     {{ 'selectivizr.js' | asset_url | script_tag }}
   <![endif]-->
-
 
 </body>
 </html>
