@@ -4,7 +4,13 @@
 * DEV: [devshop.myshopify.com](https://devshop.myshopify.com/admin)
 
 
-An HTML5 Shopify starting point.
+__An HTML5 Shopify starting point.__
+
+## Additional Modules
+
+* [Infinite scroll](https://github.com/Tricky3/Shopify_Infinite-Scroll)
+* [MailChimp](https://github.com/Tricky3/mailchimpPopUp) & [Campaign Monitor](https://github.com/Tricky3/campaignmonitorPopUp) modal signup forms
+* [Checkout Customizer](https://github.com/Tricky3/Shopify-Checkout-Customizer)
 
 ```
 RICK DAVIES
