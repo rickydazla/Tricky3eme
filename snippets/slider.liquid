@@ -3,8 +3,8 @@
 {% assign x = 1 %}
 {% for i in (1..slides) %}
  {% capture slide %}slide_{{ i }}.jpg{% endcapture %}
- {% capture link %}slide{{ i }}_link{% endcapture %}
- {% capture alt %}slide{{ i }}_alt{% endcapture %}
+ {% capture link %}slide_{{ i }}_link{% endcapture %}
+ {% capture alt %}slide_{{ i }}_alt{% endcapture %}
  {% if settings[link] == '' %}<img{% if x == 1 %} class="first"{% endif %} src="{{ slide | asset_url }}" alt="{{ settings[alt] }}">{% assign x = 2 %}
  {% else %}<a href="{{ settings[link] }}"><img{% if x == 1 %} class="first"{% endif %} src="{{ slide | asset_url }}" alt="{{ settings[alt] }}"></a>{% assign x = 2 %}{% endif %}
 {% endfor %}
