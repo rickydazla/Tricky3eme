@@ -35,7 +35,9 @@
       <a href="/cart">Check out</a>
     </p>
     <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}"></a>
-    {% include 'main-nav' %}
+    <nav role="navigation">
+      {% include 'recursive-nav-helper' %}
+    </nav>
    </header>
    <div role="main" class="main clearfix">
      {% if template %}
