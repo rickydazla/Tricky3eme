@@ -2,7 +2,7 @@
 
 __An HTML5/Liquid Shopify starting point.__
 
-_ __Note__ that no layout or styling is applied here. CSS wizardry required_
+_Note that no layout or styling is applied here. CSS wizardry required_
 
 * LIVE: [theshop.myshopify.com](http://theshop.com/)
 * DEV: [devshop.myshopify.com](https://devshop.myshopify.com/admin)
