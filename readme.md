@@ -1,8 +1,8 @@
 # Shopify Store Theme
 
-__An HTML5 Shopify starting point.__
+__An HTML5/Liquid Shopify starting point.__
 
-_Serious shit now;)_
+___Note__ that no layout or styling is applied here. CSS wizardry required_
 
 * LIVE: [theshop.myshopify.com](http://theshop.com/)
 * DEV: [devshop.myshopify.com](https://devshop.myshopify.com/admin)
@@ -16,7 +16,7 @@ _Serious shit now;)_
 Please Clone from this, test in Dev Store and issue pull requests.
 
 rickydazla will merge when checked in dev store,
-this will publish to live store via [Githubify](https://githubify.com/)
+this will publish to live store via [Githubify](http://githubify.com/)
 
 ```
 RICK DAVIES
