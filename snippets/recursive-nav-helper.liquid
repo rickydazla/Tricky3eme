@@ -11,7 +11,9 @@
         {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
           {% assign has_sub_menu = true %}
           {% for l in linklists[child_list_handle].links %}
-            {% if page_title == l.title %}
+            {% assign l_title = l.title | escape %}
+            <!-- page_title: {{ page_title }} / l_title: {{ l_title }} -->
+            {% if page_title == l_title or blog.title == l_title %}
               {% assign parent_link_active = true %}
             {% endif %}
           {% endfor %}
