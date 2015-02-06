@@ -1,27 +1,31 @@
 {% comment %} Sanity check to prevent infinite recursion {% endcomment %}
 {% assign sanity = sanity | plus: 1 %}
 {% if sanity < 10000 %}
-  {% if linklists.[recursive-navigation-helper].links.size > 0 %}
+  {% if linklists.[recursive-nav-helper].links.size > 0 %}
     <ul class="level{{ sanity }}">
-      {% for link in linklists.[recursive-navigation-helper].links %}
+      {% for link in linklists.[recursive-nav-helper].links %}
         {% assign has_sub_menu = false %}
-        {% assign has_sub_categories = false %}
-        {% assign parent_link_active = false %}
+        {% assign child_link_active = false %}
+        {% assign grandchild_link_active = false %}
         {% assign child_list_handle = link.title | handle %}
         {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
           {% assign has_sub_menu = true %}
           {% for l in linklists[child_list_handle].links %}
             {% assign l_title = l.title | escape %}
-            <!-- page_title: {{ page_title }} / l_title: {{ l_title }} -->
             {% if page_title == l_title or blog.title == l_title %}
-              {% assign parent_link_active = true %}
+              {% assign child_link_active = true %}
             {% endif %}
+            {% assign grandchild_list_handle = l.title | handle %}
+            {% for l2 in linklists.[grandchild_list_handle].links %}
+              {% assign l2_title = l2.title | escape %}
+              {% if page_title == l2_title %}
+                {% assign grandchild_link_active = true %}
+              {% endif %}
+            {% endfor %}
           {% endfor %}
-        {% elsif link.type == 'collection_link' and link.object.all_tags.size > 0 %}
-          {% assign has_sub_categories = true %}
         {% endif %}
-        <li class="nav-item-{{ link.handle }}{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if has_sub_menu or has_sub_categories %} has-dropdown{% endif %}">
-          <a href="{{ link.url }}" class="{% if link.active or parent_link_active %}active {% endif %}ir">{{ link.title }}</a>
+        <li class="nav-item-{{ link.handle }}{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if has_sub_menu %} has-dropdown{% endif %}">
+          <a href="{{ link.url }}" class="{% if link.active or child_link_active %}active {% endif %}ir">{{ link.title }}</a>
           {% comment %} ADVANCED MODE - uses 'sub' prefix and namespacing: sub-clothes-large {% endcomment %}
           {% if settings.adv_nav %}
             {% comment %} Remove 'main-menu' as we don't use that in our namespacing {% endcomment %}
@@ -41,8 +45,10 @@
 
           {% comment %} Include new menu - recursive {% endcomment %}
 
-          {% if has_sub_menu or has_sub_categories %}
-            {% include 'recursive-nav-helper' with sub_menu_list_handle_stub %}
+          {% if has_sub_menu %}
+            {% if link.active or child_link_active or grandchild_link_active %}
+              {% include 'recursive-nav-helper' with sub_menu_list_handle_stub %}
+            {% endif %}
           {% endif %}
         </li>
       {% endfor %}
