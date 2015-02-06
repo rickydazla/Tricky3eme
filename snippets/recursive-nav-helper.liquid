@@ -8,17 +8,20 @@
         {% assign child_link_active = false %}
         {% assign grandchild_link_active = false %}
         {% assign child_list_handle = link.title | handle %}
+        {% if collection %}
+          {% assign collection_title = collection.title | escape %}
+        {% endif %}
         {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
           {% assign has_sub_menu = true %}
           {% for l in linklists[child_list_handle].links %}
             {% assign l_title = l.title | escape %}
-            {% if page_title == l_title or blog.title == l_title %}
+            {% if page_title == l_title or collection_title == l_title or blog.title == l_title %}
               {% assign child_link_active = true %}
             {% endif %}
             {% assign grandchild_list_handle = l.title | handle %}
             {% for l2 in linklists.[grandchild_list_handle].links %}
               {% assign l2_title = l2.title | escape %}
-              {% if page_title == l2_title %}
+              {% if page_title == l2_title or collection_title == l2_title %}
                 {% assign grandchild_link_active = true %}
               {% endif %}
             {% endfor %}
