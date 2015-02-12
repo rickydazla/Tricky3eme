@@ -13,6 +13,13 @@ _Note that no layout or styling is applied here. CSS wizardry required_
 * [MailChimp](https://github.com/Tricky3/mailchimpPopUp) & [Campaign Monitor](https://github.com/Tricky3/campaignmonitorPopUp) modal signup forms
 * [Checkout Customizer](https://github.com/Tricky3/Shopify-Checkout-Customizer)
 
+## Handy Snippets
+
+* [Split Images from content](https://gist.github.com/rickydazla/0e0cc5082975b327a13e)
+* [Custom Addthis Social Sharing](https://gist.github.com/rickydazla/3627110) (using [Symbolset](http://symbolset.com/) Icon Fonts)
+* [cart.item_count w/ Gift Wrapping Product](https://gist.github.com/rickydazla/7796486)
+* [Currency Switcher](https://gist.github.com/rickydazla/2783177)
+
 Please Clone from this, test in Dev Store and issue pull requests.
 
 rickydazla will merge when checked in dev store,
