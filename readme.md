@@ -5,6 +5,7 @@ __An HTML5/Liquid Shopify starting point.__
 _Note that no layout or styling is applied here. CSS wizardry required_
 
 * LIVE: [theshop.myshopify.com](http://theshop.com/)
+* STAGING: [stagingshop.myshopify.com](https://stagingshop.myshopify.com/admin)
 * DEV: [devshop.myshopify.com](https://devshop.myshopify.com/admin)
 
 ## Additional Modules
@@ -20,7 +21,7 @@ _Note that no layout or styling is applied here. CSS wizardry required_
 * [cart.item_count w/ Gift Wrapping Product](https://gist.github.com/rickydazla/7796486)
 * [Currency Switcher](https://gist.github.com/rickydazla/2783177)
 
-Please Clone from this, test in Dev Store and issue pull requests.
+Please Clone from this, test in Dev and/or Staging Store(s), and issue pull requests.
 
 rickydazla will merge when checked in dev store,
 this will publish to live store via [Githubify](http://githubify.com/)
