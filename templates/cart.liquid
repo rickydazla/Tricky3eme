@@ -60,7 +60,16 @@
     <div id="complete" class="clearfix">
       <p class="prod_price">Subtotal <span>{{ cart.total_price | money }}</span></p>
       <input type="submit" class="awesome" alt="Checkout" name="checkout" value="PROCEED TO CHECKOUT">
-      <a href="{{ cart.items.last.product.collections.first.url }}">Continue Shopping</a>
+      {% assign last_product = cart.items[0].product %}
+      {% assign url = last_product.collections[0].url %}
+      {% if last_product.collections[0].handle == 'all' %}
+        {% if last_product.collections.size > 1 %}
+          {% assign url = last_product.collections[1].url %}
+        {% else %}
+          {% assign url = '/' %}
+        {% endif %}
+      {% endif %}
+      <a href="{{ url }}">Continue Shopping</a>
       {% if additional_checkout_buttons %}<p class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</p>{% endif %}
     </div>
     <div class="cart-note">
