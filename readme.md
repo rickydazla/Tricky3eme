@@ -8,18 +8,18 @@ _Note that no layout or styling is applied here. CSS wizardry required_
 * STAGING: [stagingshop.myshopify.com](https://stagingshop.myshopify.com/admin)
 * DEV: [devshop.myshopify.com](https://devshop.myshopify.com/admin)
 
-## Additional Modules
+## Additional Modules?
 
-* [Infinite scroll](https://github.com/Tricky3/Shopify_Infinite-Scroll)
-* [MailChimp](https://github.com/Tricky3/mailchimpPopUp) & [Campaign Monitor](https://github.com/Tricky3/campaignmonitorPopUp) modal signup forms
-* [Checkout Customizer](https://github.com/Tricky3/Shopify-Checkout-Customizer)
+* [ ] [Infinite scroll](https://github.com/Tricky3/Shopify_Infinite-Scroll)
+* [ ] [MailChimp](https://github.com/Tricky3/mailchimpPopUp) & [Campaign Monitor](https://github.com/Tricky3/campaignmonitorPopUp) modal signup forms
+* [ ] [Checkout Customizer](https://github.com/Tricky3/Shopify-Checkout-Customizer)
 
-## Handy Snippets
+## Handy Snippets?
 
-* [Split Images from content](https://gist.github.com/rickydazla/0e0cc5082975b327a13e)
-* [Custom Addthis Social Sharing](https://gist.github.com/rickydazla/3627110) (using [Symbolset](http://symbolset.com/) Icon Fonts)
-* [cart.item_count w/ Gift Wrapping Product](https://gist.github.com/rickydazla/7796486)
-* [Currency Switcher](https://gist.github.com/rickydazla/2783177)
+* [ ] [Split Images from content](https://gist.github.com/rickydazla/0e0cc5082975b327a13e)
+* [ ] [Custom Addthis Social Sharing](https://gist.github.com/rickydazla/3627110) (using [Symbolset](http://symbolset.com/) Icon Fonts)
+* [ ] [cart.item_count w/ Gift Wrapping Product](https://gist.github.com/rickydazla/7796486)
+* [ ] [Currency Switcher](https://gist.github.com/rickydazla/2783177)
 
 Please Clone from this, test in Dev and/or Staging Store(s), and issue pull requests.
 
