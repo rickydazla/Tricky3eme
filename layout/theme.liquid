@@ -125,8 +125,8 @@
       $(function(){
         $('.quantity-field').change(function(){
           var field = $(this);
-          var maxQuantity = field.attr('data-product-inventory');
-          var quantity = field.val();
+          var maxQuantity = parseInt(field.attr('data-product-inventory'), 10);
+          var quantity = parseInt(field.val(), 10);
           if(quantity > maxQuantity){
             field.val(maxQuantity);
             var quantityNotification = $('.quantity-notification', field.parent());
