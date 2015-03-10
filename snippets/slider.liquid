@@ -1,10 +1,11 @@
-{% capture slides %}{{ settings.slide_number }}{% endcapture %}
+{% assign slides = settings.slide_order | split:',' %}{% comment %}e.g. in desired case '3,1,2'{% endcomment %}
+{% assign loop = slides.size | minus: 1 %}
 <div id="slider">
 {% assign x = 1 %}
-{% for i in (1..slides) %}
- {% capture slide %}slide_{{ i }}.jpg{% endcapture %}
- {% capture link %}slide_{{ i }}_link{% endcapture %}
- {% capture alt %}slide_{{ i }}_alt{% endcapture %}
+{% for i in (0..loop) %}
+ {% capture slide %}slide_{{ slides[i] }}.jpg{% endcapture %}
+ {% capture link %}slide_{{ slides[i] }}_link{% endcapture %}
+ {% capture alt %}slide_{{ slides[i] }}_alt{% endcapture %}
  {% if settings[link] == '' %}<img{% if x == 1 %} class="first"{% endif %} src="{{ slide | asset_url }}" alt="{{ settings[alt] }}">{% assign x = 2 %}
  {% else %}<a href="{{ settings[link] }}"><img{% if x == 1 %} class="first"{% endif %} src="{{ slide | asset_url }}" alt="{{ settings[alt] }}"></a>{% assign x = 2 %}{% endif %}
 {% endfor %}
