@@ -1,0 +1,19 @@
+:default:
+  :ignore_files:
+  - assets/retailers_data.json
+  - config/settings_data.json
+:development:
+  :api_key: 123
+  :password: 456
+  :store: xxx.myshopify.com
+  :theme_id:
+:staging:
+  :api_key: 123
+  :password: 456
+  :store: xxx.myshopify.com
+  :theme_id:
+:production:
+  :api_key: 123
+  :password: 456
+  :store: xxx.myshopify.com
+  :theme_id:
