@@ -14,6 +14,7 @@ _Note that no layout or styling is applied here. CSS wizardry required_
 * [ ] [MailChimp](https://github.com/Tricky3/mailchimpPopUp) & [Campaign Monitor](https://github.com/Tricky3/campaignmonitorPopUp) modal signup forms
 * [ ] [Back in Stock custom integration](https://github.com/Tricky3/BIS_module)
 * [ ] [Checkout Customizer](https://github.com/Tricky3/Shopify-Checkout-Customizer)
+* [ ] [JSON Store Lister](https://github.com/Tricky3/shopify-jsonStoreLister)
 
 ## Handy Snippets?
 
