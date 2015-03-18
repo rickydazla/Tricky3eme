@@ -12,6 +12,7 @@ _Note that no layout or styling is applied here. CSS wizardry required_
 
 * [ ] [Infinite scroll](https://github.com/Tricky3/Shopify_Infinite-Scroll)
 * [ ] [MailChimp](https://github.com/Tricky3/mailchimpPopUp) & [Campaign Monitor](https://github.com/Tricky3/campaignmonitorPopUp) modal signup forms
+* [ ] [Back in Stock custom integration](https://github.com/Tricky3/BIS_module)
 * [ ] [Checkout Customizer](https://github.com/Tricky3/Shopify-Checkout-Customizer)
 
 ## Handy Snippets?
@@ -32,16 +33,16 @@ Head Mangler
 rick@tricky3.co.uk
 http://tricky3.uk/
 
-                                                            
-                           :/s.:                           
-                          `/dMMh                           
-                   -      .::sMN-                          
-                +hm/          :NM+                         
-           ..:hmMm`            .dMy                    `   
+
+                           :/s.:
+                          `/dMMh
+                   -      .::sMN-
+                +hm/          :NM+
+           ..:hmMm`            .dMy                    `
        `/ssMM+oNMN`              hMm/   `:+:`       :-y+/  
-     `oysoyNMM+.mMm.  ./ossssss+-`dMMh`+MMMMM/      +MMNs: 
-/so+ysd:---:yddo/hd+:hMMMMMMmhhhho`MMMsoMMMMMosoy+os+Ns--. 
-yNmhh+MhyyyyyyhddhydMMMMMMh:ohhhhydMMMMyoyys/:N+hhmNy:     
-   .//-       `omMMMMMMmy- -mMMMMMMMMMMMMMMMMmyhhsdm+      
+     `oysoyNMM+.mMm.  ./ossssss+-`dMMh`+MMMMM/      +MMNs:
+/so+ysd:---:yddo/hd+:hMMMMMMmhhhho`MMMsoMMMMMosoy+os+Ns--.
+yNmhh+MhyyyyyyhddhydMMMMMMh:ohhhhydMMMMyoyys/:N+hhmNy:
+   .//-       `omMMMMMMmy- -mMMMMMMMMMMMMMMMMmyhhsdm+
                    ``        :+syhhhhhyyyss+--:+oss/
 ```
