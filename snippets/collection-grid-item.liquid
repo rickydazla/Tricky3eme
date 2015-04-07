@@ -1,20 +1,20 @@
 {% if collection-grid-item == '' %}{% assign collection-grid-item = 'three-per-row' %}{% endif %}
-<li class="{{ collection-grid-item }}{% if collection-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif collection-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% endif %}">
-  <div class="coll-image-wrap">  
+<li class="{{ collection-grid-item }}{% if collection-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif collection-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% elsif collection-grid-item == 'two-per-row' %}{% cycle 'last': '', ' last-in-row' %}{% endif %}">
+  <figure class="coll-image-wrap">  
     <a href="{{ collection.url }}">
       {% if collection.image %}
       <img src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt | escape }}" />
       {% else %}
-      <img src="{{ collection.products.first.featured_image.src | product_img_url: 'medium' }}" alt="{{ collection.title | escape }}" />
+      <img src="{{ collection.products[0].images[0].src | product_img_url: 'medium' }}" alt="{{ collection.title | escape }}" />
       {% endif %}
     </a>
-  </div><!-- .coll-image-wrap -->
-  <div class="coll-caption">
-      <a class="coll-title" href="{{ collection.url }}">
-        {{ collection.title }}
-      </a>
-      <span class="coll-item-count">
-        {{ collection.all_products_count }} {{ collection.all_products_count | pluralize:'item','items' }}
-      </span>
-  </div><!-- .coll-caption -->
+    <figcaption class="coll-caption">
+        <a class="coll-title" href="{{ collection.url }}">
+          {{ collection.title }}
+        </a>
+        <span class="coll-item-count">
+          {{ collection.all_products_count }} {{ collection.all_products_count | pluralize:'item','items' }}
+        </span>
+    </figcaption><!-- .coll-caption -->
+  </figure><!-- .coll-image-wrap -->
 </li>

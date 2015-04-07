@@ -1,40 +1,87 @@
-/* =============================================================================
-   HTML5 element display
-   ========================================================================== */
+// =============================================================================
+//   global settings & sassy variables
+// =============================================================================
+
+   $hfont:{{ settings.h_font_family }};
+   $pfont:{{ settings.p_font_family }};
+   $psize:{{ settings.font_size }};
+   $pheight:{{ settings.line_height }};
+   $pcolor:{{ settings.color }};
+   $selectionbg:{{ settings.selection_bgcolor }};
+
+   $acolor:{{ settings.link_color }};
+   $ahover:{{ settings.link_hovercolor }};
+
+   $btncolor:{{ settings.button_color }};
+   $btntxtcolor:{{ settings.button_font_color }};
+   $btnhover:{{ settings.button_hovercolor }};
+   $btntxthover:{{ settings.button_font_hovercolor }};
+
+   $btn2color:{{ settings.button2_color }};
+   $btn2txtcolor:{{ settings.button2_font_color }};
+   $btn2hover:{{ settings.button2_hovercolor }};
+   $btn2txthover:{{ settings.button2_font_hovercolor }};
+
+   $border:{{ settings.border_color }};
+
+// X-Browser CSS3 Mixins
+@mixin opacity($trans) {
+  filter: alpha(opactiy=($trans * 100));
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})";
+  -moz-opacity: $trans;
+  -khtml-opacity: $trans;
+  opacity: $trans;
+}
+
+// =============================================================================
+//   HTML5 element display
+// =============================================================================
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
 audio[controls], canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 
 
-/* =============================================================================
-   Base
-   ========================================================================== */
+// =============================================================================
+//   Base
+// =============================================================================
 
-html { font-size: 100%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-body { margin: 0; font-size:{{ settings.font_size }}; line-height:{{ settings.line_height }};}
-body, button, input, select, textarea { font-family:{{ settings.p_font_family }}; color:{{ settings.color }}; }
+// base 10px rem mixin : http://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/
+html { font-size:62.5%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+body {
+  @include font-size($psize);
+  line-height:$pheight;
+  margin:0;
+}
+body { margin: 0; font-size:$psize; line-height:$pheight;}
+body, button, input, select, textarea { font-family:$pfont; color:$pcolor; }
 
-::-moz-selection { background:{{ settings.selection_bgcolor }}; color:#fff; text-shadow: none; }
-::selection { background:{{ settings.selection_bgcolor }}; color:#fff; text-shadow: none; }
+::-moz-selection { background:$selectionbg; color:#fff; text-shadow: none; }
+::selection { background:$selectionbg; color:#fff; text-shadow: none; }
 
 
-/* =============================================================================
-   Links
-   ========================================================================== */
+// =============================================================================
+//   Links
+// =============================================================================
 
-a { color:{{ settings.link_color }};}
-a:hover { color:{{ settings.link_hovercolor }};}
+a { color:$acolor;}
+a:hover { color:$ahover;}
 a:focus { outline: thin dotted; }
 
 a:hover, a:active { outline: 0; }
 
 
-/* =============================================================================
-   Typography
-   ========================================================================== */
+// =============================================================================
+//   Typography
+// =============================================================================
 
 abbr[title] { border-bottom: 1px dotted;}
 b, strong { font-weight: bold;}
+i, em{ font-style: italic;}
+s, del{ color:red; text-decoration:line-through;}
 blockquote { margin: 1em 40px;}
 dfn { font-style: italic;}
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
@@ -49,30 +96,30 @@ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: b
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
 
-/* =============================================================================
-   Lists
-   ========================================================================== */
+// =============================================================================
+//   Lists
+// =============================================================================
 
 ul, ol, dl { margin: 0; padding: 0; list-style:none;}
 ul li, ol li{ list-style:none;}
 dd, dt { margin:0; padding:0;}
 
-/* =============================================================================
-   Embedded content
-   ========================================================================== */
+// =============================================================================
+//   Embedded content
+// =============================================================================
 
 img { border: 0; -ms-interpolation-mode: bicubic; vertical-align:bottom;}
 svg:not(:root) { overflow: hidden; }
 
-/* =============================================================================
-   Figures
-   ========================================================================== */
+// =============================================================================
+//   Figures
+// =============================================================================
 
 figure { margin: 0; }
 
-/* =============================================================================
-   Forms
-   ========================================================================== */
+// =============================================================================
+//   Forms
+// =============================================================================
 
 form { margin: 0; }
 fieldset { border: 0; margin: 0; padding: 0; }
@@ -87,31 +134,33 @@ button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 textarea { overflow: auto; vertical-align: top; }
 input:valid, textarea:valid {  }
 input:invalid, textarea:invalid { background-color: #f0dddd; }
-::-webkit-input-placeholder { color:#ccc;}
-:-moz-placeholder { color:#ccc;}
+::-webkit-input-placeholder { color:#a2a2a2;}
+:-moz-placeholder { color:#a2a2a2;}
+::-moz-placeholder { color:#a2a2a2;}
+:-ms-input-placeholder { color:#a2a2a2;}
 
-/* =============================================================================
-   Tables
-   ========================================================================== */
+// =============================================================================
+//   Tables
+// =============================================================================
 
 table { border-collapse: collapse; border-spacing: 0; }
 
-/* =============================================================================
-   Primary styles
-   Author: rick@tricky3.co.uk
-   ========================================================================== */
+// =============================================================================
+//   Primary styles
+//   Author: rick@tricky3.co.uk
+// ============================================================================
 
 /* box-sizing:border-box == ftw */
 
-* { 
- -moz-box-sizing:border-box; 
- -webkit-box-sizing:border-box; 
+* {
+ -moz-box-sizing:border-box;
+ -webkit-box-sizing:border-box;
  box-sizing:border-box;
  background-repeat:no-repeat;
  text-decoration:none;
 }
 html, body{ width:100%; height:100%;}
-body{ 
+body{
  min-width:320px;
  background:url("{{ 'slide1.jpg' | asset_url }}") no-repeat center top fixed;
   -webkit-background-size: cover;
@@ -127,11 +176,10 @@ body{ overflow:hidden;}
   	height: 100%;
   	margin: 0 auto -42px;
   }
-  header .inner, footer{ padding:0 8px; background:#fff;}
-  header{ border-top:10px solid #000;}
-  .main{ width:100%;}
-  footer{ position:absolute; bottom:0; left:0; z-index:2; height:42px; width:100%; background:#fff; text-align:right; font-size:12px; border-top:1px solid #000;}
-
+header .inner, footer{ padding:0 8px; background:#fff;}
+header{ border-top:10px solid #000;}
+.main{ width:100%;}
+footer{ position:absolute; bottom:0; left:0; z-index:2; height:42px; width:100%; background:#fff; text-align:right; font-size:12px; border-top:1px solid #000;}
 
 h1, h2, h3, h4, h5, h6, nav{ font-family:{{ settings.h_font_family }}; font-weight:normal;}
 header h1, nav{ margin:0; font-size:{{ settings.header_font_size }}; vertical-align:bottom; text-align:center;}
@@ -150,16 +198,17 @@ footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
 #slider{ display:none; width:100%;}
 
 
-/* =============================================================================
-   Awesome Buttons http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
-   ========================================================================== */
 
-.awesome { background-color: #111 !important; color: #fff !important; }
+// =============================================================================
+//   Awesome Buttons http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
+// =============================================================================
 
+.awesome { background-color:$btncolor !important; color:$btntxtcolor !important; }
+.awesome.secondary { background-color:$btn2color !important; color:$btn2txtcolor !important; }
 .awesome { padding: 5px 10px 6px !important; font-size: 13px !important; }
 .awesome:active { padding: 6px 10px 5px !important; }
 
-/* Touch the rest at your onw risk. */
+// Touch the rest at your own risk.
 .awesome {
   border: 0 !important;
   cursor: pointer !important;
@@ -171,11 +220,9 @@ footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
   text-align: center !important;
   text-decoration: none !important;
 
-  /* vertical margin is the opposite of button's awesomeness */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 
-  /* not all browser support these, but who cares? */
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25), -2px 0 1px rgba(0,0,0,0.25) !important;
 
           border-radius: 5px !important;
@@ -185,40 +232,33 @@ footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
 
-  /* who needs images these days? */
   background-image: -moz-linear-gradient(top, rgba(255,255,255,.2), rgba(150,150,150,.2), rgba(0,0,0,.0)) !important;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,.2)), color-stop(0.5, rgba(150,150,150,.2)), to(rgba(0,0,0,.0))) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#30ffffff,endColorstr=#10000000) progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=2);
 
-  /* cross browser inline block hack
-     see http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle !important;
   *display: inline !important;
   position: relative;
 
-  /* IE luv */
   zoom: 1;
 
-  /* disable text selection (Firefox only) */
   -moz-user-select: none;
 
-  /* no text selection for iOS */
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
 
-/* OPERA only
-   if there is no border set, Opera shows a transparent background-color if border-radius is set. */
+// if there is no border set, Opera shows a transparent background-color if border-radius is set.
 @media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0) {
   input.awesome {
     border: 1px solid RGBa(0,0,0,0) !important;
   }
 }
 
-/* hide selection background color */
+// hide selection background color
 .awesome::selection {
   background: transparent;
 }
@@ -230,34 +270,30 @@ footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
   border: none; /* remove dotted lines for buttons */
 }
 .awesome:focus,
-.awesome:hover {
+.awesome:hover,
+.awesome:active {
+  background-color:$btnhover !important; color:$btntxthover !important;
   background-image: -moz-linear-gradient(top, rgba(255,255,255,.4), rgba(150,150,150,.3), rgba(0,0,0,.0)) !important;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,.4)), color-stop(0.5, rgba(150,150,150,.3)), to(rgba(0,0,0,.0))) !important;
   #filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#50ffffff,endColorstr=#20000000) progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=2);
 }
-.awesome:active {
-  background-image: -moz-linear-gradient(top, rgba(0,0,0,.2), rgba(150,150,150,.2), rgba(255,255,255,.2)) !important;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,.2)), color-stop(0.5, rgba(150,150,150,.2)), to(rgba(255,255,255,.2))) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#50ffffff) progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=315,strength=1);
-
-          box-shadow: inset 0 1px 2px rgba(0,0,0,0.7) !important;
-     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7) !important;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7) !important;
+.awesome.secondary:focus,
+.awesome.secondary:hover,
+.awesome.secondary:active {
+  background-color:$btn2hover !important; color:$btn2txthover !important;
 }
-
-/* Safari doesn't support inset box shadow, so we better remove it */
+// Safari doesn't support inset box shadow, so we better remove it
 @media screen and (-webkit-min-device-pixel-ratio:0){
   .awesome:active {
     -webkit-box-shadow: none;
   }
 }
 
-/* =============================================================================
-   Non-semantic helper classes
-   Please define your styles before this section.
-   ========================================================================== */
+// =============================================================================
+//   Non-semantic helper classes
+//   Please define your styles before this section.
+// =============================================================================
 
-/* For image replacement */
 .ir {
     background-color: transparent;
     border: 0;
@@ -272,78 +308,67 @@ footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
     width: 0;
     height: 100%;
 }
-/* Hide for both screenreaders and browsers:
-   css-discuss.incutio.com/wiki/Screenreader_Visibility */
+// Hide for both screenreaders and browsers:
 .hidden { display: none; visibility: hidden; }
 
-/* Hide only visually, but have it available for screenreaders: by Jon Neal.
-  www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
+// Hide only visually, but have it available for screenreaders: by Jon Neal.
 .visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 
-/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: drupal.org/node/897638 */
+// Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard
 .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
 
-/* Hide visually and from screenreaders, but maintain layout */
+// Hide visually and from screenreaders, but maintain layout
 .invisible { visibility: hidden; }
 
-/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */ 
+// Contain floats: nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
-/* =============================================================================
-   PLACEHOLDER Media Queries for Responsive Design.
-   These override the primary ('mobile first') styles
-   Modify as content requires.
-   ========================================================================== */
+// =============================================================================
+//   PLACEHOLDER Media Queries for Responsive Design.
+//   These override the primary ('mobile first') styles
+//   Modify as content requires.
+// =============================================================================
 
-/*480px _____________________________________________________________________ */
 @media only screen and (min-width: 480px) {
-  
+
   .viewport{ margin:0 auto -27px;}
   footer{ height:27px;}
   nav{ position:absolute; bottom:0; left:0; z-index:1;}
   nav ul{ padding-bottom:27px;}
   nav a{ padding:{{ settings.line_height | times: 0.375 }}em 1.25em;}
-  
+
 }/*/mediaquery*/
 
-/*768px _____________________________________________________________________ */
 @media only screen and (min-width: 768px) {
-  
+
   nav a{ padding:{{ settings.line_height | times: 0.375 }}em 1em;}
-  
+
 }/*/mediaquery*/
 
-/*992px _____________________________________________________________________ */
 @media only screen and (min-width: 992px) {
-  
+
   {% unless settings.slide_number == '1' %}
     body{ background:#fff;}
     #slider{ display:block;}
   {% endunless %}
-  
+
   header h1{ width:70%;}
   header h1, nav{ text-align:left;}
   nav ul{ text-align:left; padding-left:8px;}
   nav a{ padding:{{ settings.line_height | times: 0.125 }}em 1em;}
-  
-  
+
+
 }/*/mediaquery*/
 
-/*1382px ____________________________________________________________________ */
 @media only screen and (min-width: 1382px) {
 }/*/mediaquery*/
 
-/*2x ________________________________________________________________________ */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
 }/*/mediaquery*/
 
-/* =============================================================================
-   Print styles.
-   Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
- 
+// Print styles.
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: sanbeiji.com/archives/953 */
   a, a:visited { color: #444 !important; text-decoration: underline; }
@@ -358,5 +383,3 @@ footer p{ margin:{{ settings.line_height | times: 0.375 }}em;}
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
 }/*/mediaquery*/
-
-

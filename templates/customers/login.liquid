@@ -1,14 +1,61 @@
 {% layout settings.customer_layout %}
-<article id="template" class="container clearfix">
+<article id="template" class="clearfix">
   {% include 'breadcrumb' %}
-  <section id="customer" class="first uneven">
-    <h2>Returning Customers</h2>
+  {% include 'switch-candy' %}
+  {% comment %}*** Guest Login form for shops with optional customer accounts. only displayed pre-checkout. ***{% endcomment %}
+  {% if shop.checkout.guest_login %}
+    <section id="guest"  class="switchable-section">
+      <div class="template_header">
+        <h2 class="title">Continue with Purchase</h2>
+        <p>You may create an account later if you wish</p>
+      </div>
+      {% form 'guest_login' %}
+        <input class="awesome" type="submit" value="Continue &rarr;" />
+      {% endform %}
+    </section>
+  {% else %}
+    <section id="new-customer" class="switchable-section">
+      <!-- Create Customer -->
+      <div id="create-customer">
+        <div class="template_header">
+          <h2 class="title">Create Account</h2>
+        </div>
+        {% form 'create_customer' %}
+          {{ form.errors | default_errors }}
+          <div id="first_name" class="clearfix">
+            <label for="first_name" class="login hidden">First Name</label>
+            <input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" placeholder="First Name">
+          </div>
+          <div id="last_name" class="clearfix">
+            <label for="last_name" class="login hidden">Last Name</label>
+            <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" placeholder="Last Name">
+          </div>
+          <div id="email" class="clearfix">
+            <label for="email" class="login hidden">Email Address</label>
+            <input type="email" value="" name="customer[email]" id="email" class="large" size="30" placeholder="Email Address">
+          </div>
+          <div id="password" class="clearfix">
+            <label for="password" class="login hidden">Password</label>
+            <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" placeholder="Password">
+          </div>
+          <div class="action_bottom">
+            <input class="awesome" type="submit" value="Register" />
+          </div>
+        {% endform %}
+      </div><!-- /#create-customer -->
+    </section>
+  {% endif %}
+
+  <section id="customer" class="switchable-section">
+    <div class="template_header">
+      <h2 class="title">Log In</h2>
+    </div>
+
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
-
-      <div id="login_email" class="clearfix large_form">
-        <label for="customer_email" class="hidden">Email Address</label>
-        <input type="email" value="" placeholder="Email Address" name="customer[email]" id="customer_email" class="large" />
+      <div id="login_email" class="clearfix">
+        <label for="customer_email" class="login hidden">Email Address</label>
+        <input type="email" value="" placeholder="Email Address" name="customer[email]" id="customer_email" class="large" size="30" />
       </div>
 
       {% if form.password_needed %}
@@ -17,18 +64,16 @@
           Customer Account Login
         {% endcomment %}
 
-        <div id="login_password" class="clearfix large_form">
-          <label for="customer_password" class="hidden">Password</label>
-          <input type="password" placeholder="Password" value="" name="customer[password]" id="customer_password" class="large password" size="16" />
-          <div id="forgot_password">
-            <a href="#" class="awesome" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
-          </div>
+        <div id="login_password" class="clearfix">
+          <label for="customer_password" class="login hidden">Password</label>
+          <input type="password" value="" placeholder="Password" name="customer[password]" id="customer_password" class="large password" size="30" />
+          <p id="forgot_password">
+            <a href="#" class="section-switcher recover-link" data-section-to-show="recover-password">Don&rsquo;t know your password?</a>
+          </p>
         </div>
-
       {% endif %}
-
       <div class="action_bottom">
-        <input class="wowsome" type="submit" value="Sign In" />
+        <input class="awesome" type="submit" value="Secure Sign In" />
       </div>
     {% endform %}
   </section>
@@ -37,56 +82,21 @@
     Recover Password Form
   {% endcomment %}
 
-  <section id="recover-password" class="first uneven" style='display:none'>
+  <section id="recover-password" class="switchable-section">
     <div class="template_header">
-      <h2>Reset Password</h2>
+      <h2 class="title">Reset Password</h2>
       <p class="note">We will send you an email to reset your password.</p>
     </div>
-
     {% form 'recover_customer_password' %}
       {{ form.errors | default_errors }}
-
       <div id="recover_email" class="clearfix large_form">
-        <label for="email" class="hidden">Email</label>
-        <input type="email" value="" placeholder="Email" name="email" id="recover-email" class="large" />
+        <label for="email" class="large hidden">Email</label>
+        <input type="email" value="" placeholder="Email Address" size="30" name="email" id="recover-email" class="large" />
       </div>
       <div class="action_bottom">
-        <input class="wowsome" type="submit" value="Submit" />
-        <span class="note">or <a href="#" onclick="hideRecoverPasswordForm();return false;">Cancel</a></span>
+        <input class="awesome" type="submit" value="Submit" />
+        <span class="note">or <a href="#" class="section-switcher" data-section-to-show="customer">Cancel</a></span>
       </div>
     {% endform %}
   </section>
-
-
-  {% comment %}
-    Guest Login form for shops with optional customer accounts. This form is displayed only when users click on the checkout link
-    on the cart page.
-  {% endcomment %}
-
-  {% if shop.checkout.guest_login %}
-  <section id="guest" class="last uneven">
-    <div class="template_header">
-      <h2>New Customers</h2>
-    </div>
-    {% form 'guest_login' %}
-      <input class="wowsome" type="submit" value="Continue with Purchase" />
-      <p><small>You will be able to create an account later if you want.</small></p>
-    {% endform %}
-  </section>
-  {% endif %}
 </article>
-
-
-<script type="text/javascript">
-  function showRecoverPasswordForm() {
-    document.getElementById('recover-password').style.display = 'inline-block';
-    document.getElementById('customer').style.display='none';
-  }
-
-  function hideRecoverPasswordForm() {
-    document.getElementById('recover-password').style.display = 'none';
-    document.getElementById('customer').style.display = 'inline-block';
-  }
-
-  if (window.location.hash == '#recover') { showRecoverPasswordForm() }
-</script>

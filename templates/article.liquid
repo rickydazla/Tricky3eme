@@ -10,7 +10,7 @@
       {{ article.title }}
     </h1>
     <h3 class="blog-article-date">
-      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B ~%dth, %Y' | replace: '~0', '' | replace: '~', '' | replace: '1th', '1st' | replace: '2th', '2nd' | replace: '3th', '3rd' | replace: '11st', '11th' | replace: '12nd', '12th' | replace: '13rd', '13th' }}</time>
     </h3>
     <div class="rte">
       {{ article.content }}
@@ -111,12 +111,27 @@
   </section>
   {% endif %}
   {% if blog.next_article or blog.previous_article %}
+    {% assign current_found = false %}
+    {% assign done = false %}
+    {% for a in blog.articles %}
+      {% if current_found and done == false %}
+        {% assign previous_article = a %}
+        {% assign done = true %}
+      {% endif %}
+      {% unless done %}
+        {% if a.id == article.id %}
+          {% assign current_found = true %}
+        {% else %}
+          {% assign next_article = a %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
     <p class="clearfix"> 
-      {% if blog.next_article %}
-      <span class="left">{{ '&larr; Next Post' | link_to: blog.next_article }}</span>
+      {% if next_article %}
+      <span class="left">{{ next_article.title | link_to: next_article.url }}</span>
       {% endif %}    
-      {% if blog.previous_article %}
-      <span class="right">{{ 'Previous Post &rarr;' | link_to: blog.previous_article }}</span>
+      {% if previous_article %}
+      <span class="right">{{ previous_article.title | link_to: previous_article.url }}</span>
       {% endif %}
     </p>
   {% endif %}

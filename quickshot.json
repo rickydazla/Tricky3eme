@@ -1,0 +1,13 @@
+{
+  "targets": [
+    {
+      "target_name": "Live",
+      "api_key": "526f852a32c6fdd7aff90f9003808f2d",
+      "password": "e86d48a88fdc0114f6a27abf877fd178",
+      "domain": "tricky36creme",
+      "theme_name": "Tricky36Creme",
+      "theme_id": 4264069
+    }
+  ],
+  "configVersion": 1
+}

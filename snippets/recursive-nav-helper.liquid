@@ -1,0 +1,82 @@
+{% comment %} Sanity check to prevent infinite recursion {% endcomment %}
+{% assign sanity = sanity | plus: 1 %}
+{% if sanity < 10000 %}
+  {% if linklists.[recursive-nav-helper].links.size > 0 %}
+    <ul class="level{{ sanity }}">
+      {% for link in linklists.[recursive-nav-helper].links %}
+        {% assign has_sub_menu = false %}
+        {% assign child_link_active = false %}
+        {% assign grandchild_link_active = false %}
+        {% assign child_list_handle = link.title | handle %}
+        {% if collection %}
+          {% assign collection_title = collection.title | escape %}
+        {% endif %}
+        {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+          {% assign has_sub_menu = true %}
+          {% for l in linklists[child_list_handle].links %}
+            {% assign l_title = l.title | escape %}
+            {% if page_title == l_title or collection_title == l_title or blog.title == l_title %}
+              {% assign child_link_active = true %}
+            {% endif %}
+            {% assign grandchild_list_handle = l.title | handle %}
+            {% for l2 in linklists.[grandchild_list_handle].links %}
+              {% assign l2_title = l2.title | escape %}
+              {% if page_title == l2_title or collection_title == l2_title %}
+                {% assign grandchild_link_active = true %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        {% endif %}
+        <li class="nav-item-{{ link.handle }}{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if has_sub_menu %} has-dropdown{% endif %}">
+          <a href="{{ link.url }}" class="{% if link.active or child_link_active %}active {% endif %}ir">{{ link.title }}</a>
+          {% comment %} ADVANCED MODE - uses 'sub' prefix and namespacing: sub-clothes-large {% endcomment %}
+          {% if settings.adv_nav %}
+            {% comment %} Remove 'main-menu' as we don't use that in our namespacing {% endcomment %}
+            {% assign current_menu_handle = recursive-navigation-helper | remove: 'main-menu' %}
+
+            {% comment %} Append new handle to extend namespace {% endcomment %}
+            {% assign sub_menu_list_handle_stub = current_menu_handle | append: '-' | append: link.title | handleize %}
+
+            {% comment %} If handle doesn't begin with 'sub-', prepend it {% endcomment %}
+            {% assign split_nav_handle_first = recursive-navigation-helper | split: '-' | first %}
+            {% unless split_nav_handle_first == 'sub' %}
+              {% assign sub_menu_list_handle_stub = 'sub-' | append: sub_menu_list_handle_stub %}
+            {% endunless %}
+          {% else %}
+            {% assign sub_menu_list_handle_stub = link.title | handleize %}
+          {% endif %}
+
+          {% comment %} Include new menu - recursive {% endcomment %}
+
+          {% if has_sub_menu %}
+            {% if link.active or child_link_active or grandchild_link_active %}
+              {% include 'recursive-nav-helper' with sub_menu_list_handle_stub %}
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+
+    {% comment %} Check for foreign-language links {% endcomment %}
+    {% assign has_drop_down = false %}
+    {% if recursive-navigation-helper == '' %}
+      {% for i in (0..8) %}
+        {% unless has_drop_down %}
+          {% if forloop.first %}
+            {% assign temp = 'link-list' %}
+          {% else %}
+            {% capture temp %}link-list-{{ i }}{% endcapture %}
+          {% endif %}
+          {% if linklists[temp] and linklists[temp].links.size > 0 and linklists[temp].title == link.title %}
+            {% assign has_drop_down = true %}
+            {% assign child_list_handle = temp %}
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+    {% if has_drop_down %}
+      {% include 'recursive-nav-helper' with child_list_handle %}
+    {% endif %}
+  {% endif %}
+{% endif %}

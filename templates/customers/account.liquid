@@ -35,7 +35,7 @@
     <h2>Primary Address</h2>
     <div id="customer_detail" class="group">
       <h3 class="name">{{ customer.name }}</h3>
-      {% if customer.default_address != '' %}
+      {% if customer.default_address %}
         <p>
         {% if customer.default_address.company != '' %}{{ customer.default_address.company }}<br>{% endif %}
         {{ customer.default_address.address1 }}<br>
@@ -45,7 +45,7 @@
         {{ customer.default_address.phone }}<br>
         {{ customer.email }}</p>
       {% endif %}
-      <p><a id="view_address" href="/account/addresses">View All Addresses ({{ customer.addresses_count }})</a></p>
+      <p><a id="view_address" href="/account/addresses">{% if customer.default_address %}View All Addresses ({{ customer.addresses_count }}){% else %}Add Address{% endif %}</a></p>
     </div>
   </section>
 </article>

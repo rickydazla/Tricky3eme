@@ -24,6 +24,9 @@
   {% endfor %}  
 </ul>
 {% endif %}
+{% if collection.image %}
+  {{ collection.image.src | collection_img_url: 'original' | img_tag: collection.title }}
+{% endif %}
 {% if collection.description.size > 0 %}
   <div class="rte">
     {{ collection.description }}

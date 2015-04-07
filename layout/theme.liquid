@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="no-js ie6" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
-<!--[if IE 7 ]><html class="no-js ie7" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
-<!--[if IE 8 ]><html class="no-js ie8" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}"><![endif]-->
-<!--[if gte IE 8]><!-->
-<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}">
+<!--[if lt IE 9 ]><html class="no-js ie" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" xmlns:fb="http://ogp.me/ns/fb#"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
+<html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" prefix="og:http://ogp.me/ns#">
 <!--<![endif]-->
 <head>
   {% include 'meta' %}
-  {{ 'font-face.css' | asset_url | stylesheet_tag }}
-  {{ 'mangled.css' | asset_url | stylesheet_tag }}
   {% if template contains 'customers' %}
     {{ 'customer.css' | asset_url | stylesheet_tag }}
-  {% elsif template == 'index' %}
-    {{ 'flexslider.css' | asset_url | stylesheet_tag }}
   {% endif %}
+  {{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
   {{ 'modernizr.js' | asset_url | script_tag }}
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if template %}{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% else %}app{% endif %}">
@@ -44,12 +38,19 @@
       </form>
       {% endcomment %}
     </div>
-    {% include 'main-nav_min' %}
+    <nav role="navigation">
+      {% include 'recursive-nav-helper' %}
+    </nav>
+    <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}"></a>
    </header>
    <div role="main" class="main clearfix">
-     {% if template == 'list-collections' %}
-      {% include 'collection-listing' %}
-     {% else %}
+     {% if template %}
+       {% if template == 'list-collections' %}
+        {% include 'collection-listing' %}
+       {% else %}
+        {{ content_for_layout }}
+       {% endif %}
+     {% else %}{% comment %}app{% endcomment %}
       {{ content_for_layout }}
      {% endif %}
    </div>
@@ -60,49 +61,95 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="{{ 'jquery.js' | asset_url }}">\x3C/script>')</script>
-  {{ "jquery.fittext.js" | asset_url | script_tag }}
-  <script>
-    $("header h1 a").fitText();
-  </script>
+  {{ content_for_header }}
   {% if template contains 'customers' %}
-    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
-    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
-  {% elsif template == 'index' %}
-    {{ 'jquery.flexslider-min.js' | asset_url | script_tag }}
-    <script type="text/javascript" charset="utf-8">
-      $(window).load(function() {
-        var windowWidth = $(window).width();
-        if(windowWidth > 991){
-          $('.flexslider').flexslider({
-            animation: '{{ settings.slide_effect }}',
-            useCSS: false,
-            slideshowSpeed: 6000,
-            animationSpeed: 1000,
-            controlNav: false,
-            directionNav: false
-          });
-        }
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+    {% if template contains 'login' or template contains 'register' %}
+      <script type="text/javascript">
+      $(function(){
+        SwitchCandy.Initialize();
       });
-    </script>
+      var SwitchCandy = {
+        Initialize:function(){
+          var switches = $('.section-switcher');
+          switches.bind("click", SwitchCandy.SwitchSection);
+          switches.bind("touchstart", SwitchCandy.SwitchSection);
+          SwitchCandy.LoadHashes();
+        },
+        LoadHashes:function(){
+          switch(window.location.hash){
+            case '#recover':
+              $('.switch-toggle #existing-customer-switch').trigger('click');
+              $('.section-switcher.recover-link').trigger('click');
+            break;
+            case '#new-customer':
+              $('.switch-toggle #new-customer-switch').trigger('click');
+            break;
+            case '#guest':
+              $('.switch-toggle #guest-switch').trigger('click');
+            break;
+            case '#customer':
+              $('.switch-toggle #existing-customer-switch').trigger('click');
+            break;
+          }
+        },
+        SwitchSection:function(){
+          $(".switchable-section").css('display','none');
+          $('#'+$(this).attr('data-section-to-show')).css('display','block');
+          if($(this).attr('href')){
+            return false;
+          }
+          $(window).trigger('resize');//hack for android browser.
+        }
+      };
+      </script>
+    {% endif %}
+  {% elsif template == 'product' %}
+
+    {% comment %}
+
+      https://github.com/Tricky3/styled-option-select
+
+    {% endcomment %}
+
   {% elsif template == 'cart' %}
     <script type="text/javascript">
       function remove_item(id) {
           document.getElementById('updates_'+id).value = 0;
           document.getElementById('cartform').submit();
       }
+      $(function(){
+        $('.quantity-field').change(function(){
+          var field = $(this);
+          var maxQuantity = parseInt(field.attr('data-product-inventory'), 10);
+          var quantity = parseInt(field.val(), 10);
+          if(quantity > maxQuantity){
+            field.val(maxQuantity);
+            var quantityNotification = $('.quantity-notification', field.parent());
+            if(quantityNotification.length == 0){
+              quantityNotification = $('<i class="quantity-notification"/>');
+              field.parent().append(quantityNotification);
+            }
+            var positionOfField = field.position();
+            quantityNotification.css({'left':positionOfField.left+'px','top':positionOfField.top+25+'px'});
+            quantityNotification.text('Only '+maxQuantity+' in stock');
+            quantityNotification.fadeIn('fast');
+            setTimeout(function(){
+              quantityNotification.fadeOut('slow');
+            },3000);
+          }
+        });
+      });
     </script>
   {% endif %}
-
-  <!--[if lt IE 8]>
-    {{ 'json2.js' | asset_url | script_tag }}
-  <![endif]-->
 
   <!--[if (lt IE 9) & (!IEMobile)]>
     {{ 'DOMAssistant.js' | asset_url | script_tag }}
     {{ 'selectivizr.js' | asset_url | script_tag }}
   <![endif]-->
 
-  {{ content_for_header }}
+  {{ 'edit-button.js' | asset_url | script_tag }}
 
 </body>
 </html>

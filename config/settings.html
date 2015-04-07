@@ -1,160 +1,172 @@
 <div class="section-info">
   <h3>Grind Theme Support : <a href="mailto:rick@tricky3.co.uk">Rick Davies, Head Mangler @ Tricky3</a></h3>
   <p>>> <a href="/pages/about-us">User Guide</a></p>
+  <!-- <p>>> <a href="http://static.shopify.com/s/files/abc/xyz/123/files/website-manual_v1.pdf">User Guide</a></p>-->
+  <p>This theme is active in x stores:</p>
+  <ol>
+    <li><a href="https://tricky36creme.myshopify.com">tricky36creme.myshopify.com</a> : <a href="http://xxx.com">grindtheme.com</a></li>
+    <!--<li><a href="https://xxx.myshopify.com">xxx.myshopify.com</a> : <a href="https://xxx.myshopify.com/admin">development store</a></li>-->
+  </ol>
+  <br />
+  <div class="box warning">
+    <h4><strong>Notes</strong></h4>
+    <ul>
+      <li><strong>RELATIVE URLs:</strong> since the theme is live in two stores for testing and development purposes, the code is written such that internal URL links need not include the actual store domain (since they are both different): <pre><strong>http(s)://grindtheme.com &larr; no need!</strong></pre> They should begin with a forward slash as the first character e.g. <code><b>/</b>collections/all</code></li>
+    </ul>
+  </div>
 </div>
 <br />
-<div class="container"></div>
 <fieldset>
-	<legend>Frontpage Slideshow</legend>
-	<span class="note">All images 2048px wide (any height, although ideally all the same height) @72dpi - "save for web", "progressive" ~25%</span>
-	<table>
-		<tr>
-		  <th><label for="slide_number">Slides to Show</label></th>
-		  <td>
-		    <select name="slide_number" id="slide_number">
-		      <option value="1">1</option>
-		      <option value="2">2</option>
-		      <option value="3">3</option>
-		      <option value="4">4</option>
-		      <option value="5">5</option>
-		      <option value="6">6</option>
-		      <option value="7">7</option>
-		      <option value="8">8</option>
-		      <option value="9">9</option>
-		      <option value="10" selected="selected">10</option>
-		    </select>
-		  </td>
-		</tr>
-		<tr>
-      <th><label for="slide_effect">Slide Effect</label></th>
+  <legend>Logo</legend>
+  <table>
+    <tr>
+      <th><label for="logo">Logo Img</label></th>
       <td>
-        <select name="slide_effect" id="slide_effect">
-          <option value="slide" selected="selected">slide</option>
-          <option value="fade">fade</option>
-        </select>
+       <input type="file" id="logo" name="logo.png" />
       </td>
     </tr>
-		<tr>
-			<th><label for="slide1">1st Image</label></th>
-			<td><input type="file" id="slide1" name="slide1.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide1_alt">Alt text:</label></th>
-			<td><input type="text" id="slide1_alt" name="slide1_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide1_link">Link to:</label></th>
-			<td><input type="text" id="slide1_link" name="slide1_link" class="text" value=""/></td>
-		</tr>                        
-		<tr>                         
-			<th><label for="slide2">2nd image</label></th>        
-			<td><input type="file" id="slide2" name="slide2.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide2_alt">Alt text:</label></th>
-			<td><input type="text" id="slide2_alt" name="slide2_alt" class="text" value=""/></td>
-		</tr>
-		<tr>
-			<th><label for="slide2_link">Link to:</label></th>
-			<td><input type="text" id="slide2_link" name="slide2_link" class="text" value=""/></td>
-		</tr>                   
-		<tr>                    
-			<th><label for="slide3">3rd image</label></th>      
-			<td><input type="file" id="slide3" name="slide3.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide3_alt">Alt text:</label></th>
-			<td><input type="text" id="slide3_alt" name="slide3_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide3_link">Link to:</label></th>
-			<td><input type="text" id="slide3_link" name="slide3_link" class="text" value=""/></td>
-		</tr>                      
-		<tr>                       
-			<th><label for="slide4">4th image</label></th>          
-			<td><input type="file"  id="slide4" name="slide4.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide4_alt">Alt text:</label></th>
-			<td><input type="text" id="slide4_alt" name="slide4_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide4_link">Link to:</label></th>
-			<td><input type="text" id="slide4_link" name="slide4_link" class="text" value=""/></td>
-		</tr> 
-		<tr> 
-			<th><label for="slide5">5th image</label></th>          
-			<td><input type="file"  id="slide5" name="slide5.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide5_alt">Alt text:</label></th>
-			<td><input type="text" id="slide5_alt" name="slide5_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide5_link">Link to:</label></th>
-			<td><input type="text" id="slide5_link" name="slide5_link" class="text" value=""/></td>
-		</tr>
-		<tr> 
-			<th><label for="slide6">6th image</label></th>          
-			<td><input type="file"  id="slide6" name="slide6.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide6_alt">Alt text:</label></th>
-			<td><input type="text" id="slide6_alt" name="slide6_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide6_link">Link to:</label></th>
-			<td><input type="text" id="slide6_link" name="slide6_link" class="text" value=""/></td>
-		</tr>
-		<tr> 
-			<th><label for="slide7">7th image</label></th>          
-			<td><input type="file"  id="slide7" name="slide7.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide7_alt">Alt text:</label></th>
-			<td><input type="text" id="slide7_alt" name="slide7_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide7_link">Link to:</label></th>
-			<td><input type="text" id="slide7_link" name="slide7_link" class="text" value=""/></td>
-		</tr>
-		<tr> 
-			<th><label for="slide8">8th image</label></th>          
-			<td><input type="file"  id="slide8" name="slide8.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide8_alt">Alt text:</label></th>
-			<td><input type="text" id="slide8_alt" name="slide8_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide8_link">Link to:</label></th>
-			<td><input type="text" id="slide8_link" name="slide8_link" class="text" value=""/></td>
-		</tr>
-		<tr> 
-			<th><label for="slide9">9th image</label></th>          
-			<td><input type="file"  id="slide9" name="slide9.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide9_alt">Alt text:</label></th>
-			<td><input type="text" id="slide9_alt" name="slide9_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide9_link">Link to:</label></th>
-			<td><input type="text" id="slide9_link" name="slide9_link" class="text" value=""/></td>
-		</tr>
-		<tr> 
-			<th><label for="slide10">10th image</label></th>          
-			<td><input type="file"  id="slide10" name="slide10.jpg" /></td>
-		</tr>
-		<tr>
-			<th><label for="slide10_alt">Alt text:</label></th>
-			<td><input type="text" id="slide10_alt" name="slide10_alt" class="text" value=""/></td>
-		</tr>                        
-		<tr>
-			<th><label for="slide10_link">Link to:</label></th>
-			<td><input type="text" id="slide10_link" name="slide10_link" class="text" value=""/></td>
-		</tr>
-	</table>
+    <tr>
+      <th>
+        <label for="logo_width">Logo Width</label>
+      </th>
+      <td>
+        <input type="text" id="logo_width" name="logo_width" value="754px" />
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_height">Logo Height</label>
+      </th>
+      <td>
+        <input type="text" id="logo_height" name="logo_height" value="163px" />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Base Styles</legend>
+  <table>
+    <tr>
+      <th><label for="h_font_family">Headings Font Family</label></th>
+      <td><input type="text" id="h_font_family" name="h_font_family" value="serif" /></td>
+    </tr>
+    <tr>
+      <th><label for="p_font_family">Paragraph Font Family</label></th>
+      <td><input type="text" id="p_font_family" name="p_font_family" value="sans-serif" /></td>
+    </tr>
+    <tr>
+      <th><label for="font_size">Font Size</label></th>
+      <td><input type="text" id="font_size" name="font_size" value="13px" /></td>
+    </tr>
+    <tr>
+      <th><label for="line_height">Line Height</label></th>
+      <td><input type="text" id="line_height" name="line_height" value="1.231" /></td>
+    </tr>
+    <tr>
+      <th><label for="color">Font Color</label></th>
+      <td><input type="text" id="color" name="color" class="color" value="#444444" /></td>
+    </tr>
+    <tr>
+      <th><label for="selection_bgcolor">::Selection Background Color</label></th>
+      <td><input type="text" id="selection_bgcolor" name="selection_bgcolor" class="color" value="#fe57a1" /></td>
+    </tr>
+    <tr>
+      <th><label for="link_color">A:Link Color</label></th>
+      <td><input type="text" id="link_color" name="link_color" class="color" value="#00e00e" /></td>
+    </tr>
+    <tr>
+      <th><label for="link_hovercolor">A:Hover Color</label></th>
+      <td><input type="text" id="link_hovercolor" name="link_hovercolor" class="color" value="#551a8b" /></td>
+    </tr>
+    <tr>
+      <th><label for="button_color">Primary Button BG Color</label></th>
+      <td><input type="text" id="button_color" name="button_color" class="color" value="#00e00e" /></td>
+    </tr>
+    <tr>
+      <th><label for="button_font_color">Primary Button Font Color</label></th>
+      <td><input type="text" id="button_font_color" name="button_font_color" class="color" value="#ffffff" /></td>
+    </tr>
+    <tr>
+      <th><label for="button_hovercolor">Primary Button:Hover BG Color</label></th>
+      <td><input type="text" id="button_hovercolor" name="button_hovercolor" class="color" value="#551a8b" /></td>
+    </tr>
+    <tr>
+      <th><label for="button_font_hovercolor">Primary Button:Hover Font Color</label></th>
+      <td><input type="text" id="button_font_hovercolor" name="button_font_hovercolor" class="color" value="#551a8b" /></td>
+    </tr>
+    <tr>
+      <th><label for="button2_color">Secondary Button BG Color</label></th>
+      <td><input type="text" id="button2_color" name="button2_color" class="color" value="#551a8b" /></td>
+    </tr>
+    <tr>
+      <th><label for="button2_font_color">Secondary Button Font Color</label></th>
+      <td><input type="text" id="button2_font_color" name="button2_font_color" class="color" value="#551a8b" /></td>
+    </tr>
+    <tr>
+      <th><label for="button2_hovercolor">Secondary Button:Hover BG Color</label></th>
+      <td><input type="text" id="button2_hovercolor" name="button2_hovercolor" class="color" value="#00e00e" /></td>
+    </tr>
+    <tr>
+      <th><label for="button2_font_hovercolor">Secondary Button:Hover Font Color</label></th>
+      <td><input type="text" id="button2_font_hovercolor" name="button2_font_hovercolor" class="color" value="#ffffff" /></td>
+    </tr>
+    <tr>
+      <th><label for="border_color">Border Color</label></th>
+      <td><input type="text" id="border_color" name="border_color" class="color" value="#000000" /></td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Frontpage Slideshow</legend>
+  <span class="note">All images 960px wide, any height (although ideally all the same height)</span>
+  <table>
+    <tr>
+      <th><label for="slide_order">Slide Order</label></th>
+      <td>
+        <input type="text" id="slide_order" name="slide_order" class="text" value="3,1,2" />
+        <p class="note">e.g. 3,1,2 (or just 3,2 if you wanted to omit 1)</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h3>Slides</h3>
+      </td>
+    </tr>
+    <tr>
+      <table class="standard-table">
+        <tr>
+          <td></td>
+          <td>Image</td>
+          <td>Links to</td>
+          <td>Title</td>
+        </tr>
+        <tr class="odd">
+          <td><label>Slide #1</label></td>
+          <td>
+            <input type="file" id="slide_1" name="slide_1.jpg" />
+          </td>
+          <td><input type="text" id="slide_1_link" name="slide_1_link" value="/collections/all" /></td>
+          <td><input type="text" id="slide_1_alt" name="slide_1_alt" value="" /></td>
+        </tr>
+        <tr class="even">
+          <td><label>Slide #2</label></td>
+          <td>
+            <input type="file" id="slide_2" name="slide_2.jpg" />
+          </td>
+          <td><input type="text" id="slide_2_link" name="slide_2_link" value="/collections/all" /></td>
+          <td><input type="text" id="slide_2_alt" name="slide_2_alt" value="" /></td>
+        </tr>
+        <tr class="odd">
+          <td><label>Slide #3</label></td>
+          <td>
+            <input type="file" id="slide_3" name="slide_3.jpg" />
+          </td>
+          <td><input type="text" id="slide_3_link" name="slide_3_link" /></td>
+          <td><input type="text" id="slide_3_alt" name="slide_3_alt" /></td>
+        </tr>
+      </table>
+    </tr>
+  </table>
 </fieldset>
 <fieldset>
   <legend>Main Site Banner / Logo</legend>

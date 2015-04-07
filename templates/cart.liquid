@@ -30,7 +30,8 @@
             {% endif %}
             </a>
           </h2>
-          {% if item.properties.size > 0 %}
+          {% assign property_size = item.properties | size %}
+          {% if property_size > 0 %}
           <p>
             {% for p in item.properties %}
               {% unless p.last == blank %}
@@ -49,7 +50,7 @@
         </td>
         <td class="size"><span>{{ item.variant.option1 }}</span></td>
         <td class="qty">
-          <input type="number" class="field" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+          <input type="number" class="field quantity-notification" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0"{% if item.variant.inventory_management == 'shopify' %}{% unless item.variant.inventory_quantity < 1 and item.variant.available %} max="{{ item.variant.inventory_quantity }}"{% endunless %}{% endif %} data-product-inventory="{{ item.variant.inventory_quantity }}"/>
           <input type="submit" alt="Update" name="update" class="update awesome white" value="update">
         </td>
         <td class="sub"><span>{{ item.line_price | money }}</span></td>
@@ -59,7 +60,16 @@
     <div id="complete" class="clearfix">
       <p class="prod_price">Subtotal <span>{{ cart.total_price | money }}</span></p>
       <input type="submit" class="awesome" alt="Checkout" name="checkout" value="PROCEED TO CHECKOUT">
-      <a href="{{ cart.items.last.product.collections.first.url }}">Continue Shopping</a>
+      {% assign last_product = cart.items[0].product %}
+      {% assign url = last_product.collections[0].url %}
+      {% if last_product.collections[0].handle == 'all' %}
+        {% if last_product.collections.size > 1 %}
+          {% assign url = last_product.collections[1].url %}
+        {% else %}
+          {% assign url = '/' %}
+        {% endif %}
+      {% endif %}
+      <a href="{{ url }}">Continue Shopping</a>
       {% if additional_checkout_buttons %}<p class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</p>{% endif %}
     </div>
     <div class="cart-note">

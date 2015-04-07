@@ -1,0 +1,13 @@
+{% assign colorway_temp = '' %}
+{% assign colorway_count = 0 %}
+{% for tag in product.tags %}
+  {% if tag contains 'also available in' %}
+    {% capture colorway_temp %}{{ colorway_temp }}*{% endcapture %}
+    {% assign colorway_count = colorway_temp.size %}
+    {% capture colorways %}<a href="/collections/{% if collection %}{{ collection.handle }}{% else %}{{ product.type | handle }}s{% endif %}/products/{{ product.title | handle }}-{{ tag | remove: 'also available in ' | handle }}">{{ tag | remove: 'also available in ' | replace: ' ', '&nbsp;' }}</a>,{{ colorways }}{% endcapture %}
+  {% endif %}
+{% endfor %}
+{% if colorway_count != 0 %}
+  {% assign colorway = colorways | split:',' %}
+  <p id="colorways">Also available in {% for i in (1..colorway_count) %}{% assign penultimate = colorway_count | minus: forloop.index %}{{ colorway[forloop.index0] }}{% if colorway_count == 2 and forloop.first %} &amp; {% elsif penultimate == 1 %} &amp; {% elsif forloop.last %}.{% else %}, {% endif %}{% endfor %}</p>
+{% endif %}

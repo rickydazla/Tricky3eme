@@ -1,0 +1,3 @@
+{% capture discount %}
+  {{ product.compare_at_price_max | minus:product.price | times:100 | divided_by: product.compare_at_price_max }}%
+{% endcapture %}

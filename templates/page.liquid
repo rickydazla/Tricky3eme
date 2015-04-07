@@ -1,4 +1,25 @@
-<h1>{{ page.title }}</h1>
-<div class="rte">
-  {{ page.content }}
-</div>
+{% if page.handle contains 'delivery' or page.handle contains 'returns' %}
+  <h1>Shipping</h1>
+  <div id="tab-container" class="tab-container">
+    <ul class='etabs'>
+      <li class='tab'><a href="#delivery">Delivery</a></li>
+      <li class='tab'><a href="#returns">Returns</a></li>
+    </ul>
+    <div id="delivery">
+      <h2 class="hidden">Delivery</h2>
+      <h3>{{ pages.domestic-delivery.title }}</h3>
+      <div class="rte">{{ pages.domestic-delivery.content }}</div>
+      <h3>{{ pages.international-delivery.title }}</h3>
+      <div class="rte">{{ pages.international-delivery.content }}</div>
+    </div>
+    <div id="returns">
+      <h2 class="hidden">{{ pages.returns.title }}</h2>
+      <div class="rte">{{ pages.returns.content }}</div>
+    </div>
+  </div>
+{% else %}
+  <h1>{{ page.title }}</h1>
+  <div class="rte">
+    {{ page.content }}
+  </div>
+{% endif %}
