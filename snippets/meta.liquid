@@ -26,9 +26,6 @@
    <meta property="og:image" content="{{ product.featured_image | product_img_url: 'grande' }}">
    <meta property="og:site_name" content="{{ shop.name }}">
    <meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
-   <meta itemprop="currency" content="{{ shop.currency }}">
-   <meta itemprop="seller" content="{{ shop.name }}">
-   <meta itemprop="availability" content="{% if product.available %}in_stock{% else %}out_of_stock{% endif %}">
  {% elsif template == 'article' %}
   {% if article.content contains "<img" %}
     {% assign src = article.content | split: 'src="' %}
