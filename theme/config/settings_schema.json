@@ -1,0 +1,330 @@
+[
+  {
+    "name": "Welcome",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Grind Theme Support : [Rick Davies, Head Mangler @ Tricky3](mailto:rick@tricky3.co.uk)"
+      },
+      {
+        "type": "paragraph",
+        "content": ">> [User Guide](\/pages\/about-us)"
+      },
+      {
+        "type": "paragraph",
+        "content": "This theme is active in x stores:"
+      },
+      {
+        "type": "paragraph",
+        "content": "[tricky36creme.myshopify.com](https:\/\/tricky36creme.myshopify.com) : [grindtheme.com](http:\/\/xxx.com)"
+      },
+      {
+        "type": "header",
+        "content": "Notes"
+      },
+      {
+        "type": "paragraph",
+        "content": "RELATIVE URLs: since the theme is live in two stores for testing and development purposes, the code is written such that internal URL links need not include the actual store domain (since they are both different): http(s):\/\/grindtheme.com ← no need! They should begin with a forward slash as the first character e.g. \/collections\/all"
+      }
+    ]
+  },
+  {
+    "name": "Base Styles",
+    "settings": [
+      {
+        "type": "color",
+        "id": "button_color",
+        "label": "Primary Button BG Color",
+        "default": "#00e00e"
+      },
+      {
+        "type": "color",
+        "id": "button_font_color",
+        "label": "Primary Button Font Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "button_hovercolor",
+        "label": "Primary Button:Hover BG Color",
+        "default": "#551a8b"
+      },
+      {
+        "type": "color",
+        "id": "button_font_hovercolor",
+        "label": "Primary Button:Hover Font Color",
+        "default": "#551a8b"
+      },
+      {
+        "type": "color",
+        "id": "button2_color",
+        "label": "Secondary Button BG Color",
+        "default": "#551a8b"
+      },
+      {
+        "type": "color",
+        "id": "button2_font_color",
+        "label": "Secondary Button Font Color",
+        "default": "#551a8b"
+      },
+      {
+        "type": "color",
+        "id": "button2_hovercolor",
+        "label": "Secondary Button:Hover BG Color",
+        "default": "#00e00e"
+      },
+      {
+        "type": "color",
+        "id": "button2_font_hovercolor",
+        "label": "Secondary Button:Hover Font Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Border Color",
+        "default": "#000000"
+      }
+    ]
+  },
+  {
+    "name": "Frontpage Slideshow",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "All images 960px wide, any height (although ideally all the same height)"
+      },
+      {
+        "type": "text",
+        "id": "slide_order",
+        "label": "Slide Order",
+        "default": "3,1,2",
+        "info": "e.g. 3,1,2 (or just 3,2 if you wanted to omit 1)"
+      },
+      {
+        "type": "header",
+        "content": "Slides"
+      },
+      {
+        "type": "paragraph",
+        "content": "Slide #1"
+      },
+      {
+        "type": "image",
+        "id": "slide_1.jpg",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "slide_1_link",
+        "label": "Links to",
+        "default": "\/collections\/all"
+      },
+      {
+        "type": "text",
+        "id": "slide_1_alt",
+        "label": "Title"
+      },
+      {
+        "type": "paragraph",
+        "content": "Slide #2"
+      },
+      {
+        "type": "image",
+        "id": "slide_2.jpg",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "slide_2_link",
+        "label": "Links to",
+        "default": "\/collections\/all"
+      },
+      {
+        "type": "text",
+        "id": "slide_2_alt",
+        "label": "Title"
+      },
+      {
+        "type": "paragraph",
+        "content": "Slide #3"
+      },
+      {
+        "type": "image",
+        "id": "slide_3.jpg",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "slide_3_link",
+        "label": "Links to"
+      },
+      {
+        "type": "text",
+        "id": "slide_3_alt",
+        "label": "Title"
+      }
+    ]
+  },
+  {
+    "name": "Main Site Banner \/ Logo",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header_font_size",
+        "label": "Header Font Size",
+        "default": "38px"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_logo",
+        "label": "Use Logo Image?"
+      },
+      {
+        "type": "image",
+        "id": "logo.png",
+        "label": "Logo Image Graphic (.png)"
+      },
+      {
+        "type": "text",
+        "id": "logo_width",
+        "label": "Logo Image Width"
+      },
+      {
+        "type": "text",
+        "id": "logo_height",
+        "label": "Logo Image Height"
+      }
+    ]
+  },
+  {
+    "name": "Base Styles",
+    "settings": [
+      {
+        "type": "select",
+        "id": "h_font_family",
+        "label": "Headings Font Family",
+        "options": [
+          {
+            "value": "BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif",
+            "label": "Bebas Neue"
+          }
+        ],
+        "default": "BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif"
+      },
+      {
+        "type": "select",
+        "id": "p_font_family",
+        "label": "Paragraph Font Family",
+        "options": [
+          {
+            "value": "'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;",
+            "label": "Open Sans Condensed"
+          }
+        ],
+        "default": "'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;"
+      },
+      {
+        "type": "text",
+        "id": "font_size",
+        "label": "Font Size",
+        "default": "13px"
+      },
+      {
+        "type": "text",
+        "id": "line_height",
+        "label": "Line Height",
+        "default": "1.231"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Font Color",
+        "default": "#444444"
+      },
+      {
+        "type": "color",
+        "id": "selection_bgcolor",
+        "label": "::Selection Background Color",
+        "default": "#fe57a1"
+      },
+      {
+        "type": "color",
+        "id": "link_color",
+        "label": "A:Link Color",
+        "default": "#00e00e"
+      },
+      {
+        "type": "color",
+        "id": "link_hovercolor",
+        "label": "A:Hover Color",
+        "default": "#551a8b"
+      }
+    ]
+  },
+  {
+    "name": "vCard",
+    "settings": [
+      {
+        "type": "text",
+        "id": "vcard_url",
+        "label": "URL Link",
+        "default": "http:\/\/url.com\/"
+      },
+      {
+        "type": "text",
+        "id": "vcard_org",
+        "label": "Display URL \/ Company Name",
+        "default": "url.com"
+      },
+      {
+        "type": "text",
+        "id": "vcard_email",
+        "label": "Email Link",
+        "default": "\/pages\/contact-us"
+      },
+      {
+        "type": "text",
+        "id": "vcard_display_email",
+        "label": "Email Address",
+        "default": "email@url.com"
+      },
+      {
+        "type": "text",
+        "id": "vcard_street_address",
+        "label": "Street Address",
+        "default": "Some Street"
+      },
+      {
+        "type": "text",
+        "id": "vcard_city",
+        "label": "City",
+        "default": "Someplace"
+      },
+      {
+        "type": "text",
+        "id": "vcard_region",
+        "label": "Region",
+        "default": "Somewhere"
+      },
+      {
+        "type": "text",
+        "id": "vcard_postal_code",
+        "label": "ZIP \/ Postal Code",
+        "default": "123"
+      },
+      {
+        "type": "text",
+        "id": "vard_country_name",
+        "label": "Country Name",
+        "default": "Wherever"
+      },
+      {
+        "type": "text",
+        "id": "vcard_tel",
+        "label": "Tel",
+        "default": "(123)456-7890"
+      }
+    ]
+  }
+]
