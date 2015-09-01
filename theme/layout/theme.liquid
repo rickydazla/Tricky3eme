@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 9 ]><html class="no-js ie" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" xmlns:fb="http://ogp.me/ns/fb#"><![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!-->
 <html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" prefix="og:http://ogp.me/ns#">
-<!--<![endif]-->
 <head>
   {% include 'meta' %}
   {% if template contains 'customers' %}
