@@ -6,3 +6,4 @@ README.md
 *.sublime-workspace
 *.sublime-project
 apps/
+admin/
