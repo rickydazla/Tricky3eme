@@ -32,6 +32,66 @@
     "name": "Base Styles",
     "settings": [
       {
+        "type": "select",
+        "id": "h_font_family",
+        "label": "Headings Font Family",
+        "options": [
+          {
+            "value": "BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif",
+            "label": "Bebas Neue"
+          }
+        ],
+        "default": "BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif"
+      },
+      {
+        "type": "select",
+        "id": "p_font_family",
+        "label": "Paragraph Font Family",
+        "options": [
+          {
+            "value": "'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;",
+            "label": "Open Sans Condensed"
+          }
+        ],
+        "default": "'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;"
+      },
+      {
+        "type": "text",
+        "id": "font_size",
+        "label": "Font Size",
+        "default": "13px"
+      },
+      {
+        "type": "text",
+        "id": "line_height",
+        "label": "Line Height",
+        "default": "1.231"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Font Color",
+        "default": "#444444"
+      },
+      {
+        "type": "color",
+        "id": "selection_bgcolor",
+        "label": "::Selection Background Color",
+        "default": "#fe57a1"
+      },
+      {
+        "type": "color",
+        "id": "link_color",
+        "label": "A:Link Color",
+        "default": "#00e00e"
+      },
+      {
+        "type": "color",
+        "id": "link_hovercolor",
+        "label": "A:Hover Color",
+        "default": "#551a8b"
+      },
+      {
         "type": "color",
         "id": "button_color",
         "label": "Primary Button BG Color",
@@ -194,71 +254,6 @@
         "type": "text",
         "id": "logo_height",
         "label": "Logo Image Height"
-      }
-    ]
-  },
-  {
-    "name": "Base Styles",
-    "settings": [
-      {
-        "type": "select",
-        "id": "h_font_family",
-        "label": "Headings Font Family",
-        "options": [
-          {
-            "value": "BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif",
-            "label": "Bebas Neue"
-          }
-        ],
-        "default": "BebasRegular, Anton, 'Arial Black', 'Arial Bold', Gadget, sans-serif"
-      },
-      {
-        "type": "select",
-        "id": "p_font_family",
-        "label": "Paragraph Font Family",
-        "options": [
-          {
-            "value": "'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;",
-            "label": "Open Sans Condensed"
-          }
-        ],
-        "default": "'Open Sans Condensed', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;"
-      },
-      {
-        "type": "text",
-        "id": "font_size",
-        "label": "Font Size",
-        "default": "13px"
-      },
-      {
-        "type": "text",
-        "id": "line_height",
-        "label": "Line Height",
-        "default": "1.231"
-      },
-      {
-        "type": "color",
-        "id": "color",
-        "label": "Font Color",
-        "default": "#444444"
-      },
-      {
-        "type": "color",
-        "id": "selection_bgcolor",
-        "label": "::Selection Background Color",
-        "default": "#fe57a1"
-      },
-      {
-        "type": "color",
-        "id": "link_color",
-        "label": "A:Link Color",
-        "default": "#00e00e"
-      },
-      {
-        "type": "color",
-        "id": "link_hovercolor",
-        "label": "A:Hover Color",
-        "default": "#551a8b"
       }
     ]
   },
