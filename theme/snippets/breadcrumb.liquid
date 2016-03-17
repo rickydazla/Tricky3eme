@@ -35,6 +35,9 @@
         </span>
         &raquo;
         {{ product.title }}
+      {% when 'list-collections' %}
+        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span>
+        &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections" title="Shop" itemprop="url"><span itemprop="title">Shop</span></a></span>
       {% when 'collection' %}
         <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">Home</span></a></span>
         &raquo; <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="url"><span itemprop="title">{{ collection.title }}</span></a></span>

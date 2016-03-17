@@ -8,8 +8,8 @@
   <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/collections/all.atom">
 {% endif %}
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
-{% include 'favicons' %}
-<meta property="og:site_name" content="{{ shop.name }}">
+{% include 'meta-favicons' %}
+{% include 'meta-social' %}
 {% if template == 'index' %}
  <title>{{ shop.name }} | {{ page_title }}</title>
  <meta name="title" itemprop="name" content="{{ shop.name }} | {{ page_title }}">
@@ -20,18 +20,12 @@
  <title>{{ page_title }} | {{ shop.name }}</title>
  <meta name="title" itemprop="name" content="{{ page_title }} | {{ shop.name }}">
  {% if template == 'product' %}
-   <meta property="og:title" content="{{ product.title }}">
-   <meta property="og:type" content="product">
-   <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
-   <meta property="og:image" content="{{ product.featured_image | product_img_url: 'grande' }}">
-   <meta property="og:site_name" content="{{ shop.name }}">
    <meta itemprop="image" content="{{ product.featured_image | product_img_url: 'compact' }}">
  {% elsif template == 'article' %}
   {% if article.content contains "<img" %}
     {% assign src = article.content | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:'  %}
     {% if src %}
-      <meta property="og:image" content="{{ src }}">
       <meta itemprop="image" content="{{ src }}">
     {% endif %}
   {% endif %}

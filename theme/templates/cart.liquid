@@ -17,7 +17,7 @@
       {% endif %}
       <tr class="{% cycle 'odd', 'even' %}">
         <td class="pic">
-          <a href="{{ item.product.url | within: collections.all }}"><img src="{{ item.product.images[0] | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}" /></a>
+          <a href="{{ item.product.url | within: collections.all }}"><img src="{{ item | img_url: 'thumb' }}" alt="{{ item.title | escape }}" /></a>
         </td>
         <td class="name">
           <h2>
