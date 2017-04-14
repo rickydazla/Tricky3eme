@@ -3,7 +3,7 @@
   {% assign using_link_list = true %}
 {% endif %}
 <h1>{% if using_link_list %}Shop{% else %}Collections{% endif %}</h1>
-<ul class="grid clearfix">
+<ul class="grid">
 {% if using_link_list %}
 {% for link in linklists[collection-listing].links %}
   {% if link.type == 'collection_link' %}

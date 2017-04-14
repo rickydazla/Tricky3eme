@@ -10,7 +10,7 @@
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if template %}{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% else %}app{% endif %}">
  <div class="container">
-   <header role="banner" class="clearfix">
+   <header role="banner">
     <form action="/search" method="get" class="search-form" role="search">
       <input name="q" type="text" id="search-field" placeholder="Search..." class="hint">
       <input type="submit" id="search-submit" value="Search" />
@@ -36,7 +36,7 @@
       {% include 'recursive-nav-helper' %}
     </nav>
    </header>
-   <div role="main" class="main clearfix">
+   <div role="main" class="main">
      {% if template %}
        {% if template == 'list-collections' %}
         {% include 'collection-listing' %}
@@ -47,7 +47,7 @@
       {{ content_for_layout }}
      {% endif %}
    </div>
-   <footer role="contentinfo" class="clearfix">
+   <footer role="contentinfo">
      {% if linklists.footer.links.size > 0 %}
        <ul>
          {% for link in linklists.footer.links %}

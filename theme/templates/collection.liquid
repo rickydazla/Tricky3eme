@@ -1,7 +1,7 @@
 {% paginate collection.products by 50 %}
 <h1>{{ collection.title }}</h1>
 {% if collection.all_tags.size > 0 %}
-<ul class="collection-sub-categories clearfix">
+<ul class="collection-sub-categories">
   <li{% unless current_tags %} class="active"{% endunless %}>
     {% if collection.handle %}
       <a href="/collections/{{ collection.handle }}">All</a>
@@ -32,7 +32,7 @@
     {{ collection.description }}
   </div>
 {% endif %}
-<ul class="grid clearfix">
+<ul class="grid">
 {% for product in collection.products %}
   {% include 'product-grid-item' with 'three-per-row' %}
 {% else %}

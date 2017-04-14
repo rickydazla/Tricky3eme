@@ -6,13 +6,13 @@
     </p>
   </form>
   {% if search.performed %}
-    {% paginate search.results by 10 %} 
+    {% paginate search.results by 10 %}
     {% if search.results_count == 0 %}
     <p>Your search for "{{ search.terms }}" did not yield any results.</p>
     {% else %}
     <ol>
       {% for item in search.results %}
-      <li class="clearfix">
+      <li>
         <h3>{{ item.title | link_to: item.url }}</h3>
         {% if item.featured_image %}
         <div class="result-image">

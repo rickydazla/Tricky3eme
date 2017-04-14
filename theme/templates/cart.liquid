@@ -57,7 +57,7 @@
       </tr>
       {% endfor %}
     </table>
-    <div id="complete" class="clearfix">
+    <div id="complete">
       <p class="prod_price">Subtotal <span>{{ cart.total_price | money }}</span></p>
       <input type="submit" class="awesome" alt="Checkout" name="checkout" value="PROCEED TO CHECKOUT">
       {% assign last_product = cart.items[0].product %}

@@ -1,5 +1,5 @@
 {% layout settings.customer_layout %}
-<article id="template" class="clearfix">
+<article id="template">
   {% include 'breadcrumb' %}
   {% include 'switch-candy' %}
   {% comment %}*** Guest Login form for shops with optional customer accounts. only displayed pre-checkout. ***{% endcomment %}
@@ -22,19 +22,19 @@
         </div>
         {% form 'create_customer' %}
           {{ form.errors | default_errors }}
-          <div id="first_name" class="clearfix">
+          <div id="first_name">
             <label for="first_name" class="login hidden">First Name</label>
             <input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" placeholder="First Name">
           </div>
-          <div id="last_name" class="clearfix">
+          <div id="last_name">
             <label for="last_name" class="login hidden">Last Name</label>
             <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" placeholder="Last Name">
           </div>
-          <div id="email" class="clearfix">
+          <div id="email">
             <label for="email" class="login hidden">Email Address</label>
             <input type="email" value="" name="customer[email]" id="email" class="large" size="30" placeholder="Email Address">
           </div>
-          <div id="password" class="clearfix">
+          <div id="password">
             <label for="password" class="login hidden">Password</label>
             <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" placeholder="Password">
           </div>
@@ -53,7 +53,7 @@
 
     {% form 'customer_login' %}
       {{ form.errors | default_errors }}
-      <div id="login_email" class="clearfix">
+      <div id="login_email">
         <label for="customer_email" class="login hidden">Email Address</label>
         <input type="email" value="" placeholder="Email Address" name="customer[email]" id="customer_email" class="large" size="30" />
       </div>
@@ -64,7 +64,7 @@
           Customer Account Login
         {% endcomment %}
 
-        <div id="login_password" class="clearfix">
+        <div id="login_password">
           <label for="customer_password" class="login hidden">Password</label>
           <input type="password" value="" placeholder="Password" name="customer[password]" id="customer_password" class="large password" size="30" />
           <p id="forgot_password">

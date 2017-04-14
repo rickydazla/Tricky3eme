@@ -51,9 +51,9 @@ html { font-size:62.5%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,
   font-size: ($sizeValue * 10) + px;
   font-size: $sizeValue + rem;
 }
-body { 
-  @include font-size($psize); 
-  line-height:$pheight; 
+body {
+  @include font-size($psize);
+  line-height:$pheight;
   margin:0;
 }
 body { margin: 0; font-size:$psize; line-height:$pheight;}
@@ -263,7 +263,7 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
 .awesome.secondary:active {
   background-color:$btn2hover !important; color:$btn2txthover !important;
 }
-// Safari doesn't support inset box shadow, so we better remove it 
+// Safari doesn't support inset box shadow, so we better remove it
 @media screen and (-webkit-min-device-pixel-ratio:0){
   .awesome:active {
     -webkit-box-shadow: none;
@@ -301,10 +301,14 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
 // Hide visually and from screenreaders, but maintain layout
 .invisible { visibility: hidden; }
 
-// Contain floats: nicolasgallagher.com/micro-clearfix-hack/  
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+// Contain floats: css-tricks.com/snippets/css/clear-fix/
+%clearfix{
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
 
 // =============================================================================
 //   PLACEHOLDER Media Queries for Responsive Design.
@@ -327,7 +331,7 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
 }/*/mediaquery*/
 
-// Print styles. 
+// Print styles.
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: sanbeiji.com/archives/953 */
   a, a:visited { color: #444 !important; text-decoration: underline; }

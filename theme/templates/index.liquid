@@ -4,7 +4,7 @@
   {{ page.content }}
 </div>
 {% assign collection = collections.frontpage %}
-<ul class="grid clearfix">
+<ul class="grid">
 {% for product in collection.products %}
   {% include 'product-grid-item' with 'three-per-row' %}
 {% else %}
