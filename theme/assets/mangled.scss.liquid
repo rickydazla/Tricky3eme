@@ -24,14 +24,50 @@
 
    $border:{{ settings.border_color }};
 
-// X-Browser CSS3 Mixins
-@mixin opacity($trans) {
-  filter: alpha(opacity=($trans * 100));
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})";
-  -moz-opacity: $trans;
-  -khtml-opacity: $trans;
-  opacity: $trans;
-}
+   $break-iphone-plus-up: 414px;
+   $break-tablet-portrait-up: 600px;
+   $break-tablet-landscape-up: 900px;
+   $break-desktop-up: 1200px;
+   $break-big-desktop-up: 1440px;
+
+ // =============================================================================
+ // Media Query Mixins
+ // =============================================================================
+
+ @mixin for-phone-only {
+   @media (max-width: $break-iphone-plus-up - 1px) { @content; }
+ }
+ @mixin for-iphone-plus-up {
+   @media (min-width: $break-iphone-plus-up) { @content; }
+ }
+ @mixin for-iphone-plus-up-or-landscape {
+   @media (min-width: $break-iphone-plus-up), (orientation : landscape) { @content; }
+ }
+ @mixin for-tablet-only {
+   @media (min-device-width: 768px) and (max-device-width: 1024px)  { @content; }
+ }
+ @mixin for-tablet-portrait-only {
+   @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) { @content; }
+ }
+ @mixin for-tablet-landscape-only {
+   @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) { @content; }
+ }
+ @mixin for-tablet-portrait-up {
+   @media (min-width: $break-tablet-portrait-up) { @content; }
+ }
+ @mixin for-tablet-landscape-up {
+   @media (min-width: $break-tablet-landscape-up) { @content; }
+ }
+ @mixin for-desktop-up {
+   @media (min-width: $break-desktop-up) { @content; }
+ }
+ @mixin for-big-desktop-up {
+   @media (min-width: $break-big-desktop-up) { @content; }
+ }
+ @mixin for-big-desktop-up-or-min-height1023 {
+   @media (min-width: $break-big-desktop-up), (min-height: 1023px) { @content; }
+ }
+
 
 // =============================================================================
 //   HTML5 element display
@@ -310,26 +346,6 @@ header > a{ display:block; width:{{ settings.logo_width }}; height:{{ settings.l
   }
 }
 
-// =============================================================================
-//   PLACEHOLDER Media Queries for Responsive Design.
-//   These override the primary ('mobile first') styles
-//   Modify as content requires.
-// =============================================================================
-
-@media only screen and (min-width: 480px) {
-}/*/mediaquery*/
-
-@media only screen and (min-width: 768px) {
-}/*/mediaquery*/
-
-@media only screen and (min-width: 992px) {
-}/*/mediaquery*/
-
-@media only screen and (min-width: 1382px) {
-}/*/mediaquery*/
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
-}/*/mediaquery*/
 
 // Print styles.
 @media print {
