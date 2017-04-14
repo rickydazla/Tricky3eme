@@ -1,30 +1,30 @@
 [
   {
+    "name": "theme_info",
+    "theme_name": "Tricky3eme",
+    "theme_version": "1.x",
+    "theme_author": "Rick Davies, Head Mangler",
+    "theme_documentation_url": "https:\/\/github.com\/rickydazla\/Tricky3eme\/readme.md",
+    "theme_support_url": "https:\/\/github.com\/rickydazla\/Tricky3eme\/issues"
+  },
+  {
     "name": "Welcome",
     "settings": [
       {
-        "type": "header",
-        "content": "Grind Theme Support : [Rick Davies, Head Mangler @ Tricky3](mailto:rick@tricky3.co.uk)"
+        "type": "paragraph",
+        "content": "This theme is active in X stores:"
       },
       {
         "type": "paragraph",
-        "content": ">> [User Guide](\/pages\/about-us)"
-      },
-      {
-        "type": "paragraph",
-        "content": "This theme is active in x stores:"
-      },
-      {
-        "type": "paragraph",
-        "content": "[tricky36creme.myshopify.com](https:\/\/tricky36creme.myshopify.com) : [grindtheme.com](http:\/\/xxx.com)"
+        "content": "[Live Store](https:\/\/tricky3.myshopify.com) :: [Dev Store](https:\/\/tricky3.myshopify.com)"
       },
       {
         "type": "header",
-        "content": "Notes"
+        "content": "Theme Notes"
       },
       {
         "type": "paragraph",
-        "content": "RELATIVE URLs: since the theme is live in two stores for testing and development purposes, the code is written such that internal URL links need not include the actual store domain (since they are both different): http(s):\/\/grindtheme.com ← no need! They should begin with a forward slash as the first character e.g. \/collections\/all"
+        "content": "RELATIVE URLs: since the theme is live in X stores for testing and development purposes, the code is written such that internal URL links need not include the actual store domain (since they are both different): http(s):\/\/tricky3.com ← no need! They should begin with a forward slash as the first character e.g. \/collections\/all"
       }
     ]
   },
