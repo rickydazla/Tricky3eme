@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1;url={{ redirect }}">
+    <script type="text/javascript">
+      window.top.location.href = "{{ redirect }}"
+    </script>
+    <title>Page Redirection</title>
+  </head>
+  <body>
+    <p>If you are not redirected automatically, follow the <a href="{{ redirect }}">{{ cta }}</a></p>
+  </body>
+</html>
+{%- comment -%}
+  <!-- Usage -->
+  {%- layout 'none' -%}
+  {%- include 'redirect' with 'https://domain.com/', cta: 'link to home' -%}
+{%- endcomment -%}
