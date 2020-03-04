@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en" itemscope itemtype="http://schema.org/{% case template %}{% when 'product' %}Product{% when 'blog' %}Blog{% else %}LocalBusiness{% endcase %}" prefix="og:http://ogp.me/ns#">
 <head>
-  {% include 'meta' %}
-  {% if template contains 'customers' %}
-    {{ 'customer.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-  {{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'modernizr.js' | asset_url | script_tag }}
+  {%- include 'head-meta' -%}
+  {%- include 'head-styles' -%}
+  {%- include 'head-scripts' -%}
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{% if template %}{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% else %}app{% endif %}">
  <div class="container">

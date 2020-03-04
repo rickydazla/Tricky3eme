@@ -3,9 +3,9 @@
 {% if shop.url contains 'dev-url' %}
   <meta name="robots" content="noindex">
 {% else %}
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.url }}/sitemap.xml">
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/blogs/news.atom">
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.url }}/collections/all.atom">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ shop.secure_url }}/sitemap.xml">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.secure_url }}/blogs/news.atom">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ shop.secure_url }}/collections/all.atom">
 {% endif %}
 {% capture title %}{{ page_title | downcase }}{% endcapture %}
 {% include 'meta-favicons' %}

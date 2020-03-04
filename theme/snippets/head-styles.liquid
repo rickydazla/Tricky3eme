@@ -1,0 +1,4 @@
+{%- if template contains 'customers' -%}
+  {{ 'customer.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+{{ 'mangled.scss.css' | asset_url | stylesheet_tag }}
