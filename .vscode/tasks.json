@@ -1,0 +1,155 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "TSC Watch Theme",
+			"type": "typescript",
+			"tsconfig": "theme/src/js/tsconfig.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"presentation": {
+				"echo": true,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "Gulp Watch Theme",
+			"type": "shell",
+			"command": "gulp",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "QS Watch Dev",
+			"type": "shell",
+			"command": "qs theme watch --target=dev",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": false,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "QS Watch Staging",
+			"type": "shell",
+			"command": "qs theme watch --target=staging",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "QS Watch Live",
+			"type": "shell",
+			"command": "qs theme watch --target=live",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "QS Watch Wholesale",
+			"type": "shell",
+			"command": "qs theme watch --target=ws-master",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "QS Download Live",
+			"type": "shell",
+			"command": "qs theme download --target=live",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"focus": true,
+				"group": "shopifydev",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "Update Dev",
+			"dependsOn": [
+				"QS Watch Dev",
+				"QS Download Live"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Update Staging",
+			"dependsOn": [
+				"QS Watch Staging",
+				"QS Download Live"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Update Wholesale",
+			"dependsOn": [
+				"QS Watch Wholesale",
+				"QS Download Live"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Sync Dev",
+			"dependsOn": [
+				"QS Watch Dev",
+				"Gulp Watch Theme",
+				"TSC Watch Theme"
+			],
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Sync Staging",
+			"dependsOn": [
+				"QS Watch Staging",
+				"Gulp Watch Theme",
+				"TSC Watch Theme"
+			]
+		},
+		{
+			"label": "Sync Live",
+			"dependsOn": [
+				"QS Watch Live",
+				"Gulp Watch Theme",
+				"TSC Watch Theme"
+			]
+		}
+	]
+}
